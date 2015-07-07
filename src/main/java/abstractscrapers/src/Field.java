@@ -1,4 +1,4 @@
-package com.mycompany.abstractscrapers;
+package abstractscrapers.src;
 
 /**
  * Field Object is represented by Selector Types for field name and value,

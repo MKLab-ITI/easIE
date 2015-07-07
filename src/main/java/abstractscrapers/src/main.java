@@ -1,5 +1,7 @@
-package com.mycompany.abstractscrapers;
+package abstractscrapers.src;
 
+import abstractscrapers.src.StaticWebPagesScrapers.Scraper;
+import abstractscrapers.src.StaticWebPagesScrapers.PaginationIterator;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -51,7 +53,12 @@ public class main {
       toScrape.add(field);
       toScrape.add(field2);
       
-      Scraper scraper = new Scraper("https://www.unglobalcompact.org/participation/report/cop/create-and-submit/active");
-      System.out.println(scraper.scrapeTable("tbody > tr",toScrape));
+      Scraper scraper = new Scraper(
+              "https://www.unglobalcompact.org",
+              "/participation/report/cop/create-and-submit/advanced?page=1&per_page=250"
+      );
+      PaginationIterator iterator = new PaginationIterator(scraper, ".next_page");
+      System.out.println(iterator.scrapeTable("tbody > tr", toScrape).size());
+      //System.out.println(scraper.scrapeTable("tbody > tr",toScrape));
    }
 }

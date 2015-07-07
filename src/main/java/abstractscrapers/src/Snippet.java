@@ -1,4 +1,4 @@
-package com.mycompany.abstractscrapers;
+package abstractscrapers.src;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;

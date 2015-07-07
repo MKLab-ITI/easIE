@@ -1,4 +1,4 @@
-package com.mycompany.abstractscrapers;
+package abstractscrapers.src;
 
 /**
  * Selector available types: CSS Selector, XPath Selector 

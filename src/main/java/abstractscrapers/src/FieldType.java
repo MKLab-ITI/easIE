@@ -1,4 +1,4 @@
-package com.mycompany.abstractscrapers;
+package abstractscrapers.src;
 
 /**
  * Available Field Types: text, link or image

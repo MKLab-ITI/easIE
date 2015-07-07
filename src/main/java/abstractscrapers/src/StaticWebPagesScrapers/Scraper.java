@@ -1,5 +1,8 @@
-package com.mycompany.abstractscrapers;
+package abstractscrapers.src.StaticWebPagesScrapers;
 
+import abstractscrapers.src.Field;
+import abstractscrapers.src.FieldType;
+import abstractscrapers.src.SelectorType;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -17,8 +20,10 @@ import org.jsoup.select.Elements;
  * @author vasgat
  */
 public class Scraper {
+   public String baseURL;
+   public String relativeURL;
    private String source;
-   private Document document;
+   public Document document;
    
    /**
     * Creates a new scraper for link webpage
@@ -26,9 +31,10 @@ public class Scraper {
     * @throws URISyntaxException
     * @throws IOException 
     */
-   public Scraper(String link) throws URISyntaxException, IOException{
-      this.source = link;
-      this.document = Jsoup.connect(new URI(link).toASCIIString())
+   public Scraper(String baseURL, String relativeURL) throws URISyntaxException, IOException{
+      this.baseURL = baseURL;
+      this.source = baseURL+relativeURL;
+      this.document = Jsoup.connect(new URI(source).toASCIIString())
                         .userAgent("Mozilla/37.0").timeout(60000).get(); 
    }
    
@@ -115,13 +121,13 @@ public class Scraper {
          }
          else{
             if (fields.get(i).FieldNameType.equals(FieldType.text)){
-               tempName = element.select(fields.get(i).FieldName).text();
+               tempName = document.select(fields.get(i).FieldName).text();
             }
             else if (fields.get(i).FieldNameType.equals(FieldType.link)){
-               tempName = element.select(fields.get(i).FieldName).attr("href");
+               tempName = document.select(fields.get(i).FieldName).attr("href");
             }
             else if ((fields.get(i).FieldNameType.equals(FieldType.image))){
-               tempName = element.select(fields.get(i).FieldName).attr("src");
+               tempName = document.select(fields.get(i).FieldName).attr("src");
             }
             else{
                throw new Exception("Unknown Field Type");
