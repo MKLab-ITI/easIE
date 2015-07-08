@@ -3,33 +3,16 @@ package abstractscrapers.src;
 import abstractscrapers.src.StaticWebPagesScrapers.Scraper;
 import abstractscrapers.src.StaticWebPagesScrapers.PaginationIterator;
 import java.io.IOException;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 
 /**
  *
  * @author vasgat
  */
 public class main {
-   public static void main(String[] args) throws URISyntaxException, IOException, Exception{
-      String first = "tr:nth-child(1)";
-      String last = "tr:nth-child(10)";
-      
-      Document document = Jsoup.connect(new URI("http://guide.ethical.org.au/company/?company=5362").toASCIIString())
-                        .userAgent("Mozilla/37.0").timeout(60000).get(); 
-      
-      Elements table = document.select(".boxCompanyInfo > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(5) > td:nth-child(2) > div:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr");
-      
-      for (int i=0; i<table.size(); i++){
-         System.out.println(table.get(i).select("td:nth-child(2)").text());
-      }
-      
-      System.out.println(first.compareTo(last));      
+   public static void main(String[] args) throws URISyntaxException, IOException, Exception{    
       
       Field field = new Field(
               "Sector",
@@ -58,7 +41,6 @@ public class main {
               "/participation/report/cop/create-and-submit/advanced?page=1&per_page=250"
       );
       PaginationIterator iterator = new PaginationIterator(scraper, ".next_page");
-      System.out.println(iterator.scrapeTable("tbody > tr", toScrape).size());
-      //System.out.println(scraper.scrapeTable("tbody > tr",toScrape));
+      System.out.println(iterator.scrapeTable("tbody > tr", toScrape));
    }
 }
