@@ -1,7 +1,8 @@
 package abstractscrapers.src;
 
-import abstractscrapers.src.StaticWebPagesScrapers.Scraper;
 import abstractscrapers.src.StaticWebPagesScrapers.PaginationIterator;
+import abstractscrapers.src.StaticWebPagesScrapers.Scraper;
+import abstractscrapers.src.examples.AllRecipesScraper;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -42,5 +43,9 @@ public class main {
       );
       PaginationIterator iterator = new PaginationIterator(scraper, ".next_page");
       System.out.println(iterator.scrapeTable("tbody > tr", toScrape));
+      List<String> ingredients = new ArrayList<String>();
+      ingredients.add("peanut+butter");
+      AllRecipesScraper allrecipesScraper = new AllRecipesScraper();
+      allrecipesScraper.scrapeRecipesByIngedient(ingredients);
    }
 }

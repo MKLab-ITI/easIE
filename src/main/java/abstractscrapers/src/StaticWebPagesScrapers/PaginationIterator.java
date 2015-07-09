@@ -42,7 +42,7 @@ public class PaginationIterator {
       ArrayList<HashMap<String, String>> scrapedFields = new ArrayList();
       scrapedFields.add(scraper.scrapeFields(fields));
       while(!scraper.document.select(nextPageSelector).attr("href").equals("")){         
-         scraper.document = Jsoup.connect(new URI(scraper.baseURL+scraper.document.select(nextPageSelector).attr("href")).toASCIIString())
+         scraper.document = Jsoup.connect(new URI(scraper.baseURL+scraper.document.select(nextPageSelector).attr("href").replace(scraper.baseURL, "")).toASCIIString())
                               .userAgent("Mozilla/37.0").timeout(60000).get(); 
          scrapedFields.add(scraper.scrapeFields(fields));
       }
@@ -62,7 +62,7 @@ public class PaginationIterator {
       ArrayList<HashMap<String, String>> scrapedFields = new ArrayList();
       scrapedFields.addAll(scraper.scrapeTable(tableSelector, fields));
       while(!scraper.document.select(nextPageSelector).attr("href").equals("")){         
-         scraper.document = Jsoup.connect(new URI(scraper.baseURL+scraper.document.select(nextPageSelector).attr("href")).toASCIIString())
+         scraper.document = Jsoup.connect(new URI(scraper.baseURL+scraper.document.select(nextPageSelector).attr("href").replace(scraper.baseURL, "")).toASCIIString())
                               .userAgent("Mozilla/37.0").timeout(60000).get();  
          scrapedFields.addAll(scraper.scrapeTable(tableSelector, fields));
       }  

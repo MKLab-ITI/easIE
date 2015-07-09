@@ -27,7 +27,8 @@ public class Scraper {
    
    /**
     * Creates a new scraper for link webpage
-    * @param link: webpage url
+    * @param baseURL: webpage url
+    * @param relativeURL: path to the specific spot in the page
     * @throws URISyntaxException
     * @throws IOException 
     */
@@ -36,6 +37,18 @@ public class Scraper {
       this.source = baseURL+relativeURL;
       this.document = Jsoup.connect(new URI(source).toASCIIString())
                         .userAgent("Mozilla/37.0").timeout(60000).get(); 
+   }
+   
+   /**
+    * Creates a new scraper for link webpage
+    * @param FullLink webpage link
+    * @throws URISyntaxException
+    * @throws IOException 
+    */
+   public Scraper(String FullLink) throws URISyntaxException, IOException{
+      this.source = FullLink;
+      this.document = Jsoup.connect(new URI(source).toASCIIString())
+                        .userAgent("Mozilla/37.0").timeout(60000).get();     
    }
    
    /**
@@ -62,6 +75,9 @@ public class Scraper {
             else if ((fields.get(i).FieldNameType.equals(FieldType.image))){
                tempName = document.select(fields.get(i).FieldName).attr("src");
             }
+            else if ((fields.get(i).FieldNameType.equals(FieldType.attr))){
+               tempName = document.select(fields.get(i).FieldName).attr(FieldType.attr);
+            }            
             else{
                throw new Exception("Unknown Field Type");
             }
@@ -78,6 +94,9 @@ public class Scraper {
             }
             else if ((fields.get(i).FieldValueType.equals(FieldType.image))){
                tempValue = document.select(fields.get(i).FieldValue).attr("src");
+            }
+            else if ((fields.get(i).FieldValueType.equals(FieldType.attr))){
+               tempValue = document.select(fields.get(i).FieldValue).attr(FieldType.attr);
             }
             else{
                throw new Exception("Unknown Field Type");
@@ -97,7 +116,7 @@ public class Scraper {
     */
    public ArrayList<HashMap<String, String>> scrapeTable(String tableSelector, List<Field> fields) throws Exception{
       ArrayList<HashMap<String, String>> scrapedTableFields = new ArrayList();
-      Elements table = document.select(tableSelector);
+      Elements table = document.select(tableSelector);      
       for (int i=0; i<table.size(); i++){
          scrapedTableFields.add(scrapeTableFields(fields, table.get(i)));
       }
@@ -129,6 +148,9 @@ public class Scraper {
             else if ((fields.get(i).FieldNameType.equals(FieldType.image))){
                tempName = document.select(fields.get(i).FieldName).attr("src");
             }
+            else if ((fields.get(i).FieldNameType.equals(FieldType.attr))){
+               tempName = document.select(fields.get(i).FieldName).attr(FieldType.attr);
+            }
             else{
                throw new Exception("Unknown Field Type");
             }
@@ -145,6 +167,9 @@ public class Scraper {
             }
             else if ((fields.get(i).FieldValueType.equals(FieldType.image))){
                tempValue = element.select(fields.get(i).FieldValue).attr("src");
+            }
+            else if ((fields.get(i).FieldValueType.equals(FieldType.attr))){
+               tempValue = element.select(fields.get(i).FieldValue).attr(FieldType.attr);
             }
             else{
                throw new Exception("Unknown Field Type");
