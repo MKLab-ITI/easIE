@@ -57,11 +57,12 @@ public class Scraper {
     * @return a HashMap of the scraped fields
     * @throws Exception 
     */
-   public HashMap scrapeFields(List<Field> fields) throws Exception{
-      HashMap<String, String> ScrapedFields = new HashMap<String, String>();
+   public HashMap scrapeFields(List<Field> fields){
+      
+      HashMap<String, Object> ScrapedFields = new HashMap<String, Object>();
       for (int i=0; i<fields.size(); i++){
          String tempName;
-         String tempValue;
+         Object tempValue;
          if (fields.get(i).SelectorNameType.equals(SelectorType.rawtext)){
             tempName = fields.get(i).FieldName;
          }
@@ -75,11 +76,8 @@ public class Scraper {
             else if ((fields.get(i).FieldNameType.equals(FieldType.image))){
                tempName = document.select(fields.get(i).FieldName).attr("src");
             }
-            else if ((fields.get(i).FieldNameType.equals(FieldType.attr))){
-               tempName = document.select(fields.get(i).FieldName).attr(FieldType.attr);
-            }            
             else{
-               throw new Exception("Unknown Field Type");
+               tempName = document.select(fields.get(i).FieldName).attr(fields.get(i).FieldValueType);
             }
          }
          if (fields.get(i).SelectorValueType.equals(SelectorType.rawtext)){
@@ -95,15 +93,16 @@ public class Scraper {
             else if ((fields.get(i).FieldValueType.equals(FieldType.image))){
                tempValue = document.select(fields.get(i).FieldValue).attr("src");
             }
-            else if ((fields.get(i).FieldValueType.equals(FieldType.attr))){
-               tempValue = document.select(fields.get(i).FieldValue).attr(FieldType.attr);
+            else if (fields.get(i).FieldValueType.equals(FieldType.list)){
+               tempValue = scrapeList(fields.get(i).FieldValue);
             }
             else{
-               throw new Exception("Unknown Field Type");
+               tempValue = document.select(fields.get(i).FieldValue).attr(fields.get(i).FieldValueType);
             }
          }
          ScrapedFields.put(tempName, tempValue);
       }
+      ScrapedFields.put("URL", source);
       return ScrapedFields;
    }
    
@@ -114,8 +113,8 @@ public class Scraper {
     * @return an ArrayList of HashMap (corresponds to the scraped table fields)
     * @throws Exception in case of unknown field type
     */
-   public ArrayList<HashMap<String, String>> scrapeTable(String tableSelector, List<Field> fields) throws Exception{
-      ArrayList<HashMap<String, String>> scrapedTableFields = new ArrayList();
+   public ArrayList<HashMap<String, Object>> scrapeTable(String tableSelector, List<Field> fields){
+      ArrayList<HashMap<String, Object>> scrapedTableFields = new ArrayList();
       Elements table = document.select(tableSelector);      
       for (int i=0; i<table.size(); i++){
          scrapedTableFields.add(scrapeTableFields(fields, table.get(i)));
@@ -130,11 +129,11 @@ public class Scraper {
     * @return a HashMap of scraped fields
     * @throws Exception 
     */
-   private HashMap<String, String> scrapeTableFields(List<Field> fields, Element element) throws Exception{
-      HashMap<String, String> ScrapedFields = new HashMap<String, String>();
+   private HashMap<String, Object> scrapeTableFields(List<Field> fields, Element element){
+      HashMap<String, Object> ScrapedFields = new HashMap<String, Object>();
       for (int i=0; i<fields.size(); i++){
          String tempName;
-         String tempValue;
+         Object tempValue;
          if (fields.get(i).SelectorNameType.equals(SelectorType.rawtext)){
             tempName = fields.get(i).FieldName;
          }
@@ -148,11 +147,8 @@ public class Scraper {
             else if ((fields.get(i).FieldNameType.equals(FieldType.image))){
                tempName = document.select(fields.get(i).FieldName).attr("src");
             }
-            else if ((fields.get(i).FieldNameType.equals(FieldType.attr))){
-               tempName = document.select(fields.get(i).FieldName).attr(FieldType.attr);
-            }
             else{
-               throw new Exception("Unknown Field Type");
+               tempName = document.select(fields.get(i).FieldName).attr(fields.get(i).FieldValueType);
             }
          }
          if (fields.get(i).SelectorValueType.equals(SelectorType.rawtext)){
@@ -168,15 +164,25 @@ public class Scraper {
             else if ((fields.get(i).FieldValueType.equals(FieldType.image))){
                tempValue = element.select(fields.get(i).FieldValue).attr("src");
             }
-            else if ((fields.get(i).FieldValueType.equals(FieldType.attr))){
-               tempValue = element.select(fields.get(i).FieldValue).attr(FieldType.attr);
+            else if (fields.get(i).FieldValueType.equals(FieldType.list)){
+               tempValue = scrapeList(fields.get(i).FieldValue);
             }
             else{
-               throw new Exception("Unknown Field Type");
+               tempValue = element.select(fields.get(i).FieldValue).attr(fields.get(i).FieldValueType);
             }
          }
          ScrapedFields.put(tempName, tempValue);
       }
+      ScrapedFields.put("URL", source);
       return ScrapedFields;
    }   
+   
+   public ArrayList scrapeList(String listSelector){
+      ArrayList list = new ArrayList();
+      Elements elements = document.select(listSelector);
+      for (int i=0; i<elements.size(); i++){
+         list.add(elements.get(i).text());
+      }
+      return list;
+   }
 }

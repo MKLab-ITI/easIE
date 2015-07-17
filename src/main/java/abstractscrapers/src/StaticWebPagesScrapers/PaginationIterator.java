@@ -38,8 +38,8 @@ public class PaginationIterator {
     * @throws IOException
     * @throws Exception 
     */
-   public ArrayList<HashMap<String, String>> scrapeFields(List<Field> fields) throws URISyntaxException, IOException, Exception{
-      ArrayList<HashMap<String, String>> scrapedFields = new ArrayList();
+   public ArrayList<HashMap> scrapeFields(List<Field> fields) throws URISyntaxException, IOException, Exception{
+      ArrayList<HashMap> scrapedFields = new ArrayList();
       scrapedFields.add(scraper.scrapeFields(fields));
       while(!scraper.document.select(nextPageSelector).attr("href").equals("")){         
          scraper.document = Jsoup.connect(new URI(scraper.baseURL+scraper.document.select(nextPageSelector).attr("href").replace(scraper.baseURL, "")).toASCIIString())
@@ -58,8 +58,8 @@ public class PaginationIterator {
     * @throws IOException
     * @throws Exception 
     */
-   public ArrayList<HashMap<String, String>> scrapeTable(String tableSelector, List<Field> fields) throws URISyntaxException, IOException, Exception{
-      ArrayList<HashMap<String, String>> scrapedFields = new ArrayList();
+   public ArrayList<HashMap> scrapeTable(String tableSelector, List<Field> fields) throws URISyntaxException, IOException, Exception{
+      ArrayList<HashMap> scrapedFields = new ArrayList();
       scrapedFields.addAll(scraper.scrapeTable(tableSelector, fields));
       while(!scraper.document.select(nextPageSelector).attr("href").equals("")){         
          scraper.document = Jsoup.connect(new URI(scraper.baseURL+scraper.document.select(nextPageSelector).attr("href").replace(scraper.baseURL, "")).toASCIIString())

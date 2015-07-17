@@ -7,16 +7,16 @@ import abstractscrapers.src.SelectorType;
 import abstractscrapers.src.StaticWebPagesScrapers.BunchScraper;
 import abstractscrapers.src.StaticWebPagesScrapers.PaginationIterator;
 import abstractscrapers.src.StaticWebPagesScrapers.Scraper;
-import com.mongodb.BasicDBList;
 import java.io.BufferedReader;
-import java.io.PrintWriter;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import org.json.JSONArray;
 
 /**
  *
@@ -30,27 +30,35 @@ public class AllRecipesScraper {
       RecipeFields = new ArrayList<Field>();
       Field directions = new Field(
               "Directions",
-              ".directions",
+              ".directLeft > ol > li",
               SelectorType.rawtext,
               SelectorType.CSS,
               FieldType.text,
-              FieldType.text
+              FieldType.list
       );
       Field rating = new Field(
               "Rating",
-              ".detail-right > div:nth-child(4) > div:nth-child(1) > div:nth-child(2) > meta:nth-child(1)",
+              ".detail-right > div:nth-child(4) > div:nth-child(1) > div:nth-child(2) > meta",
               SelectorType.rawtext,
               SelectorType.CSS,
               FieldType.text,
-              FieldType.attr = "content"
+              "content"
+      );
+      Field recipeId = new Field(
+              "id",
+              "#zoneRecipe",
+              SelectorType.rawtext,
+              SelectorType.CSS,
+              FieldType.text,
+              "data-typespecificid"
       );
       Field Ingredients = new Field(
               "Ingredients",
-              ".ingred-left",
+              "ul.ingredient-wrap > li",
               SelectorType.rawtext,
               SelectorType.CSS,
               FieldType.text,
-              FieldType.text
+              FieldType.list
       );
       Field Title = new Field(
               "Recipe Title",
@@ -59,11 +67,12 @@ public class AllRecipesScraper {
               SelectorType.CSS,
               FieldType.text,
               FieldType.text
-      );
+      );      
       RecipeFields.add(directions);
       RecipeFields.add(rating);
       RecipeFields.add(Ingredients);
       RecipeFields.add(Title);
+      RecipeFields.add(recipeId);
       
       linkFields = new ArrayList<Field>();
       Field RecipeLinkField = new Field(
@@ -76,8 +85,10 @@ public class AllRecipesScraper {
       );
       linkFields.add(RecipeLinkField);
    }
-   
-   public BasicDBList scrapeRecipesByIngedient(List<String> ingredients) throws URISyntaxException, IOException, Exception{
+
+   public JSONArray scrapeRecipesByIngedient(List<String> ingredients) 
+                              throws URISyntaxException, IOException, Exception
+   {      
       HashSet<String> RecipeLinks = new HashSet();
       for (int i=0; i<ingredients.size(); i++){
          RecipeLinks.addAll(getRecipeLinksByIngredient(ingredients.get(i)));
@@ -88,7 +99,9 @@ public class AllRecipesScraper {
       return JSONFormatter.toJSONArray(bunchScraper.scrapeFields(RecipeFields));      
    }
    
-   public HashSet getRecipeLinksByIngredient(String ingredient) throws URISyntaxException, IOException, Exception{
+   public HashSet getRecipeLinksByIngredient(String ingredient) 
+                  throws URISyntaxException, IOException, Exception
+   {
       HashSet<String> RecipeLinks = new HashSet();
       PaginationIterator PageIterator = new PaginationIterator(
               new Scraper(
@@ -97,7 +110,7 @@ public class AllRecipesScraper {
               ),
               "#ctl00_CenterColumnPlaceHolder_ucPager_corePager_pageNumbers > a:nth-child(9)"
       );
-      ArrayList<HashMap<String, String>> recipeLinks 
+      ArrayList<HashMap> recipeLinks 
                   = PageIterator.scrapeTable(".recipe-info", linkFields);
       for (int j=0; j<recipeLinks.size(); j++){
          RecipeLinks.addAll(recipeLinks.get(j).values());
@@ -123,7 +136,7 @@ public class AllRecipesScraper {
       AllRecipesScraper allrecipesScraper = new AllRecipesScraper();
       List<String> ingredients = allrecipesScraper.readIngredientsFile("src//main//java//abstractscrapers//src//data//ingredients.tsv");
       PrintWriter writer = new PrintWriter("recipes.json");
-      writer.println(allrecipesScraper.scrapeRecipesByIngedient(ingredients));
+      writer.println(allrecipesScraper.scrapeRecipesByIngedient(ingredients).toString(4));
       writer.close();
    }
 }

@@ -38,11 +38,11 @@ public class BunchScraper {
     * @throws IOException
     * @throws Exception 
     */
-   public ArrayList<HashMap<String, String>> scrapeFields(List<Field> fields) throws URISyntaxException, IOException, Exception{
-      ArrayList<HashMap<String, String>> scrapedFields = new ArrayList();
+   public ArrayList<HashMap> scrapeFields(List<Field> fields) throws URISyntaxException, IOException, Exception{
+      ArrayList<HashMap> scrapedFields = new ArrayList();
       Iterator links = BunchOfLinks.iterator();
       while(links.hasNext()){
-         Scraper scraper = new Scraper(baseURL+(String) links.next());
+         Scraper scraper = new Scraper(baseURL+((String) links.next()).replace(baseURL, ""));
          scrapedFields.add(scraper.scrapeFields(fields));
       }
       return scrapedFields;
@@ -57,8 +57,8 @@ public class BunchScraper {
     * @throws IOException
     * @throws Exception 
     */
-   public ArrayList<HashMap<String, String>> scrapeTable(String tableSelector, List<Field> fields) throws URISyntaxException, IOException, Exception{
-      ArrayList<HashMap<String, String>> scrapedFields = new ArrayList();
+   public ArrayList<HashMap> scrapeTable(String tableSelector, List<Field> fields) throws URISyntaxException, IOException, Exception{
+      ArrayList<HashMap> scrapedFields = new ArrayList();
       Iterator links = BunchOfLinks.iterator();
       while(links.hasNext()){
          Scraper scraper = new Scraper(baseURL+(String) links.next());

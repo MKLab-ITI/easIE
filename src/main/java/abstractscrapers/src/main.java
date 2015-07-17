@@ -1,8 +1,5 @@
 package abstractscrapers.src;
 
-import abstractscrapers.src.StaticWebPagesScrapers.PaginationIterator;
-import abstractscrapers.src.StaticWebPagesScrapers.Scraper;
-import abstractscrapers.src.examples.AllRecipesScraper;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -13,8 +10,26 @@ import java.util.List;
  * @author vasgat
  */
 public class main {
-   public static void main(String[] args) throws URISyntaxException, IOException, Exception{    
-      
+   public static void main(String[] args) throws URISyntaxException, IOException, Exception{  
+      abstractscrapers.src.DynamicWebPagesScrapers.Scraper scraper = new abstractscrapers.src.DynamicWebPagesScrapers.Scraper("http://www.forbes.com/global2000/list/");
+      Field field = new Field(
+              "Company Name",
+              "td:nth-child(3)", 
+              SelectorType.rawtext, 
+              SelectorType.CSS,
+              FieldType.text,
+              FieldType.text
+      );
+      List<Field> fields = new ArrayList<Field>();
+      fields.add(field);
+      System.out.println(scraper.scrapeTable("#list-table-body > tr.data", fields));
+      for (int i=0; i<105; i++){
+         System.out.println(i);
+         scraper.scrollDownEvent();
+      }
+      System.out.println(scraper.scrapeTable("#list-table-body > tr.data", fields).size());
+      scraper.quit();
+   /*   
       Field field = new Field(
               "Sector",
               "td:nth-child(2)", 
@@ -46,6 +61,6 @@ public class main {
       List<String> ingredients = new ArrayList<String>();
       ingredients.add("peanut+butter");
       AllRecipesScraper allrecipesScraper = new AllRecipesScraper();
-      allrecipesScraper.scrapeRecipesByIngedient(ingredients);
+      allrecipesScraper.scrapeRecipesByIngedient(ingredients);*/
    }
 }
