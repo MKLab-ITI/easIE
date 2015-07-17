@@ -33,8 +33,8 @@ public class Scraper {
               baseURL+relativeURL
       );
       Thread.sleep(15000);
-   }   
-   
+   }    
+    
    public Scraper(String FullLink) throws URISyntaxException, IOException, InterruptedException{
       this.source = FullLink; 
       this.driver = Selenium.setUpPhantomJSDriver("C:\\Program Files (x86)\\phantomjs-2.0.0-windows\\bin\\phantomjs.exe");
