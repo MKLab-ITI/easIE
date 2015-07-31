@@ -7,8 +7,10 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import javafx.util.Pair;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -61,48 +63,16 @@ public class Scraper {
       
       HashMap<String, Object> ScrapedFields = new HashMap<String, Object>();
       for (int i=0; i<fields.size(); i++){
-         String tempName;
-         Object tempValue;
-         if (fields.get(i).SelectorNameType.equals(SelectorType.rawtext)){
-            tempName = fields.get(i).FieldName;
-         }
-         else{
-            if (fields.get(i).FieldNameType.equals(FieldType.text)){
-               tempName = document.select(fields.get(i).FieldName).text();
-            }
-            else if (fields.get(i).FieldNameType.equals(FieldType.link)){
-               tempName = document.select(fields.get(i).FieldName).attr("href");
-            }
-            else if ((fields.get(i).FieldNameType.equals(FieldType.image))){
-               tempName = document.select(fields.get(i).FieldName).attr("src");
-            }
-            else{
-               tempName = document.select(fields.get(i).FieldName).attr(fields.get(i).FieldValueType);
-            }
-         }
-         if (fields.get(i).SelectorValueType.equals(SelectorType.rawtext)){
-            tempValue = fields.get(i).FieldValue;
-         }
-         else{
-            if (fields.get(i).FieldValueType.equals(FieldType.text)){
-               tempValue = document.select(fields.get(i).FieldValue).text();
-            }
-            else if (fields.get(i).FieldValueType.equals(FieldType.link)){
-               tempValue = document.select(fields.get(i).FieldValue).attr("href");
-            }
-            else if ((fields.get(i).FieldValueType.equals(FieldType.image))){
-               tempValue = document.select(fields.get(i).FieldValue).attr("src");
-            }
-            else if (fields.get(i).FieldValueType.equals(FieldType.list)){
-               tempValue = scrapeList(fields.get(i).FieldValue);
-            }
-            else{
-               tempValue = document.select(fields.get(i).FieldValue).attr(fields.get(i).FieldValueType);
-            }
-         }
-         ScrapedFields.put(tempName, tempValue);
+         Pair<String, Object> pair = getSelectedElement(fields.get(i), document);
+         ScrapedFields.put(pair.getKey(), pair.getValue());
       }
-      ScrapedFields.put("URL", source);
+      ScrapedFields.put("source", source);
+      if (!ScrapedFields.containsKey("citeyear")){
+         ScrapedFields.put(
+                 "citeyear",
+                 Calendar.getInstance().get(Calendar.YEAR)
+         );
+      }
       return ScrapedFields;
    }
    
@@ -115,10 +85,10 @@ public class Scraper {
     */
    public ArrayList<HashMap<String, Object>> scrapeTable(String tableSelector, List<Field> fields){
       ArrayList<HashMap<String, Object>> scrapedTableFields = new ArrayList();
-      Elements table = document.select(tableSelector);      
+      Elements table = document.select(tableSelector);   
       for (int i=0; i<table.size(); i++){
          scrapedTableFields.add(scrapeTableFields(fields, table.get(i)));
-      }
+      }      
       return scrapedTableFields;
    }
    
@@ -132,48 +102,16 @@ public class Scraper {
    private HashMap<String, Object> scrapeTableFields(List<Field> fields, Element element){
       HashMap<String, Object> ScrapedFields = new HashMap<String, Object>();
       for (int i=0; i<fields.size(); i++){
-         String tempName;
-         Object tempValue;
-         if (fields.get(i).SelectorNameType.equals(SelectorType.rawtext)){
-            tempName = fields.get(i).FieldName;
-         }
-         else{
-            if (fields.get(i).FieldNameType.equals(FieldType.text)){
-               tempName = document.select(fields.get(i).FieldName).text();
-            }
-            else if (fields.get(i).FieldNameType.equals(FieldType.link)){
-               tempName = document.select(fields.get(i).FieldName).attr("href");
-            }
-            else if ((fields.get(i).FieldNameType.equals(FieldType.image))){
-               tempName = document.select(fields.get(i).FieldName).attr("src");
-            }
-            else{
-               tempName = document.select(fields.get(i).FieldName).attr(fields.get(i).FieldValueType);
-            }
-         }
-         if (fields.get(i).SelectorValueType.equals(SelectorType.rawtext)){
-            tempValue = fields.get(i).FieldValue;
-         }
-         else{
-            if (fields.get(i).FieldValueType.equals(FieldType.text)){
-               tempValue = element.select(fields.get(i).FieldValue).text();
-            }
-            else if (fields.get(i).FieldValueType.equals(FieldType.link)){
-               tempValue = element.select(fields.get(i).FieldValue).attr("href");
-            }
-            else if ((fields.get(i).FieldValueType.equals(FieldType.image))){
-               tempValue = element.select(fields.get(i).FieldValue).attr("src");
-            }
-            else if (fields.get(i).FieldValueType.equals(FieldType.list)){
-               tempValue = scrapeList(fields.get(i).FieldValue);
-            }
-            else{
-               tempValue = element.select(fields.get(i).FieldValue).attr(fields.get(i).FieldValueType);
-            }
-         }
-         ScrapedFields.put(tempName, tempValue);
+         Pair<String, Object> pair = getSelectedElement(fields.get(i), element);
+         ScrapedFields.put(pair.getKey(), pair.getValue());
       }
-      ScrapedFields.put("URL", source);
+      ScrapedFields.put("source", source);
+      if (!ScrapedFields.containsKey("citeyear")){
+         ScrapedFields.put(
+                 "citeyear", 
+                 Calendar.getInstance().get(Calendar.YEAR)
+         );
+      }
       return ScrapedFields;
    }   
    
@@ -184,5 +122,48 @@ public class Scraper {
          list.add(elements.get(i).text());
       }
       return list;
+   }
+   
+   private Pair<String, Object> getSelectedElement(Field field, Element element){
+      String tempName;
+      Object tempValue;
+      if (field.SelectorNameType.equals(SelectorType.rawtext)){
+            tempName = field.FieldName;
+         }
+         else{
+            if (field.FieldNameType.equals(FieldType.text)){
+               tempName = element.select(field.FieldName).text();
+            }
+            else if (field.FieldNameType.equals(FieldType.link)){
+               tempName = element.select(field.FieldName).attr("href");
+            }
+            else if ((field.FieldNameType.equals(FieldType.image))){
+               tempName = element.select(field.FieldName).attr("src");
+            }
+            else{
+               tempName = element.select(field.FieldName).attr(field.FieldValueType);
+            }
+         }
+         if (field.SelectorValueType.equals(SelectorType.rawtext)){
+            tempValue = field.FieldValue;
+         }
+         else{
+            if (field.FieldValueType.equals(FieldType.text)){
+               tempValue = element.select(field.FieldValue).text();
+            }
+            else if (field.FieldValueType.equals(FieldType.link)){
+               tempValue = element.select(field.FieldValue).attr("href");
+            }
+            else if ((field.FieldValueType.equals(FieldType.image))){
+               tempValue = element.select(field.FieldValue).attr("src");
+            }
+            else if (field.FieldValueType.equals(FieldType.list)){
+               tempValue = scrapeList(field.FieldValue);
+            }
+            else{
+               tempValue = element.select(field.FieldValue).attr(field.FieldValueType);
+            }
+         }
+         return new Pair(tempName, tempValue);
    }
 }

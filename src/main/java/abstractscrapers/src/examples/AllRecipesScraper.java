@@ -2,6 +2,7 @@ package abstractscrapers.src.examples;
 
 import abstractscrapers.src.Field;
 import abstractscrapers.src.FieldType;
+import abstractscrapers.src.InfoType;
 import abstractscrapers.src.OutputFormatter.JSONFormatter;
 import abstractscrapers.src.SelectorType;
 import abstractscrapers.src.StaticWebPagesScrapers.BunchScraper;

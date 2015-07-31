@@ -26,4 +26,17 @@ public class Field {
       this.FieldNameType = FieldNameType;
       this.FieldValueType = FieldValueType;
    }   
+   
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Field)) return false;
+        Field field = (Field) o;
+        return this.FieldName.equals(field.FieldName);
+    }
+    
+    @Override
+    public int hashCode() {
+      return this.FieldName.hashCode();
+    }      
 }
