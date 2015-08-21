@@ -6,12 +6,12 @@ package abstractscrapers.src;
  * @author vasgat
  */
 public class Field {
+   public String FieldName;
+   public String FieldValue;
    public String SelectorNameType = SelectorType.CSS;
    public String SelectorValueType = SelectorType.CSS;
    public String FieldNameType = FieldType.text;
-   public String FieldValueType = FieldType.text;
-   public String FieldName;
-   public String FieldValue;
+   public String FieldValueType = FieldType.text;   
    
    public Field(String FieldName, String FieldValue){
       this.FieldName = FieldName;
@@ -40,3 +40,4 @@ public class Field {
       return this.FieldName.hashCode();
     }      
 }
+

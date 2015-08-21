@@ -1,4 +1,4 @@
-package abstractscrapers.src.StaticWebPagesScrapers;
+package abstractscrapers.src.Scrapers;
 
 import abstractscrapers.src.Field;
 import abstractscrapers.src.FieldType;
@@ -21,7 +21,7 @@ import org.jsoup.select.Elements;
  * from a webpage or fields from a table.
  * @author vasgat
  */
-public class Scraper {
+public class StaticHTMLScraper extends AbstractScraper{
    public String baseURL;
    public String relativeURL;
    private String source;
@@ -34,7 +34,7 @@ public class Scraper {
     * @throws URISyntaxException
     * @throws IOException 
     */
-   public Scraper(String baseURL, String relativeURL) throws URISyntaxException, IOException{
+   public StaticHTMLScraper(String baseURL, String relativeURL) throws URISyntaxException, IOException{
       this.baseURL = baseURL;
       this.source = baseURL+relativeURL;
       this.document = Jsoup.connect(new URI(source).toASCIIString())
@@ -47,7 +47,7 @@ public class Scraper {
     * @throws URISyntaxException
     * @throws IOException 
     */
-   public Scraper(String FullLink) throws URISyntaxException, IOException{
+   public StaticHTMLScraper(String FullLink) throws URISyntaxException, IOException{
       this.source = FullLink;
       this.document = Jsoup.connect(new URI(source).toASCIIString())
                         .userAgent("Mozilla/37.0").timeout(60000).get();     
@@ -59,6 +59,7 @@ public class Scraper {
     * @return a HashMap of the scraped fields
     * @throws Exception 
     */
+   @Override
    public HashMap scrapeFields(List<Field> fields){
       
       HashMap<String, Object> ScrapedFields = new HashMap<String, Object>();
@@ -83,6 +84,7 @@ public class Scraper {
     * @return an ArrayList of HashMap (corresponds to the scraped table fields)
     * @throws Exception in case of unknown field type
     */
+   @Override
    public ArrayList<HashMap<String, Object>> scrapeTable(String tableSelector, List<Field> fields){
       ArrayList<HashMap<String, Object>> scrapedTableFields = new ArrayList();
       Elements table = document.select(tableSelector);   

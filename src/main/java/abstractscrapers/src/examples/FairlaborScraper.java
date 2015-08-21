@@ -6,9 +6,9 @@ import abstractscrapers.src.FieldType;
 import abstractscrapers.src.MongoUtils;
 import abstractscrapers.src.OutputFormatter.CompanySnippet;
 import abstractscrapers.src.SelectorType;
-import abstractscrapers.src.StaticWebPagesScrapers.BunchScraper;
-import abstractscrapers.src.StaticWebPagesScrapers.PaginationIterator;
-import abstractscrapers.src.StaticWebPagesScrapers.Scraper;
+import abstractscrapers.src.Scrapers.BunchScraper;
+import abstractscrapers.src.Scrapers.PaginationIterator;
+import abstractscrapers.src.Scrapers.StaticHTMLScraper;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -91,7 +91,7 @@ public class FairlaborScraper {
    }
    
    public void getCompaniesSnippets() throws URISyntaxException, IOException, Exception{
-      Scraper scraper = new Scraper("http://www.fairlabor.org","/affiliates/participating-companies");
+      StaticHTMLScraper scraper = new StaticHTMLScraper("http://www.fairlabor.org","/affiliates/participating-companies");
       PaginationIterator iter = new PaginationIterator(scraper, ".pager-next > a:nth-child(1)");
       ArrayList<HashMap> result = iter.scrapeTable("div.view-content > div.views-row", init);
       HashSet Links = new HashSet();

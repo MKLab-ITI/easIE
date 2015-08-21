@@ -1,8 +1,9 @@
-package abstractscrapers.src.DynamicWebPagesScrapers;
+package abstractscrapers.src.Scrapers;
 
 import abstractscrapers.src.Field;
 import abstractscrapers.src.FieldType;
 import abstractscrapers.src.SelectorType;
+import abstractscrapers.src.Scrapers.AbstractScraper;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -23,12 +24,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  *
  * @author vasgat
  */
-public class Scraper {
+public class DynamicHTMLScraper extends AbstractScraper {
    public String baseURL;
    public String source;
    private WebDriver driver;
    
-   public Scraper(String baseURL, String relativeURL) throws URISyntaxException, IOException, InterruptedException{
+   public DynamicHTMLScraper(String baseURL, String relativeURL) throws URISyntaxException, IOException, InterruptedException{
       this.baseURL = baseURL;
       this.source = baseURL+relativeURL;
       this.driver = Selenium.setUpPhantomJSDriver("C:\\Program Files (x86)\\phantomjs-2.0.0-windows\\bin\\phantomjs.exe");
@@ -39,7 +40,7 @@ public class Scraper {
       Thread.sleep(20000);
    }    
     
-   public Scraper(String FullLink) throws URISyntaxException, IOException, InterruptedException{
+   public DynamicHTMLScraper(String FullLink) throws URISyntaxException, IOException, InterruptedException{
       this.source = FullLink; 
       this.driver = Selenium.setUpChromeDriver();//.setUpFireFoxDriver();//.setUpPhantomJSDriver("C:\\Program Files (x86)\\phantomjs-1.9.8-windows\\phantomjs.exe");
       this.driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
@@ -63,6 +64,7 @@ public class Scraper {
       System.out.println("We are in the end of the page");
    }
    
+   @Override
    public HashMap scrapeFields(List<Field> fields){
 
       HashMap<String, Object> ScrapedFields = new HashMap<String, Object>();
@@ -81,6 +83,7 @@ public class Scraper {
       return ScrapedFields;      
    }
    
+   @Override
    public ArrayList<HashMap<String, Object>> scrapeTable(String tableSelector, List<Field> fields){
       ArrayList<HashMap<String, Object>> scrapedTableFields = new ArrayList();
       List<WebElement> table = driver.findElements(By.cssSelector(tableSelector));      

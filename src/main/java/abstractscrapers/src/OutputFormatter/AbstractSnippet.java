@@ -9,7 +9,7 @@ import com.mongodb.DBObject;
  */
 public abstract class AbstractSnippet {
       
-   abstract DBObject getSnippetDBObject();
+   public abstract DBObject getSnippetDBObject();
    
-   abstract void store(String dbname, String collectionm, MongoUtils mongo);
+   public abstract void store(String dbname, String collectionm, MongoUtils mongo);
 }

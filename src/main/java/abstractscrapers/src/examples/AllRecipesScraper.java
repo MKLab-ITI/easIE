@@ -5,9 +5,9 @@ import abstractscrapers.src.FieldType;
 import abstractscrapers.src.InfoType;
 import abstractscrapers.src.OutputFormatter.JSONFormatter;
 import abstractscrapers.src.SelectorType;
-import abstractscrapers.src.StaticWebPagesScrapers.BunchScraper;
-import abstractscrapers.src.StaticWebPagesScrapers.PaginationIterator;
-import abstractscrapers.src.StaticWebPagesScrapers.Scraper;
+import abstractscrapers.src.Scrapers.BunchScraper;
+import abstractscrapers.src.Scrapers.PaginationIterator;
+import abstractscrapers.src.Scrapers.StaticHTMLScraper;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -105,7 +105,7 @@ public class AllRecipesScraper {
    {
       HashSet<String> RecipeLinks = new HashSet();
       PaginationIterator PageIterator = new PaginationIterator(
-              new Scraper(
+              new StaticHTMLScraper(
                       "http://allrecipes.com",
                       "/search/default.aspx?ms=0&origin=Recipe+Search+Results&rt=r&qt=i&pqt=i&fo=0&w0="+ingredient
               ),

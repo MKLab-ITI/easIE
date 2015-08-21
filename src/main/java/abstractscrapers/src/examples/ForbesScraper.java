@@ -5,8 +5,9 @@ import abstractscrapers.src.Field;
 import abstractscrapers.src.FieldType;
 import abstractscrapers.src.MongoUtils;
 import abstractscrapers.src.OutputFormatter.CompanySnippet;
+import abstractscrapers.src.Scrapers.DynamicHTMLScraper;
+import abstractscrapers.src.Scrapers.StaticHTMLScraper;
 import abstractscrapers.src.SelectorType;
-import abstractscrapers.src.StaticWebPagesScrapers.Scraper;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.UnknownHostException;
@@ -24,7 +25,7 @@ public class ForbesScraper {
    private List<Field> DynamicTableCompanyFields;
    private List<Field> DynamicTableCompanySnippets;
    private List<Field> StaticTableFields;  
-   public abstractscrapers.src.DynamicWebPagesScrapers.Scraper scraper;
+   public DynamicHTMLScraper scraper;
    
    public ForbesScraper() throws URISyntaxException, IOException, InterruptedException{
       DynamicTableCompanyFields = new ArrayList<Field>();
@@ -136,7 +137,7 @@ public class ForbesScraper {
          );    
       StaticTableFields.add(sfield);   
       
-      scraper = new abstractscrapers.src.DynamicWebPagesScrapers.Scraper("http://www.forbes.com/global2000/list/");
+      scraper = new DynamicHTMLScraper("http://www.forbes.com/global2000/list/");
    }
    
    public ArrayList<HashMap<String, Object>> getCompaniesSnippets() throws URISyntaxException, IOException, InterruptedException{
@@ -147,7 +148,7 @@ public class ForbesScraper {
               );
       for (int i=0; i<CompanySnippets.size(); i++){
          HashMap Company = (HashMap) CompanySnippets.get(i);
-         Scraper StaticScraper = new Scraper((String) Company.get("Company Link"));   
+         StaticHTMLScraper StaticScraper = new StaticHTMLScraper((String) Company.get("Company Link"));   
          HashMap temp_Hash = (HashMap) CompanySnippets.get(i);
          temp_Hash.putAll(Company);
          ArrayList temp_Array = StaticScraper.scrapeTable(".data > dl", StaticTableFields);

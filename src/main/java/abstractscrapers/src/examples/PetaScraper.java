@@ -5,8 +5,9 @@ import abstractscrapers.src.Field;
 import abstractscrapers.src.FieldType;
 import abstractscrapers.src.MongoUtils;
 import abstractscrapers.src.OutputFormatter.CompanySnippet;
+import abstractscrapers.src.Scrapers.DynamicHTMLScraper;
+import abstractscrapers.src.Scrapers.StaticHTMLScraper;
 import abstractscrapers.src.SelectorType;
-import abstractscrapers.src.StaticWebPagesScrapers.Scraper;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ import java.util.Map;
  * @author vasgat
  */
 public class PetaScraper {
-   public abstractscrapers.src.DynamicWebPagesScrapers.Scraper scraper;
+   public DynamicHTMLScraper scraper;
    private ArrayList<Field> tableFields;
    private ArrayList<Field> pageFields;
    
@@ -102,7 +103,7 @@ public class PetaScraper {
       pageFields.add(pfield1);
       pageFields.add(pfield2);
       
-      scraper = new abstractscrapers.src.DynamicWebPagesScrapers.Scraper(
+      scraper = new DynamicHTMLScraper(
               "http://features.peta.org/cruelty-free-company-search/cruelty_free_companies_search.aspx?Donottest=-1&Product=0&Dotest=8&Regchange=-1&Country=-1&Keyword="
       );
       scraper.clickEvent(
@@ -120,7 +121,7 @@ public class PetaScraper {
       MongoUtils mongo = new MongoUtils();
       for (int i=0; i<result.size(); i++){         
          HashMap temp_Comp = result.get(i);
-         Scraper StaticScraper = new Scraper((String) temp_Comp.get("Company Link"));
+         StaticHTMLScraper StaticScraper = new StaticHTMLScraper((String) temp_Comp.get("Company Link"));
          temp_Comp.putAll(StaticScraper.scrapeFields(pageFields));
          System.out.println(temp_Comp);
          Company company;

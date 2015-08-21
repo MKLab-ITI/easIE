@@ -5,6 +5,7 @@ import abstractscrapers.src.Field;
 import abstractscrapers.src.FieldType;
 import abstractscrapers.src.MongoUtils;
 import abstractscrapers.src.OutputFormatter.CompanySnippet;
+import abstractscrapers.src.Scrapers.DynamicHTMLScraper;
 import abstractscrapers.src.SelectorType;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -21,7 +22,7 @@ import java.util.Map;
 public class Newsweek2014Scraper {
    private ArrayList<Field> CompaniesInfo;
    private ArrayList<Field> CompaniesSnippets;
-   public abstractscrapers.src.DynamicWebPagesScrapers.Scraper scraper;
+   public DynamicHTMLScraper scraper;
    
    public Newsweek2014Scraper() throws URISyntaxException, IOException, InterruptedException{
       CompaniesInfo = new ArrayList<Field>();
@@ -164,7 +165,7 @@ public class Newsweek2014Scraper {
       CompaniesSnippets.add(sfield10);
       CompaniesSnippets.add(sfield11);
       
-      this.scraper = new abstractscrapers.src.DynamicWebPagesScrapers.Scraper(
+      this.scraper = new DynamicHTMLScraper(
               "http://www.newsweek.com/green/worlds-greenest-companies-2014"
       );   
    }

@@ -1,4 +1,4 @@
-package abstractscrapers.src;
+package abstractscrapers.src.Configure;
 
 /**
  * Selector available types: CSS Selector, XPath Selector 

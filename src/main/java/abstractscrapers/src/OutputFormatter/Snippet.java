@@ -21,7 +21,7 @@ public class Snippet extends AbstractSnippet{
    }
 
    @Override
-   DBObject getSnippetDBObject() {
+   public DBObject getSnippetDBObject() {
       BasicDBObject snippet = new BasicDBObject();
       Iterator it = Info.entrySet().iterator();
       while(it.hasNext()){
@@ -64,7 +64,7 @@ public class Snippet extends AbstractSnippet{
    }
 
    @Override
-   void store(String dbname, String collection, MongoUtils mongo) {
+   public void store(String dbname, String collection, MongoUtils mongo) {
       mongo.insertDoc(dbname, collection, getSnippetDBObject());
    }
    

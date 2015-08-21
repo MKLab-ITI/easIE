@@ -6,8 +6,8 @@ import abstractscrapers.src.FieldType;
 import abstractscrapers.src.MongoUtils;
 import abstractscrapers.src.OutputFormatter.CompanySnippet;
 import abstractscrapers.src.SelectorType;
-import abstractscrapers.src.StaticWebPagesScrapers.PaginationIterator;
-import abstractscrapers.src.StaticWebPagesScrapers.Scraper;
+import abstractscrapers.src.Scrapers.PaginationIterator;
+import abstractscrapers.src.Scrapers.StaticHTMLScraper;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import java.util.Map;
  * @author vasgat
  */
 public class wob2020Scraper {
-   public Scraper scraper;
+   public StaticHTMLScraper scraper;
    private ArrayList<Field> tfields; 
    
    public wob2020Scraper() throws URISyntaxException, IOException{
@@ -64,7 +64,7 @@ public class wob2020Scraper {
       tfields.add(field3);
       tfields.add(field4);
       
-      scraper = new Scraper("http://www.2020wob.com","/company-directory");
+      scraper = new StaticHTMLScraper("http://www.2020wob.com","/company-directory");
    }
    
    public void getCompaniesSnippets() throws URISyntaxException, IOException, Exception{
@@ -80,7 +80,7 @@ public class wob2020Scraper {
          MongoUtils mongo = new MongoUtils();
          Company company = new Company(
                  (String) temp_Comp.get("Company Name"), 
-                 mongo, "Wikirate2", 
+                 mongo, "WikiRate_NEW", 
                  "Companies"
          );
          company.insertInfo("Sector", (String) temp_Comp.get("Sector"));
@@ -106,7 +106,7 @@ public class wob2020Scraper {
                  "2020wob",
                  null
             );
-            snippet.store("Wikirate2", "Snippets", mongo);
+            snippet.store("WikiRate_NEW", "Snippets", mongo);
          }
       }
       }  

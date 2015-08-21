@@ -174,6 +174,8 @@ public class Company {
          Logger.getLogger(Company.class.getName()).log(Level.SEVERE, null, ex);
       } catch (IOException ex) {
          Logger.getLogger(Company.class.getName()).log(Level.SEVERE, null, ex);
+      } catch (NullPointerException e){
+         return null;
       }
       return null;
    }

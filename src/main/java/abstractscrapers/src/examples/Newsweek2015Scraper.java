@@ -5,6 +5,7 @@ import abstractscrapers.src.Field;
 import abstractscrapers.src.FieldType;
 import abstractscrapers.src.MongoUtils;
 import abstractscrapers.src.OutputFormatter.CompanySnippet;
+import abstractscrapers.src.Scrapers.DynamicHTMLScraper;
 import abstractscrapers.src.SelectorType;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -21,9 +22,9 @@ import java.util.Map;
 public class Newsweek2015Scraper {
    private ArrayList<Field> CompaniesInfo;
    private ArrayList<Field> CompaniesSnippets;
-   public abstractscrapers.src.DynamicWebPagesScrapers.Scraper scraper;
+   public DynamicHTMLScraper scraper;
    
-   public Newsweek2015Scraper() throws URISyntaxException, IOException, InterruptedException{
+   public Newsweek2015Scraper(String listLink) throws URISyntaxException, IOException, InterruptedException{
       CompaniesInfo = new ArrayList<Field>();
       CompaniesSnippets = new ArrayList<Field>();
       
@@ -137,7 +138,7 @@ public class Newsweek2015Scraper {
               FieldType.text
       );
       Field sfield10 = new Field(
-              "Newsweek US Rank 2015",
+              "Newsweek Rank 2015",
               "td:nth-child(1)",
               SelectorType.rawtext,
               SelectorType.CSS,
@@ -164,8 +165,8 @@ public class Newsweek2015Scraper {
       CompaniesSnippets.add(sfield10);
       CompaniesSnippets.add(sfield11);
       
-      this.scraper = new abstractscrapers.src.DynamicWebPagesScrapers.Scraper(
-              "http://www.newsweek.com/green-2015/top-green-companies-u.s.-2015"
+      this.scraper = new DynamicHTMLScraper(
+              listLink
       );   
    }
    
@@ -230,7 +231,7 @@ public class Newsweek2015Scraper {
    }
    
    public static void main(String[] args) throws URISyntaxException, IOException, InterruptedException{
-      Newsweek2015Scraper newsweek = new Newsweek2015Scraper();
+      Newsweek2015Scraper newsweek = new Newsweek2015Scraper("http://www.newsweek.com/green-2015/top-green-companies-world-2015");
       //newsweek.scraper.clickEvent(".table-links > li:nth-child(3)");
       newsweek.scraper.clickEvent(".view-toggle");
       newsweek.getCompaniesSnippets();

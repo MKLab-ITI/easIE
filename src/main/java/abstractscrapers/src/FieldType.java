@@ -5,8 +5,8 @@ package abstractscrapers.src;
  * @author vasgat
  */
 public class FieldType {
-   public static final String text = "text";
-   public static final String link = "link";
-   public static final String image = "image";
-   public static final String list = "list";
+   public static final String text = "TEXT";
+   public static final String link = "LINK";
+   public static final String image = "IMAGE";
+   public static final String list = "LIST";
 }

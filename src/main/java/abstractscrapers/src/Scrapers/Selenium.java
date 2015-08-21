@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package abstractscrapers.src.DynamicWebPagesScrapers;
+package abstractscrapers.src.Scrapers;
 
 import java.io.File;
 import org.openqa.selenium.WebDriver;

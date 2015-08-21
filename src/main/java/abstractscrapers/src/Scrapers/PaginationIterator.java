@@ -1,4 +1,4 @@
-package abstractscrapers.src.StaticWebPagesScrapers;
+package abstractscrapers.src.Scrapers;
 
 import abstractscrapers.src.Field;
 import java.io.IOException;
@@ -14,9 +14,9 @@ import org.jsoup.Jsoup;
  * when the data are distributed in different pages
  * @author vasgat
  */
-public class PaginationIterator {
+public class PaginationIterator extends AbstractScraper{
    private String nextPageSelector;
-   private Scraper scraper;
+   private StaticHTMLScraper scraper;
    
    /**
     * Creates a new PaginationIterator
@@ -25,7 +25,7 @@ public class PaginationIterator {
     * @throws URISyntaxException
     * @throws IOException 
     */
-   public PaginationIterator(Scraper scraper, String nextPageSelector) throws URISyntaxException, IOException{
+   public PaginationIterator(StaticHTMLScraper scraper, String nextPageSelector) throws URISyntaxException, IOException{
       this.nextPageSelector = nextPageSelector; 
       this.scraper = scraper;
    }
@@ -38,6 +38,7 @@ public class PaginationIterator {
     * @throws IOException
     * @throws Exception 
     */
+   @Override
    public ArrayList<HashMap> scrapeFields(List<Field> fields) throws URISyntaxException, IOException, Exception{
       ArrayList<HashMap> scrapedFields = new ArrayList();
       scrapedFields.add(scraper.scrapeFields(fields));
@@ -58,6 +59,7 @@ public class PaginationIterator {
     * @throws IOException
     * @throws Exception 
     */
+   @Override
    public ArrayList<HashMap> scrapeTable(String tableSelector, List<Field> fields) throws URISyntaxException, IOException, Exception{
       ArrayList<HashMap> scrapedFields = new ArrayList();
       scrapedFields.addAll(scraper.scrapeTable(tableSelector, fields));
