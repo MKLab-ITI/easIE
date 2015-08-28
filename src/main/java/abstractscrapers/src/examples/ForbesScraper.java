@@ -1,6 +1,7 @@
 package abstractscrapers.src.examples;
 
 import abstractscrapers.src.Company;
+import abstractscrapers.src.CompanySearcher;
 import abstractscrapers.src.Field;
 import abstractscrapers.src.FieldType;
 import abstractscrapers.src.MongoUtils;
@@ -171,6 +172,7 @@ public class ForbesScraper {
    
    public void store(ArrayList<HashMap<String, Object>> companies, ArrayList<HashMap<String, Object>> snippets) throws UnknownHostException{
       MongoUtils mongo = new MongoUtils();
+      CompanySearcher searcher = new CompanySearcher(mongo, "Wikirate2", "Companies");
       for(int i=0; i<companies.size(); i++){
          HashMap temp_comp = companies.get(i);
          HashMap temp_snip = snippets.get(i);         
@@ -179,7 +181,8 @@ public class ForbesScraper {
                  mongo, 
                  (String) temp_snip.get("Website"), 
                  "Wikirate2", 
-                 "Companies"
+                 "Companies",
+                 searcher
          );
          
          temp_comp.remove("Company Name");

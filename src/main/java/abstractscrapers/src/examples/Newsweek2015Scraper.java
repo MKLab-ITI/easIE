@@ -1,6 +1,7 @@
 package abstractscrapers.src.examples;
 
 import abstractscrapers.src.Company;
+import abstractscrapers.src.CompanySearcher;
 import abstractscrapers.src.Field;
 import abstractscrapers.src.FieldType;
 import abstractscrapers.src.MongoUtils;
@@ -183,6 +184,7 @@ public class Newsweek2015Scraper {
       System.out.println(snips.size());
       System.out.println(snips);
       MongoUtils mongo = new MongoUtils();
+            CompanySearcher searcher = new CompanySearcher(mongo, "Wikirate2", "Companies");
       for (int i=0; i<info.size(); i++){
          HashMap temp_Comp = info.get(i);
          HashMap temp_Snips = snips.get(i);
@@ -192,7 +194,8 @@ public class Newsweek2015Scraper {
                     (String) temp_Comp.get("Company Name"), 
                     mongo, 
                     "WikiRate_NEW", 
-                    "Companies"
+                    "Companies",
+                    searcher
             );
             temp_Comp.remove("Company Name");
             temp_Comp.remove("citeyear");

@@ -25,24 +25,27 @@ public class Company {
    private String dbname;
    private String collection;
    private MongoUtils mongo;
+   private CompanySearcher searcher;
    
-   public Company(String CompanyName, MongoUtils mongo, String CompanyLink, String dbname, String collection){
+   public Company(String CompanyName, MongoUtils mongo, String CompanyLink, String dbname, String collection, CompanySearcher searcher){
       this.CompanyName = CompanyName;
       this.CompanyLink = CompanyLink;
       this.dbname = dbname;
       this.collection = collection;
       this.mongo = mongo;
+      this.searcher = searcher;
       this.CompanyId = findCompanyId(CompanyLink);
       if (CompanyId==null){
          CompanyId = insertCompany();
       }
    }
 
-   public Company(String CompanyName, MongoUtils mongo, String dbname, String collection) throws UnknownHostException{
+   public Company(String CompanyName, MongoUtils mongo, String dbname, String collection, CompanySearcher searcher) throws UnknownHostException{
       this.CompanyName = CompanyName;
       this.dbname = dbname;
       this.collection = collection;
       this.mongo = mongo;
+      this.searcher = searcher;
       this.CompanyId = findCompanyId();
       if (CompanyId==null){
          CompanyLink = findCandidateLink();
@@ -97,10 +100,9 @@ public class Company {
    }   
    
    private ObjectId findCompanyId(String CLink){
-      CompanySearcher searcher = new CompanySearcher(CompanyName, mongo, dbname, collection);
       ObjectId tempId = searcher.searchByLink(CLink);
       if (tempId==null){
-         tempId = searcher.searchForMatchInLookUpTable();           
+         tempId = searcher.searchForMatchInLookUpTable(CompanyName);           
       }
       else{
          DBCollection companies = mongo.connect(dbname, collection);         
@@ -120,15 +122,14 @@ public class Company {
    }
 
    private ObjectId findCompanyId() throws UnknownHostException{
-      CompanySearcher searcher = new CompanySearcher(CompanyName, mongo, dbname, collection);
       System.out.println("Look-up table Search");
-      ObjectId tempId = searcher.searchForMatchInLookUpTable();
+      ObjectId tempId = searcher.searchForMatchInLookUpTable(CompanyName);
       if (tempId==null){
          System.out.println("SearchByGoogleResults");
-         tempId = searcher.searchByGoogleResults();          
+         tempId = searcher.searchByGoogleResults(CompanyName);          
          if (tempId==null){
             System.out.println("SearchByName");
-            tempId = searcher.searchByName();
+            tempId = searcher.searchByName(CompanyName);
             if(tempId!=null){
                DBCollection companies = mongo.connect(dbname, collection);
                System.out.println("Insert Company");

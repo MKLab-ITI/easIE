@@ -23,16 +23,32 @@ import org.jsoup.nodes.Document;
  * @author vasgat
  */
 public class CompanySearcher {
-   private String CompanyName;
    private String collection;
    private String dbname;
    private MongoUtils mongo;
+   private HashMap<String, HashMap<String, Double>> TFIDF_weights;
    
-   public CompanySearcher(String CompanyName, MongoUtils mongo, String dbname, String collection){
-      this.CompanyName = CompanyName;
+   public CompanySearcher(MongoUtils mongo, String dbname, String collection){
       this.collection = collection;
       this.dbname = dbname;
       this.mongo = mongo;
+      this.TFIDF_weights = calculateTFIDF();
+   }
+   
+   private HashMap<String, HashMap<String, Double>> calculateTFIDF(){
+      DBCollection companies = mongo.connect(dbname, collection);
+      DBCursor cursor = companies.find();
+      cursor.addOption(QUERYOPTION_NOTIMEOUT);
+      HashMap<String,HashMap<String, Integer>> listOfDocs = 
+              new HashMap<String,HashMap<String, Integer>>();
+      while (cursor.hasNext()){         
+         BasicDBObject currentCompany = (BasicDBObject) cursor.next();
+         HashMap doc = Tokenizer.getTokenVectorFrequency(currentCompany
+                                                   .getString("Company_name"));
+         listOfDocs.put(currentCompany.getString("_id"), doc);         
+      }
+      cursor.close();
+      return TFIDFSimilarity.TF_IDF(listOfDocs);
    }
    
    public ObjectId searchByLink(String CompanyLink){
@@ -66,34 +82,24 @@ public class CompanySearcher {
       return null;
    }
    
-   public ObjectId searchByName(){
-      DBCollection companies = mongo.connect(dbname, collection);
-      DBCursor cursor = companies.find();
-      cursor.addOption(QUERYOPTION_NOTIMEOUT);
-      HashMap<String,HashMap<String, Integer>> listOfDocs = 
-                     new HashMap<String,HashMap<String, Integer>>();      
-      while (cursor.hasNext()){
-         BasicDBObject currentCompany = (BasicDBObject) cursor.next();
-         HashMap doc = Tokenizer.getTokenVectorFrequency(currentCompany
-                                                   .getString("Company_name"));
-         listOfDocs.put(currentCompany.getString("_id"), doc);         
-      }
-      cursor.close();
-      listOfDocs.put("candidate", Tokenizer.getTokenVectorFrequency(CompanyName));
-      Iterator it = listOfDocs.keySet().iterator();
+   public ObjectId searchByName(String CompanyName){
+      TFIDF_weights.put("candidate", Tokenizer.getTokenVectorFrequency2(CompanyName));
+      Iterator it = TFIDF_weights.keySet().iterator();
       while(it.hasNext()){
          String doc_id = (String) it.next();
          double sim = TFIDFSimilarity.calculate(
-                       TFIDFSimilarity.TF_IDF(listOfDocs),"candidate", doc_id);
+                 TFIDF_weights,
+                 "candidate", 
+                 doc_id
+         );
          if (sim>0.7&&!doc_id.equals("candidate")){
             return new ObjectId(doc_id);
          }
-      }
-      
+      }       
       return null;
    }
    
-   public ObjectId searchByGoogleResults(){
+   public ObjectId searchByGoogleResults(String CompanyName){
       try {
          try {
             String query = CompanyName.replace(" ", "+");
@@ -121,7 +127,7 @@ public class CompanySearcher {
       return null;
    }
    
-   public ObjectId searchForMatchInLookUpTable(){
+   public ObjectId searchForMatchInLookUpTable(String CompanyName){
       DBCollection companies = mongo.connect(dbname, collection);      
       DBCursor cursor = companies.find();
       cursor.addOption(QUERYOPTION_NOTIMEOUT);

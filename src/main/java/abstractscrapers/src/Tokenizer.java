@@ -23,6 +23,18 @@ public class Tokenizer {
             tokens.put(temp[i], 1);
       }
       return tokens;
+   }  
+   
+   public static HashMap getTokenVectorFrequency2(String text){
+      String[] temp = getTokens(text);
+      HashMap<String, Double> tokens = new HashMap<String, Double>();
+      for (int i=0; i<temp.length; i++){
+         if (tokens.containsKey(temp[i]))
+            tokens.put(temp[i], tokens.get(temp[i])+1.0);
+         else
+            tokens.put(temp[i], 1.0);
+      }
+      return tokens;
    }    
    
 }

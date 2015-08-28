@@ -12,13 +12,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import javafx.util.Pair;
-import org.jsoup.nodes.Element;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
  *
@@ -32,7 +29,7 @@ public class DynamicHTMLScraper extends AbstractScraper {
    public DynamicHTMLScraper(String baseURL, String relativeURL) throws URISyntaxException, IOException, InterruptedException{
       this.baseURL = baseURL;
       this.source = baseURL+relativeURL;
-      this.driver = Selenium.setUpPhantomJSDriver("C:\\Program Files (x86)\\phantomjs-2.0.0-windows\\bin\\phantomjs.exe");
+      this.driver = Selenium.setUpChromeDriver();//Selenium.setUpPhantomJSDriver("C:\\Program Files (x86)\\phantomjs-2.0.0-windows\\bin\\phantomjs.exe");
       this.driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
       this.driver.get(
               baseURL+relativeURL
@@ -63,6 +60,16 @@ public class DynamicHTMLScraper extends AbstractScraper {
       }while(!currentDoc.equals(driver.getPageSource()));
       System.out.println("We are in the end of the page");
    }
+   
+   public void scrollDownEvent(int timesToRepeat) throws InterruptedException{ 
+      String currentDoc = "";      
+      for (int i=0; i< timesToRepeat; i++){
+         currentDoc = driver.getPageSource();
+         JavascriptExecutor jse = (JavascriptExecutor)driver;
+         jse.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
+         Thread.sleep(4000);
+      }
+   }   
    
    @Override
    public HashMap scrapeFields(List<Field> fields){

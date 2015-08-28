@@ -11,36 +11,27 @@ public class MongoInfo {
    
    public MongoInfo(String dbname, String CompaniesCollection, String SnippetsCollection){
       
-      if (!dbname.equals(null)&&!CompaniesCollection.equals(null)&&!SnippetsCollection.equals(null)){
-         
+      if (dbname!=null&&CompaniesCollection!=null&&SnippetsCollection!=null){         
          this.dbname = dbname;
          this.companies_collection = CompaniesCollection;
-         this.snippets_collection = SnippetsCollection;
-         
+         this.snippets_collection = SnippetsCollection;         
       }
-      else{
-         
+      else{         
          throw new NullPointerException(
                  "dbname,companies_collection and snippets_collection fields can not be null!"
-         );
-         
+         );         
       }      
    }
    
-   public MongoInfo(String dbname, String SnippetsCollection){
-      
-      if (!dbname.equals(null)&&!SnippetsCollection.equals("null")){
-         
+   public MongoInfo(String dbname, String SnippetsCollection){      
+      if (dbname!=null&&SnippetsCollection!=null){         
          this.dbname = dbname;
-         this.snippets_collection = SnippetsCollection;
-         
+         this.snippets_collection = SnippetsCollection;         
       }
-      else{
-         
+      else{         
          throw new NullPointerException(
                  "dbname and snippets_collection fields can not be null!"
-         );
-         
+         );         
       }
    }   
 }

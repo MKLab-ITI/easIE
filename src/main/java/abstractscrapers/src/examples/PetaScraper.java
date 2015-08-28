@@ -1,6 +1,7 @@
 package abstractscrapers.src.examples;
 
 import abstractscrapers.src.Company;
+import abstractscrapers.src.CompanySearcher;
 import abstractscrapers.src.Field;
 import abstractscrapers.src.FieldType;
 import abstractscrapers.src.MongoUtils;
@@ -119,6 +120,7 @@ public class PetaScraper {
               );
       
       MongoUtils mongo = new MongoUtils();
+            CompanySearcher searcher = new CompanySearcher(mongo, "Wikirate2", "Companies");
       for (int i=0; i<result.size(); i++){         
          HashMap temp_Comp = result.get(i);
          StaticHTMLScraper StaticScraper = new StaticHTMLScraper((String) temp_Comp.get("Company Link"));
@@ -133,7 +135,8 @@ public class PetaScraper {
                     mongo, 
                     (String)temp_Comp.get("Company Link"), 
                     "Wikirate2",
-                    "Companies"
+                    "Companies",
+                    searcher
             );
          }
          else{
@@ -141,7 +144,8 @@ public class PetaScraper {
                     (String)temp_Comp.get("Company Name"), 
                     mongo, 
                     "Wikirate2",
-                    "Companies"
+                    "Companies",
+                    searcher
             );
          }
          if(!temp_Comp.get("Country").equals("")){

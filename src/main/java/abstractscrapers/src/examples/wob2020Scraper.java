@@ -1,6 +1,7 @@
 package abstractscrapers.src.examples;
 
 import abstractscrapers.src.Company;
+import abstractscrapers.src.CompanySearcher;
 import abstractscrapers.src.Field;
 import abstractscrapers.src.FieldType;
 import abstractscrapers.src.MongoUtils;
@@ -73,16 +74,20 @@ public class wob2020Scraper {
               ".pager-next > a:nth-child(1)"
       );
       ArrayList<HashMap> result = iterator.scrapeTable(".views-table > tbody:nth-child(2) > tr", tfields);
-
+      MongoUtils mongo = new MongoUtils();
+      CompanySearcher searcher = new CompanySearcher(mongo, "WikiRate_NEW", "Companies");      
       for (int i=0; i<result.size(); i++){
          HashMap temp_Comp = result.get(i);
          if(temp_Comp.get("Company Name")!=null){
-         MongoUtils mongo = new MongoUtils();
          Company company = new Company(
                  (String) temp_Comp.get("Company Name"), 
-                 mongo, "WikiRate_NEW", 
-                 "Companies"
+                 mongo, 
+                 "WikiRate_NEW", 
+                 "Companies",
+                 searcher
          );
+            
+
          company.insertInfo("Sector", (String) temp_Comp.get("Sector"));
          company.insertInfo("Country", (String) temp_Comp.get("Country"));
          temp_Comp.remove("Sector");
@@ -108,8 +113,7 @@ public class wob2020Scraper {
             );
             snippet.store("WikiRate_NEW", "Snippets", mongo);
          }
-      }
-      }  
+         }}
    }
    
    public static void main(String[] args) throws URISyntaxException, IOException, Exception{

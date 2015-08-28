@@ -47,6 +47,7 @@ public class PaginationIterator extends AbstractScraper{
                               .userAgent("Mozilla/37.0").timeout(60000).get(); 
          scrapedFields.add(scraper.scrapeFields(fields));
       }
+      scraper.reset();
       return scrapedFields;
    }
    
@@ -68,6 +69,7 @@ public class PaginationIterator extends AbstractScraper{
                               .userAgent("Mozilla/37.0").timeout(60000).get();  
          scrapedFields.addAll(scraper.scrapeTable(tableSelector, fields));
       }  
+      scraper.reset();
       return scrapedFields;
    }
 }

@@ -8,9 +8,11 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import javafx.util.Pair;
+import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -26,6 +28,9 @@ public class StaticHTMLScraper extends AbstractScraper{
    public String relativeURL;
    private String source;
    public Document document;
+   private String init_baseURL;
+   private String init_relativeURL;
+   private Document init_document;
    
    /**
     * Creates a new scraper for link webpage
@@ -39,6 +44,9 @@ public class StaticHTMLScraper extends AbstractScraper{
       this.source = baseURL+relativeURL;
       this.document = Jsoup.connect(new URI(source).toASCIIString())
                         .userAgent("Mozilla/37.0").timeout(60000).get(); 
+      this.init_baseURL = baseURL;
+      this.init_relativeURL = relativeURL;
+      this.init_document = document;
    }
    
    /**
@@ -49,8 +57,12 @@ public class StaticHTMLScraper extends AbstractScraper{
     */
    public StaticHTMLScraper(String FullLink) throws URISyntaxException, IOException{
       this.source = FullLink;
+      try{
       this.document = Jsoup.connect(new URI(source).toASCIIString())
-                        .userAgent("Mozilla/37.0").timeout(60000).get();     
+                        .userAgent("Mozilla/37.0").timeout(60000).get();  
+      }catch(HttpStatusException ex){
+         System.out.println(ex.getMessage());
+      }
    }
    
    /**
@@ -60,21 +72,43 @@ public class StaticHTMLScraper extends AbstractScraper{
     * @throws Exception 
     */
    @Override
-   public HashMap scrapeFields(List<Field> fields){
-      
+   public HashMap scrapeFields(List<Field> fields){      
       HashMap<String, Object> ScrapedFields = new HashMap<String, Object>();
-      for (int i=0; i<fields.size(); i++){
-         Pair<String, Object> pair = getSelectedElement(fields.get(i), document);
-         ScrapedFields.put(pair.getKey(), pair.getValue());
-      }
-      ScrapedFields.put("source", source);
-      if (!ScrapedFields.containsKey("citeyear")){
-         ScrapedFields.put(
-                 "citeyear",
-                 Calendar.getInstance().get(Calendar.YEAR)
-         );
+      if (document!=null){
+         for (int i=0; i<fields.size(); i++){
+            Pair<String, Object> pair = getSelectedElement(fields.get(i), document);
+            String tempName = pair.getKey();
+            Object tempValue = pair.getValue();
+            if(fields.get(i).ReplaceInName!=null&&fields.get(i).ReplaceInName.regex.size()==fields.get(i).ReplaceInName.with.size()){
+               for (int j=0; j<fields.get(i).ReplaceInName.regex.size(); j++){
+                  tempName = tempName.replaceAll(
+                          fields.get(i).ReplaceInName.regex.get(j), 
+                          fields.get(i).ReplaceInName.with.get(j)
+                  );
+               }
+            }
+            if(fields.get(i).ReplaceInValue!=null&&fields.get(i).ReplaceInValue.regex.size()==fields.get(i).ReplaceInValue.with.size()){
+               for (int j=0; j<fields.get(i).ReplaceInValue.regex.size(); j++){
+                  tempValue = ((String) tempValue).replaceAll(
+                          fields.get(i).ReplaceInValue.regex.get(j), 
+                          fields.get(i).ReplaceInValue.with.get(j)
+                  );
+               }
+            }
+            ScrapedFields.put(tempName, tempValue);
+         }
+         ScrapedFields.put("source", source);
+         if (!ScrapedFields.containsKey("citeyear")){
+            ScrapedFields.put(
+                    "citeyear",
+                    Calendar.getInstance().get(Calendar.YEAR)
+            );
+         }
+         ScrapedFields.values().removeAll(Collections.singleton(""));
+         ScrapedFields.values().removeAll(Collections.singleton(null));
       }
       return ScrapedFields;
+      
    }
    
    /**
@@ -87,10 +121,12 @@ public class StaticHTMLScraper extends AbstractScraper{
    @Override
    public ArrayList<HashMap<String, Object>> scrapeTable(String tableSelector, List<Field> fields){
       ArrayList<HashMap<String, Object>> scrapedTableFields = new ArrayList();
-      Elements table = document.select(tableSelector);   
-      for (int i=0; i<table.size(); i++){
-         scrapedTableFields.add(scrapeTableFields(fields, table.get(i)));
-      }      
+      if (document!=null){
+         Elements table = document.select(tableSelector);   
+         for (int i=0; i<table.size(); i++){
+            scrapedTableFields.add(scrapeTableFields(fields, table.get(i)));
+         }      
+      }
       return scrapedTableFields;
    }
    
@@ -105,7 +141,25 @@ public class StaticHTMLScraper extends AbstractScraper{
       HashMap<String, Object> ScrapedFields = new HashMap<String, Object>();
       for (int i=0; i<fields.size(); i++){
          Pair<String, Object> pair = getSelectedElement(fields.get(i), element);
-         ScrapedFields.put(pair.getKey(), pair.getValue());
+         String tempName = pair.getKey();
+         Object tempValue = pair.getValue();
+         if(fields.get(i).ReplaceInName!=null&&fields.get(i).ReplaceInName.regex.size()==fields.get(i).ReplaceInName.with.size()){
+            for (int j=0; j<fields.get(i).ReplaceInName.regex.size(); j++){
+               tempName = tempName.replaceAll(
+                       fields.get(i).ReplaceInName.regex.get(j), 
+                       fields.get(i).ReplaceInName.with.get(j)
+               );
+            }
+         }
+         if(fields.get(i).ReplaceInValue!=null&&fields.get(i).ReplaceInValue.regex.size()==fields.get(i).ReplaceInValue.with.size()){
+            for (int j=0; j<fields.get(i).ReplaceInValue.regex.size(); j++){
+               tempValue = ((String) tempValue).replaceAll(
+                       fields.get(i).ReplaceInValue.regex.get(j), 
+                       fields.get(i).ReplaceInValue.with.get(j)
+               );
+            }
+         }
+         ScrapedFields.put(tempName, tempValue);
       }
       ScrapedFields.put("source", source);
       if (!ScrapedFields.containsKey("citeyear")){
@@ -114,6 +168,8 @@ public class StaticHTMLScraper extends AbstractScraper{
                  Calendar.getInstance().get(Calendar.YEAR)
          );
       }
+      ScrapedFields.values().removeAll(Collections.singleton(""));
+      ScrapedFields.values().removeAll(Collections.singleton(null));
       return ScrapedFields;
    }   
    
@@ -124,6 +180,12 @@ public class StaticHTMLScraper extends AbstractScraper{
          list.add(elements.get(i).text());
       }
       return list;
+   }
+   
+   public void reset(){
+      this.document = init_document;
+      this.baseURL = init_baseURL;
+      this.relativeURL = init_relativeURL;
    }
    
    private Pair<String, Object> getSelectedElement(Field field, Element element){

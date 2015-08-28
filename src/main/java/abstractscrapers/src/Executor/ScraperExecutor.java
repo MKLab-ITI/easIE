@@ -1,8 +1,11 @@
 package abstractscrapers.src.Executor;
 
 import abstractscrapers.src.Configure.Configuration;
+import abstractscrapers.src.Configure.EventType;
+import abstractscrapers.src.Configure.RepetitionType;
 import abstractscrapers.src.Scrapers.AbstractScraper;
 import abstractscrapers.src.Scrapers.BunchScraper;
+import abstractscrapers.src.Scrapers.DynamicHTMLScraper;
 import abstractscrapers.src.Scrapers.PaginationIterator;
 import abstractscrapers.src.Scrapers.StaticHTMLScraper;
 import java.io.IOException;
@@ -21,6 +24,8 @@ public class ScraperExecutor {
    
    public ScraperExecutor(Configuration config) throws URISyntaxException, IOException, Exception{
       this.config = config;
+      this.companyFields = new ArrayList<HashMap>();
+      this.snippetFields = new ArrayList<HashMap>();
       exec();
    }
    
@@ -31,7 +36,65 @@ public class ScraperExecutor {
    
    private void exec() throws URISyntaxException, IOException, Exception{
       if(config.dynamicHTML){
-         
+         DynamicHTMLScraper scraper = null;
+         if (config.url.baseURL!=null && config.url.relativeURL!=null){
+            scraper = new DynamicHTMLScraper(config.url.baseURL, config.url.relativeURL);
+         }
+         else if(config.url.fullURL!=null){
+            scraper = new DynamicHTMLScraper(config.url.fullURL);
+         }
+        if (config.event.sequence_of_events!=null){
+           for(int i=0; i<config.event.sequence_of_events.size(); i++){
+              if(config.event.sequence_of_events.get(i).equals(EventType.CLICK)){
+                 scraper.clickEvent(config.event.sequence_of_selectors.get(i));
+              }
+              else if(config.event.sequence_of_events.get(i).equals(EventType.SCROLL_DOWN)){
+                 scraper.scrollDownEvent();
+              }
+              if(config.table_selector!=null)
+                 execScrapeTable(scraper);
+              else
+                 execScrapeFields(scraper);
+           }
+        }
+        else if(config.event.type.equals(EventType.CLICK)){
+           if(config.event.repetition_type.equals(RepetitionType.AFTER_ALL_EVENTS)){
+               for (int i=0; i<config.event.timesToRepeat; i++){
+                  scraper.clickEvent(config.event.selector);
+               }
+               if (config.table_selector!=null)
+                  execScrapeTable(scraper);
+               else
+                  execScrapeFields(scraper);
+               
+           }
+           else if(config.event.repetition_type.equals(RepetitionType.AFTER_EACH_EVENT)){
+              for (int i=0; i<config.event.timesToRepeat; i++){
+                 scraper.clickEvent(config.event.selector);
+                 if (config.table_selector!=null)
+                     execScrapeTable(scraper);
+                  else
+                     execScrapeFields(scraper);
+              }
+           }
+           scraper.quit();
+        }
+        else if(config.event.type.equals(EventType.SCROLL_DOWN)){
+           if (config.event.timesToRepeat==null){
+              scraper.scrollDownEvent();
+              if (config.table_selector!=null)
+                  execScrapeTable(scraper);
+               else
+                  execScrapeFields(scraper);
+           }
+           else{
+              scraper.scrollDownEvent(config.event.timesToRepeat);
+              if (config.table_selector!=null)
+                  execScrapeTable(scraper);
+               else
+                  execScrapeFields(scraper);
+           }
+        }
       }
       else{
          if(config.url.baseURL==null&&config.url.relativeURL==null&&config.url.fullURL!=null){            
@@ -62,43 +125,50 @@ public class ScraperExecutor {
                   execScrapeFields(scraper);
             }
          }
-         else if(config.bunch_urls!=null&&config.url.baseURL==null&&config.url.relativeURL==null&&config.url.fullURL==null){
+         else if(config.bunch_urls!=null&&config.url.baseURL!=null&&config.url.relativeURL==null&&config.url.fullURL==null){
             if(config.nextPageSelector!=null)
                throw new Exception("Pagination can not be conducted in Bunch Scraper mode");
             BunchScraper scraper = new BunchScraper(config.bunch_urls, config.url.baseURL);
             if (config.table_selector!=null)
-               if(config.company_fields!=null)
-                  execScrapeTable(scraper);
-               else
-                  execScrapeFields(scraper);
+               execScrapeTable(scraper);
+            else
+               execScrapeFields(scraper);
          }
          else{
-            throw new Exception("Configuration error: In defining url field you need to determine either (\"baseURL\" and \"relativeURL\") or (\"fullURL\") or (\"baseURL\" alongside with \"banch_urls\" field)");
+            throw new Exception("Configuration error: In defining url field you need to determine either (\"baseURL\" and \"relativeURL\") or (\"fullURL\") or (\"baseURL\" alongside with \"bunch_urls\" field)");
          }
       }
    }
    
+   public ArrayList<HashMap> getSnippetFields(){
+      return this.snippetFields;
+   };
+   
+   public ArrayList<HashMap> getCompanyFields(){
+      return this.companyFields;
+   };
+   
    private void execScrapeTable(AbstractScraper scraper) throws Exception{
-      if(config.company_fields!=null){
-         companyFields = 
+      if(config.company_fields!=null){         
+         companyFields.addAll(
                   (ArrayList<HashMap>) scraper.scrapeTable(
                           config.table_selector, 
                           config.company_fields
-                  );
+                  ));
          if(config.snippet_fields!=null){
-            snippetFields = 
+            snippetFields.addAll(
                     (ArrayList<HashMap>) scraper.scrapeTable(
                             config.table_selector, 
                             config.snippet_fields
-                    );
+                    ));
          }
    }
       else if(config.snippet_fields!=null){
-         snippetFields = 
+         snippetFields.addAll(
                  (ArrayList<HashMap>) scraper.scrapeTable(
                          config.table_selector, 
                          config.snippet_fields
-                 );
+                 ));
       }
       else
          throw new Exception("In the Configuration you need to define either company_fields or snippet_fields to scrape (or both)");
@@ -106,24 +176,25 @@ public class ScraperExecutor {
    
    private void execScrapeFields(AbstractScraper scraper) throws Exception{
       if(config.company_fields!=null){
-         companyFields = 
+         companyFields.addAll(
                   (ArrayList<HashMap>) scraper.scrapeFields(
                           config.company_fields
-                  );
+                  ));
          if(config.snippet_fields!=null){
-            snippetFields = 
+            snippetFields.addAll(
                     (ArrayList<HashMap>) scraper.scrapeFields(
                             config.snippet_fields
-                    );
+                    ));
          }
    }
       else if(config.snippet_fields!=null){
-         snippetFields = 
+         snippetFields.addAll(
                  (ArrayList<HashMap>) scraper.scrapeFields(
                          config.snippet_fields
-                 );
+                 ));
       }
       else
-         throw new Exception("In the Configuration you need to define either company_fields or snippet_fields to scrape (or both)");  
+         throw new Exception("In the Configuration you need to define either company_fields or snippet_fields to scrape (or both)");
+      
    }
 }

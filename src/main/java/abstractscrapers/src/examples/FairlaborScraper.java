@@ -1,14 +1,15 @@
 package abstractscrapers.src.examples;
 
 import abstractscrapers.src.Company;
+import abstractscrapers.src.CompanySearcher;
 import abstractscrapers.src.Field;
 import abstractscrapers.src.FieldType;
 import abstractscrapers.src.MongoUtils;
 import abstractscrapers.src.OutputFormatter.CompanySnippet;
-import abstractscrapers.src.SelectorType;
 import abstractscrapers.src.Scrapers.BunchScraper;
 import abstractscrapers.src.Scrapers.PaginationIterator;
 import abstractscrapers.src.Scrapers.StaticHTMLScraper;
+import abstractscrapers.src.SelectorType;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -103,6 +104,7 @@ public class FairlaborScraper {
       ArrayList<HashMap> flaFields = butch.scrapeFields(flaInfo); 
       
       MongoUtils mongo = new MongoUtils();
+      CompanySearcher searcher = new CompanySearcher(mongo, "Wikirate2", "Companies");
       for (int i=0; i<flaFields.size(); i++){
          HashMap temp_Comp = flaFields.get(i);
          if (temp_Comp.get("Company Name")!=null){
@@ -116,14 +118,16 @@ public class FairlaborScraper {
                        mongo,
                        (String) temp_Comp.get("Company Link"),
                        "Wikirate2",
-                       "Companies"
+                       "Companies",
+                       searcher
             );}            
             else{
                company = new Company(
                        (String) temp_Comp.get("Company Name"), 
                        mongo,
                        "Wikirate2",
-                       "Companies"
+                       "Companies",
+                       searcher
             );}
             company.insertInfo("Logo", (String) temp_Comp.get("Logo"));
             String source = (String) temp_Comp.get("source");

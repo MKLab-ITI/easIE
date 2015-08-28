@@ -16,13 +16,14 @@ import java.util.List;
  */
 public class BunchScraper extends AbstractScraper{
    private HashSet<String> BunchOfLinks;
-   private String baseURL = "";
+   private String baseURL;
    
    /**
     * Creates a new BunchScraper
     * @param BunchOfLinks a set of webpages
     */
    public BunchScraper(HashSet<String> BunchOfLinks){
+      this.baseURL = "";
       this.BunchOfLinks = BunchOfLinks;
    }
 
@@ -41,8 +42,11 @@ public class BunchScraper extends AbstractScraper{
    @Override
    public ArrayList<HashMap> scrapeFields(List<Field> fields) throws URISyntaxException, IOException, Exception{
       ArrayList<HashMap> scrapedFields = new ArrayList();
+      System.out.println(BunchOfLinks);
       Iterator links = BunchOfLinks.iterator();
+      int i=0;
       while(links.hasNext()){
+         System.out.println(i++);
          StaticHTMLScraper scraper = new StaticHTMLScraper(baseURL+((String) links.next()).replace(baseURL, ""));
          scrapedFields.add(scraper.scrapeFields(fields));
       }
@@ -62,10 +66,12 @@ public class BunchScraper extends AbstractScraper{
    public ArrayList<HashMap> scrapeTable(String tableSelector, List<Field> fields) throws URISyntaxException, IOException, Exception{
       ArrayList<HashMap> scrapedFields = new ArrayList();
       Iterator links = BunchOfLinks.iterator();
+      int i=0;
       while(links.hasNext()){
-         StaticHTMLScraper scraper = new StaticHTMLScraper(baseURL+(String) links.next());
+         System.out.println(i++);
+         StaticHTMLScraper scraper = new StaticHTMLScraper(baseURL+((String) links.next()).replace(baseURL, ""));
          scrapedFields.addAll(scraper.scrapeTable(tableSelector, fields));
       }
       return scrapedFields;
-   }
+   }   
 }

@@ -11,7 +11,9 @@ public class Field {
    public String SelectorNameType = SelectorType.CSS;
    public String SelectorValueType = SelectorType.CSS;
    public String FieldNameType = FieldType.text;
-   public String FieldValueType = FieldType.text;   
+   public String FieldValueType = FieldType.text;  
+   public ReplaceField ReplaceInName;
+   public ReplaceField ReplaceInValue;
    
    public Field(String FieldName, String FieldValue){
       this.FieldName = FieldName;
@@ -25,6 +27,17 @@ public class Field {
       this.SelectorValueType = SelectorValueType;
       this.FieldNameType = FieldNameType;
       this.FieldValueType = FieldValueType;
+   }
+   
+   public Field(String FieldName, String FieldValue, String SelectorNameType, String SelectorValueType, String FieldNameType, String FieldValueType, ReplaceField ReplaceInName, ReplaceField ReplaceInValue){
+      this.FieldName = FieldName;
+      this.FieldValue = FieldValue;
+      this.SelectorNameType = SelectorNameType;
+      this.SelectorValueType = SelectorValueType;
+      this.FieldNameType = FieldNameType;
+      this.FieldValueType = FieldValueType;
+      this.ReplaceInName = ReplaceInName;
+      this.ReplaceInValue = ReplaceInValue;
    }   
    
     @Override
