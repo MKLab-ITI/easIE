@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
- *
+ * Configuration Object 
  * @author vasgat
  */
 public class Configuration {
@@ -117,13 +117,16 @@ public class Configuration {
       }
    }
    
-   public Configuration(URL url, String source_name, String table_selector, ArrayList<Field> fields, Event event, Store store){
+   public Configuration(URL url, String source_name, String table_selector, ArrayList<Field> fields, Event event, Store store) throws IllegalConfigurationException{
       this.url = url;
       this.source_name = source_name;
       this.table_selector = table_selector;      
       this.snippet_fields = fields;
+      if (dynamicHTML)
+         this.event = event;
+      else
+         throw new IllegalConfigurationException();
       this.event = event;
-      this.dynamicHTML = true;
       this.store = store;
    }   
    
@@ -131,8 +134,11 @@ public class Configuration {
       this.url = url;
       this.source_name = source_name;
       this.snippet_fields = fields;
-      this.event = event;
-      this.dynamicHTML = true;
+      if (dynamicHTML)
+         this.event = event;
+      else
+         throw new IllegalConfigurationException();
+      //this.event = event;
       if (store.as.equals(SnippetType.ABSTRACT_SNIPPET)){
          this.store = store;
       }
@@ -203,24 +209,29 @@ public class Configuration {
       this.store = store;
    }
    
-   public Configuration(URL url, String source_name, String table_selector, ArrayList<Field> company_fields, ArrayList<Field> fields, Event event, Store store){
+   public Configuration(URL url, String source_name, String table_selector, ArrayList<Field> company_fields, ArrayList<Field> fields, Event event, boolean dynamicHTML, Store store) throws IllegalConfigurationException{
       this.url = url;
       this.source_name = source_name;
       this.table_selector = table_selector;
       this.company_fields = company_fields;
       this.snippet_fields = fields;
-      this.event = event;
-      this.dynamicHTML = true;
+      if (dynamicHTML)
+         this.event = event;
+      else
+         throw new IllegalConfigurationException();
       this.store = store;
    }   
    
-   public Configuration(URL url, String source_name, ArrayList<Field> company_fields, ArrayList<Field> fields, Event event, Store store){
+   public Configuration(URL url, String source_name, ArrayList<Field> company_fields, ArrayList<Field> fields, Event event, boolean dynamicHTML, Store store) throws IllegalConfigurationException{
       this.url = url;
       this.source_name = source_name;
       this.company_fields = company_fields;
       this.snippet_fields = fields;
+      if (dynamicHTML)
+         this.event = event;
+      else
+         throw new IllegalConfigurationException();
       this.event = event;
-      this.dynamicHTML = true;
       this.store = store;
    }   
 }

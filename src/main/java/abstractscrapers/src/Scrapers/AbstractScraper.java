@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package abstractscrapers.src.Scrapers;
 
 import abstractscrapers.src.Field;
@@ -12,7 +6,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 /**
- *
+ * AbstractScraper Object
  * @author vasgat
  */
 public abstract class AbstractScraper {

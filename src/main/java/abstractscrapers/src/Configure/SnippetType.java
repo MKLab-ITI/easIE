@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package abstractscrapers.src.Configure;
 
 /**
- *
+ * There are two available types of Snippet: COMPANY_SNIPPET and ABSTRACT_SNIPPET
  * @author vasgat
  */
 public class SnippetType {

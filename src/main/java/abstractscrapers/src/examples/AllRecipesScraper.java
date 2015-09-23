@@ -2,12 +2,12 @@ package abstractscrapers.src.examples;
 
 import abstractscrapers.src.Field;
 import abstractscrapers.src.FieldType;
-import abstractscrapers.src.InfoType;
-import abstractscrapers.src.OutputFormatter.JSONFormatter;
 import abstractscrapers.src.SelectorType;
 import abstractscrapers.src.Scrapers.BunchScraper;
+import abstractscrapers.src.OutputFormatter.Snippet;
 import abstractscrapers.src.Scrapers.PaginationIterator;
 import abstractscrapers.src.Scrapers.StaticHTMLScraper;
+import com.mongodb.BasicDBList;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -87,7 +87,7 @@ public class AllRecipesScraper {
       linkFields.add(RecipeLinkField);
    }
 
-   public JSONArray scrapeRecipesByIngedient(List<String> ingredients) 
+   public BasicDBList scrapeRecipesByIngedient(List<String> ingredients) 
                               throws URISyntaxException, IOException, Exception
    {      
       HashSet<String> RecipeLinks = new HashSet();
@@ -96,8 +96,15 @@ public class AllRecipesScraper {
       }
       
       BunchScraper bunchScraper = new BunchScraper(RecipeLinks,"http://allrecipes.com");
-
-      return JSONFormatter.toJSONArray(bunchScraper.scrapeFields(RecipeFields));      
+      
+      
+      BasicDBList list = new BasicDBList();
+      ArrayList<HashMap> scrapedData = bunchScraper.scrapeFields(RecipeFields);
+      for (int i=0; i<scrapedData.size(); i++){
+          Snippet snippet = new Snippet(bunchScraper.scrapeFields(RecipeFields).get(i));
+          list.add(snippet.getSnippetDBObject());
+      }
+      return list;
    }
    
    public HashSet getRecipeLinksByIngredient(String ingredient) 
@@ -137,7 +144,7 @@ public class AllRecipesScraper {
       AllRecipesScraper allrecipesScraper = new AllRecipesScraper();
       List<String> ingredients = allrecipesScraper.readIngredientsFile("src//main//java//abstractscrapers//src//data//ingredients.tsv");
       PrintWriter writer = new PrintWriter("recipes.json");
-      writer.println(allrecipesScraper.scrapeRecipesByIngedient(ingredients).toString(4));
+      writer.println(allrecipesScraper.scrapeRecipesByIngedient(ingredients));
       writer.close();
    }
 }

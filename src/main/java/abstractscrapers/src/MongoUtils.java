@@ -9,6 +9,7 @@ import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.types.ObjectId;
+
 /**
  * This class is responsible for connecting with MongoDB
  * @author vasgat

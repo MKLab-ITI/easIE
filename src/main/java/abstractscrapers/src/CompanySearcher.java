@@ -19,7 +19,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 /**
- *
+ * CompanySearcher searches for a match of a company in database
  * @author vasgat
  */
 public class CompanySearcher {
@@ -28,6 +28,12 @@ public class CompanySearcher {
    private MongoUtils mongo;
    private HashMap<String, HashMap<String, Double>> TFIDF_weights;
    
+   /**
+    * Creates a CompanySearcher object
+    * @param mongo a MongoUtils object
+    * @param dbname database name
+    * @param collection's name
+    */
    public CompanySearcher(MongoUtils mongo, String dbname, String collection){
       this.collection = collection;
       this.dbname = dbname;
@@ -35,22 +41,11 @@ public class CompanySearcher {
       this.TFIDF_weights = calculateTFIDF();
    }
    
-   private HashMap<String, HashMap<String, Double>> calculateTFIDF(){
-      DBCollection companies = mongo.connect(dbname, collection);
-      DBCursor cursor = companies.find();
-      cursor.addOption(QUERYOPTION_NOTIMEOUT);
-      HashMap<String,HashMap<String, Integer>> listOfDocs = 
-              new HashMap<String,HashMap<String, Integer>>();
-      while (cursor.hasNext()){         
-         BasicDBObject currentCompany = (BasicDBObject) cursor.next();
-         HashMap doc = Tokenizer.getTokenVectorFrequency(currentCompany
-                                                   .getString("Company_name"));
-         listOfDocs.put(currentCompany.getString("_id"), doc);         
-      }
-      cursor.close();
-      return TFIDFSimilarity.TF_IDF(listOfDocs);
-   }
-   
+   /**
+    * Search for a company in the collection by company's website
+    * @param CompanyLink
+    * @returns company's id, if exists to db.
+    */
    public ObjectId searchByLink(String CompanyLink){
       DBCollection companies = mongo.connect(dbname, collection);
       BasicDBObject query = new BasicDBObject();
@@ -82,6 +77,11 @@ public class CompanySearcher {
       return null;
    }
    
+   /**
+    * Searches for a company in the collection by company's name
+    * @param CompanyName
+    * @returns company's id, if company exists to db. 
+    */
    public ObjectId searchByName(String CompanyName){
       TFIDF_weights.put("candidate", Tokenizer.getTokenVectorFrequency2(CompanyName));
       Iterator it = TFIDF_weights.keySet().iterator();
@@ -99,7 +99,13 @@ public class CompanySearcher {
       return null;
    }
    
-   public ObjectId searchByGoogleResults(String CompanyName){
+   /**
+    * Searches for a match in the collection by candidate company's website 
+    * based on the results a search engine returns (search by name)
+    * @param CompanyName
+    * @returns company's id, if company exists to db.
+    */
+   public ObjectId searchBySearchEngineResults(String CompanyName){
       try {
          try {
             String query = CompanyName.replace(" ", "+");
@@ -111,9 +117,7 @@ public class CompanySearcher {
             if (firstResult.contains("wikipedia")){
             firstResult = googleResults.getElementById("webResults")
                            .select("div.resultDisplayUrlPane").get(1).text();
-            //System.out.println(firstResult);
             }
-            System.out.println(firstResult);
             return this.searchByLink(firstResult);
          } catch (IOException ex) {
             Logger.getLogger(CompanySearcher.class.getName()).log(Level.SEVERE, null, ex);
@@ -127,6 +131,11 @@ public class CompanySearcher {
       return null;
    }
    
+   /**
+    * Searches for a match of CompanyName in the aliases names of each company in the collection
+    * @param CompanyName
+    * @return 
+    */
    public ObjectId searchForMatchInLookUpTable(String CompanyName){
       DBCollection companies = mongo.connect(dbname, collection);      
       DBCursor cursor = companies.find();
@@ -145,24 +154,11 @@ public class CompanySearcher {
       return null;
    }
    
-   public static String getWikipediaURLArticle(String Cname){
-      try {
-         String query = Cname.replace(" ", "+")+"+"+"Wikipedia";
-         Document googleResults = Jsoup.connect(
-                 new URI("http://www.dogpile.com/search/web?q="+query)
-                         .toASCIIString()).userAgent("Mozilla/37.0").timeout(60000).get();
-         String firstResult = googleResults.getElementById("webResults")      
-                 .select("div.resultDisplayUrlPane").get(0).text();
-         return firstResult;
-      } catch (IOException ex) {
-         Logger.getLogger(CompanySearcher.class.getName()).log(Level.SEVERE, null, ex);
-         return null;
-      } catch (URISyntaxException ex) {
-         Logger.getLogger(CompanySearcher.class.getName()).log(Level.SEVERE, null, ex);
-         return null;
-      }      
-   }
-   
+   /**
+    * Lowercases a set of String objects
+    * @param collection 
+    * @returns the set of strings 
+    */
    public static ArrayList LowerCaseCollection(ArrayList<String> collection){
       for (int i=0; i<collection.size(); i++){
          collection.set(i, collection.get(i).toLowerCase());
@@ -170,7 +166,28 @@ public class CompanySearcher {
       return collection;
    }
    
+   /**
+    * Get the domain name of a given url
+    * @param url
+    * @return 
+    */
    public static String getDomain(String url){  
       return "\\."+url.replaceAll("http.*://", "").replaceAll("www*\\.", "").replaceAll("/.*", "").replaceAll("\\.", "\\.");
+   }
+   
+   private HashMap<String, HashMap<String, Double>> calculateTFIDF(){
+      DBCollection companies = mongo.connect(dbname, collection);
+      DBCursor cursor = companies.find();
+      cursor.addOption(QUERYOPTION_NOTIMEOUT);
+      HashMap<String,HashMap<String, Integer>> listOfDocs = 
+              new HashMap<String,HashMap<String, Integer>>();
+      while (cursor.hasNext()){         
+         BasicDBObject currentCompany = (BasicDBObject) cursor.next();
+         HashMap doc = Tokenizer.getTokenVectorFrequency(currentCompany
+                                                   .getString("Company_name"));
+         listOfDocs.put(currentCompany.getString("_id"), doc);         
+      }
+      cursor.close();
+      return TFIDFSimilarity.TF_IDF(listOfDocs);
    }
 }

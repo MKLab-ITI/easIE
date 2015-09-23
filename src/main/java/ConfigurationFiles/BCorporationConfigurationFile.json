@@ -1,0 +1,104 @@
+{
+  "url": {
+    "baseURL": "https://www.bcorporation.net",
+    "relativeURL": "/community/ws-badger-co-inc"
+  },
+  "source_name":"BCorporation",
+  "company_fields" : [
+    {
+      "FieldName": "Company Name",
+      "FieldValue": "#main-content-header",
+      "SelectorNameType": "RAW_TEXT",
+      "SelectorValueType": "CSS",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "TEXT"
+    },
+    {
+      "FieldName": "Country",
+      "FieldValue": ".company-desc-inner > p:nth-child(3)",
+      "SelectorNameType": "RAW_TEXT",
+      "SelectorValueType": "CSS",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "TEXT"
+    } ,
+    {
+      "FieldName": "Website",
+      "FieldValue": ".company-desc-inner > a:nth-child(4)",
+      "SelectorNameType": "RAW_TEXT",
+      "SelectorValueType": "CSS",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "LINK"
+    }       
+    ],
+    "snippet_fields": [
+    {
+      "FieldName": ".field-name-field-date-of-certification > h2:nth-child(1)",
+      "FieldValue": ".field-name-field-date-of-certification > div:nth-child(2) > div:nth-child(1) > span:nth-child(1)",
+      "SelectorNameType": "CSS",
+      "SelectorValueType": "CSS",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "TEXT",
+      "ReplaceInName": {
+                  "regex": [":.*"],
+                  "with": [""]
+            }
+    },
+    {
+      "FieldName": ".data > dl:nth-child(10) > dt:nth-child(1)",
+      "FieldValue": ".data > dl:nth-child(10) > dd:nth-child(2)",
+      "SelectorNameType": "CSS",
+      "SelectorValueType": "CSS",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "TEXT"
+    },
+    {
+      "FieldName": ".impact-report-teaser > tbody:nth-child(1) > tr:nth-child(9) > td:nth-child(1)",
+      "FieldValue": ".field-name-field-overall-b-score > div:nth-child(1) > div:nth-child(1)",
+      "SelectorNameType": "CSS",
+      "SelectorValueType": "CSS",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "TEXT"
+    },
+    {
+      "FieldName": "Environment B Score",
+      "FieldValue": ".field-name-field-environment > div:nth-child(1) > div:nth-child(1)",
+      "SelectorNameType": "RAW_TEXT",
+      "SelectorValueType": "CSS",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "TEXT"
+    },
+    {
+      "FieldName": "Workers B Score",
+      "FieldValue": ".field-name-field-workers > div:nth-child(1) > div:nth-child(1)",
+      "SelectorNameType": "RAW_TEXT",
+      "SelectorValueType": "CSS",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "TEXT"
+    },
+    {
+      "FieldName": "Customers B Score",
+      "FieldValue": ".field-name-field-consumers > div:nth-child(1) > div:nth-child(1)",
+      "SelectorNameType": "RAW_TEXT",
+      "SelectorValueType": "CSS",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "TEXT"
+    },
+    {
+      "FieldName": "Community B Score",
+      "FieldValue": ".field-name-field-community > div:nth-child(1) > div:nth-child(1)",
+      "SelectorNameType": "RAW_TEXT",
+      "SelectorValueType": "CSS",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "TEXT"
+    },
+    {
+      "FieldName": "Governance B Score",
+      "FieldValue": ".field-name-field-governance > div:nth-child(1) > div:nth-child(1)",
+      "SelectorNameType": "RAW_TEXT",
+      "SelectorValueType": "CSS",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "TEXT"
+    }
+  ],
+  "dynamicHTML": false
+}

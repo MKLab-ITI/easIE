@@ -5,8 +5,18 @@ import java.util.Set;
 import java.util.HashMap;
 import java.util.TreeSet;
 
+/**
+ * @author vasgat
+ */
 public class CosineSimilarity{
     
+    /** 
+     * Calculates the cosine similarity between two docs, givem the collection of documents
+     * @param weights
+     * @param doc1_id
+     * @param doc2_id
+     * @returns the cosine similarity between the documents doc1 and doc2
+     */
     public static double calculate(HashMap<String, HashMap<String,Double>> weights, String doc1_id, String doc2_id){
         HashMap<String, Double> doc1 = weights.get(doc1_id);
         HashMap<String, Double> doc2 = weights.get(doc2_id);

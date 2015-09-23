@@ -1,7 +1,7 @@
 package abstractscrapers.src.Configure;
 
 /**
- *
+ * 
  * @author vasgat
  */
 public class Store {

@@ -19,8 +19,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 /**
- * Scraper Object is responsible for scraping defined fields (by css selectors)
- * from a webpage or fields from a table.
+ * StaticHTMLScraper Object extends AbstractScraper and is responsible 
+ * for scraping defined fields (by css selectors) from a static webpage or fields from a table.
  * @author vasgat
  */
 public class StaticHTMLScraper extends AbstractScraper{
@@ -33,8 +33,8 @@ public class StaticHTMLScraper extends AbstractScraper{
    private Document init_document;
    
    /**
-    * Creates a new scraper for link webpage
-    * @param baseURL: webpage url
+    * Creates a new StaticHTMLScraper for a webpage
+    * @param baseURL: webpage base url
     * @param relativeURL: path to the specific spot in the page
     * @throws URISyntaxException
     * @throws IOException 
@@ -50,8 +50,8 @@ public class StaticHTMLScraper extends AbstractScraper{
    }
    
    /**
-    * Creates a new scraper for link webpage
-    * @param FullLink webpage link
+    * Creates a new StaticHTMLScraper for a webpage
+    * @param FullLink webpage full url
     * @throws URISyntaxException
     * @throws IOException 
     */
@@ -65,14 +65,14 @@ public class StaticHTMLScraper extends AbstractScraper{
       }
    }
    
-   /**
+   /**scrapes a list of specified fields from a webpage
     * scrapes a list of specified fields from a webpage
     * @param fields: list of fields
     * @return a HashMap of the scraped fields
     * @throws Exception 
     */
    @Override
-   public HashMap scrapeFields(List<Field> fields){      
+   public ArrayList<HashMap> scrapeFields(List<Field> fields){      
       HashMap<String, Object> ScrapedFields = new HashMap<String, Object>();
       if (document!=null){
          for (int i=0; i<fields.size(); i++){
@@ -107,7 +107,9 @@ public class StaticHTMLScraper extends AbstractScraper{
          ScrapedFields.values().removeAll(Collections.singleton(""));
          ScrapedFields.values().removeAll(Collections.singleton(null));
       }
-      return ScrapedFields;
+      ArrayList<HashMap> result = new ArrayList<HashMap>();
+      result.add(ScrapedFields);
+      return result;
       
    }
    
@@ -131,8 +133,8 @@ public class StaticHTMLScraper extends AbstractScraper{
    }
    
    /**
-    * private function which scrapes a list of table fields from a table row
-    * @param fields of the table
+    * private function which scrapes columns from a table row
+    * @param fields/columns of the table
     * @param element row of the table
     * @return a HashMap of scraped fields
     * @throws Exception 
@@ -173,7 +175,12 @@ public class StaticHTMLScraper extends AbstractScraper{
       return ScrapedFields;
    }   
    
-   public ArrayList scrapeList(String listSelector){
+   /**
+    * scrapes a list of values of a specific field
+    * @param listSelecto CSS selector of list field
+    * @return an ArrayList of values
+    */
+   private ArrayList scrapeList(String listSelector){
       ArrayList list = new ArrayList();
       Elements elements = document.select(listSelector);
       for (int i=0; i<elements.size(); i++){
@@ -182,12 +189,22 @@ public class StaticHTMLScraper extends AbstractScraper{
       return list;
    }
    
+   /**
+    * reset document, baseURL and relativeURL to the initial values, 
+    * they had when the object created
+    */
    public void reset(){
       this.document = init_document;
       this.baseURL = init_baseURL;
       this.relativeURL = init_relativeURL;
    }
    
+   /**
+    * Returns the content of a specific field in the document
+    * @param field 
+    * @param element
+    * @return a Pair of String, Object that corresponds to field name and field value accordingly
+    */
    private Pair<String, Object> getSelectedElement(Field field, Element element){
       String tempName;
       Object tempValue;

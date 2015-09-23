@@ -1,7 +1,7 @@
 package abstractscrapers.src.Configure;
 
 /**
- *
+ * RepetitionType of events: AFTER_EACH_EVENT and AFTER_ALL_EVENTS
  * @author vasgat
  */
 public class RepetitionType {

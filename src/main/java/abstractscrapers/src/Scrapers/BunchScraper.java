@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * BunchScraper object is responsible for scraping a set of links - webpages 
+ * BunchScraper object extends AbstractScraper and is responsible for scraping a set of links - webpages 
  * with the same structure
  * @author vasgat
  */
@@ -48,7 +48,7 @@ public class BunchScraper extends AbstractScraper{
       while(links.hasNext()){
          System.out.println(i++);
          StaticHTMLScraper scraper = new StaticHTMLScraper(baseURL+((String) links.next()).replace(baseURL, ""));
-         scrapedFields.add(scraper.scrapeFields(fields));
+         scrapedFields.addAll(scraper.scrapeFields(fields));
       }
       return scrapedFields;
    }

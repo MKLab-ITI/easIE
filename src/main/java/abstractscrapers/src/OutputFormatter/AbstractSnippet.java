@@ -4,7 +4,7 @@ import abstractscrapers.src.MongoUtils;
 import com.mongodb.DBObject;
 
 /**
- *
+ * AbstractSnippet Object
  * @author vasgat
  */
 public abstract class AbstractSnippet {

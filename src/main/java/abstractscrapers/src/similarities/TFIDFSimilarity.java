@@ -10,10 +10,22 @@ import java.util.HashMap;
  */
 public class TFIDFSimilarity {
     
+    /**
+     * Calculates tf-idf sililarity between two documents given 
+     * @param tfidf: collection of documents with tf-idf weights
+     * @param doc1_id: document 1 id
+     * @param doc2_id: document 2 id
+     * @returns the similarity of the two documents 
+     */
     public static double calculate(HashMap<String, HashMap<String,Double>> tfidf, String doc1_id, String doc2_id){
         return CosineSimilarity.calculate(tfidf, doc1_id, doc2_id);
     }
     
+    /**
+     * Calculates tf-idf weights of a set of documents 
+     * @param docs
+     * @returns the collection with tf-idf weights
+     */
     public static HashMap<String, HashMap<String, Double>> TF_IDF(HashMap<String, HashMap<String,Integer>> docs){
         HashMap<String, HashMap<String, Double>> tf_idf = new HashMap<String, HashMap<String, Double>>();
         HashMap<String, HashMap<String, Double>> tf = tf(docs);
@@ -33,6 +45,11 @@ public class TFIDFSimilarity {
         return tf_idf;
     }
     
+    /**
+     * Calculates normalized tf of each term in a set of documents
+     * @param docs: a collection of documents 
+     * @returns the collection of documents with the calculated tf per term in a document
+     */
     public static HashMap<String, HashMap<String, Double>> tf(HashMap<String, HashMap<String, Integer>> docs){
         HashMap<String, HashMap<String, Double>> docstf = new HashMap<String, HashMap<String, Double>>();
         Iterator it = docs.entrySet().iterator();
@@ -49,6 +66,12 @@ public class TFIDFSimilarity {
         return docstf;
     }
     
+    /**
+     * Calculates inverse document frequency in a set of documents
+     * @param df document frequency of each term that exists in the collection
+     * @param nufOfDocs total number of docs
+     * @returns the calculated idf of each term
+     */
     public static HashMap<String, Double> idf(HashMap<String, Integer> df, int nufOfDocs){
         HashMap<String, Double> idf = new HashMap<String, Double>();
         Iterator it = df.entrySet().iterator();
@@ -59,6 +82,11 @@ public class TFIDFSimilarity {
         return idf;
     }
     
+    /**
+     * Calculates the document frequency of each term in the collection
+     * @param docs: the collection of documents as vectors
+     * @returns document frequency per term 
+     */
     public static HashMap<String, Integer> df(HashMap<String, HashMap<String, Integer>> docs){
         HashMap<String, Integer> df = new HashMap<String, Integer>();        
         Iterator it = docs.entrySet().iterator();

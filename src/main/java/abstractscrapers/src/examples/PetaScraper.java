@@ -124,7 +124,7 @@ public class PetaScraper {
       for (int i=0; i<result.size(); i++){         
          HashMap temp_Comp = result.get(i);
          StaticHTMLScraper StaticScraper = new StaticHTMLScraper((String) temp_Comp.get("Company Link"));
-         temp_Comp.putAll(StaticScraper.scrapeFields(pageFields));
+         temp_Comp.putAll(StaticScraper.scrapeFields(pageFields).get(0));
          System.out.println(temp_Comp);
          Company company;
          if (!temp_Comp.get("Company Link").equals("")&&

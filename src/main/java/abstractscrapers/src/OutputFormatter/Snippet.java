@@ -10,16 +10,24 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- *
+ * Snippet extends AbstractSnippet 
  * @author vasgat
  */
 public class Snippet extends AbstractSnippet{
    private HashMap Info;
    
+   /**
+    * Creates a Snippet Object
+    * @param Info: a Set of key,values that constitute the snippet
+    */
    public Snippet(HashMap Info){
       this.Info = Info;
    }
 
+   /**
+    * Transforms Info that snippet contains into JSON format
+    * @returns DBObject
+    */
    @Override
    public DBObject getSnippetDBObject() {
       BasicDBObject snippet = new BasicDBObject();
@@ -62,7 +70,13 @@ public class Snippet extends AbstractSnippet{
       }
       return snippet;
    }
-
+   
+   /**
+    * Store Snippet on mongodb database in JSON format
+    * @param dbname
+    * @param collection
+    * @param mongo 
+    */
    @Override
    public void store(String dbname, String collection, MongoUtils mongo) {
       mongo.insertDoc(dbname, collection, getSnippetDBObject());

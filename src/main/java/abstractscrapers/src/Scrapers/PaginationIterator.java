@@ -10,7 +10,7 @@ import java.util.List;
 import org.jsoup.Jsoup;
 
 /**
- * PaginationItearator object is responsible for scraping a bunch of similar pages
+ * PaginationItearator object extends PaginationIterator and is responsible for scraping a bunch of similar pages
  * when the data are distributed in different pages
  * @author vasgat
  */
@@ -41,11 +41,11 @@ public class PaginationIterator extends AbstractScraper{
    @Override
    public ArrayList<HashMap> scrapeFields(List<Field> fields) throws URISyntaxException, IOException, Exception{
       ArrayList<HashMap> scrapedFields = new ArrayList();
-      scrapedFields.add(scraper.scrapeFields(fields));
+      scrapedFields.addAll(scraper.scrapeFields(fields));
       while(!scraper.document.select(nextPageSelector).attr("href").equals("")){         
          scraper.document = Jsoup.connect(new URI(scraper.baseURL+scraper.document.select(nextPageSelector).attr("href").replace(scraper.baseURL, "")).toASCIIString())
                               .userAgent("Mozilla/37.0").timeout(60000).get(); 
-         scrapedFields.add(scraper.scrapeFields(fields));
+         scrapedFields.addAll(scraper.scrapeFields(fields));
       }
       scraper.reset();
       return scrapedFields;

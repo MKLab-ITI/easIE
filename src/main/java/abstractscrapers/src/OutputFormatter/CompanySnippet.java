@@ -2,16 +2,12 @@ package abstractscrapers.src.OutputFormatter;
 
 import abstractscrapers.src.MongoUtils;
 import com.mongodb.BasicDBObject;
-import com.mongodb.DB;
 import com.mongodb.DBObject;
-import com.mongodb.MongoClient;
 import java.net.UnknownHostException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.bson.types.ObjectId;
 
 /**
- * Creates a Snippet object
+ * Extends AbstractSnippet and creates a Snippet object
  * @author vasgat
  */
 public class CompanySnippet extends AbstractSnippet{

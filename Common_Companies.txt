@@ -1,0 +1,462 @@
+Forbes,Peta,24
+Forbes,Fairlabor,6
+Forbes,Newsweek,900
+Forbes,EPEAT,19
+Forbes,BSR,142
+Forbes,EICC,50
+Forbes,Measure UP,5
+Forbes,Nutrition Index,11
+Forbes,Medicine Index,19
+Forbes,Ethisphere,163
+Forbes,UN Global Compact,428
+Forbes,Wikipedia,1236
+Forbes,Peri,72
+Forbes,Good Company Index,101
+Forbes,Ethical Guide,133
+Forbes,BCorporations,3
+Forbes,Sustainability Ranking Asia,51
+Forbes,EPA,12
+Forbes,2020wob,558
+Forbes,RSPO,75
+Forbes,EUtransparency,281
+Peta,Forbes,24
+Peta,Fairlabor,1
+Peta,Newsweek,30
+Peta,EPEAT,0
+Peta,BSR,10
+Peta,EICC,0
+Peta,Measure UP,1
+Peta,Nutrition Index,1
+Peta,Medicine Index,5
+Peta,Ethisphere,13
+Peta,UN Global Compact,15
+Peta,Wikipedia,43
+Peta,Peri,1
+Peta,Good Company Index,9
+Peta,Ethical Guide,63
+Peta,BCorporations,23
+Peta,Sustainability Ranking Asia,0
+Peta,EPA,8
+Peta,2020wob,25
+Peta,RSPO,15
+Peta,EUtransparency,12
+Fairlabor,Forbes,6
+Fairlabor,Peta,1
+Fairlabor,Newsweek,9
+Fairlabor,EPEAT,1
+Fairlabor,BSR,3
+Fairlabor,EICC,1
+Fairlabor,Measure UP,1
+Fairlabor,Nutrition Index,0
+Fairlabor,Medicine Index,0
+Fairlabor,Ethisphere,4
+Fairlabor,UN Global Compact,4
+Fairlabor,Wikipedia,10
+Fairlabor,Peri,0
+Fairlabor,Good Company Index,1
+Fairlabor,Ethical Guide,11
+Fairlabor,BCorporations,1
+Fairlabor,Sustainability Ranking Asia,1
+Fairlabor,EPA,1
+Fairlabor,2020wob,6
+Fairlabor,RSPO,2
+Fairlabor,EUtransparency,3
+Newsweek,Forbes,900
+Newsweek,Peta,30
+Newsweek,Fairlabor,9
+Newsweek,EPEAT,14
+Newsweek,BSR,150
+Newsweek,EICC,45
+Newsweek,Measure UP,5
+Newsweek,Nutrition Index,11
+Newsweek,Medicine Index,17
+Newsweek,Ethisphere,153
+Newsweek,UN Global Compact,267
+Newsweek,Wikipedia,803
+Newsweek,Peri,75
+Newsweek,Good Company Index,105
+Newsweek,Ethical Guide,128
+Newsweek,BCorporations,3
+Newsweek,Sustainability Ranking Asia,19
+Newsweek,EPA,15
+Newsweek,2020wob,591
+Newsweek,RSPO,56
+Newsweek,EUtransparency,231
+EPEAT,Forbes,19
+EPEAT,Peta,0
+EPEAT,Fairlabor,1
+EPEAT,Newsweek,14
+EPEAT,BSR,6
+EPEAT,EICC,14
+EPEAT,Measure UP,0
+EPEAT,Nutrition Index,0
+EPEAT,Medicine Index,0
+EPEAT,Ethisphere,7
+EPEAT,UN Global Compact,10
+EPEAT,Wikipedia,17
+EPEAT,Peri,1
+EPEAT,Good Company Index,4
+EPEAT,Ethical Guide,15
+EPEAT,BCorporations,0
+EPEAT,Sustainability Ranking Asia,5
+EPEAT,EPA,1
+EPEAT,2020wob,6
+EPEAT,RSPO,0
+EPEAT,EUtransparency,4
+BSR,Forbes,142
+BSR,Peta,10
+BSR,Fairlabor,3
+BSR,Newsweek,150
+BSR,EPEAT,6
+BSR,EICC,21
+BSR,Measure UP,4
+BSR,Nutrition Index,5
+BSR,Medicine Index,13
+BSR,Ethisphere,53
+BSR,UN Global Compact,88
+BSR,Wikipedia,169
+BSR,Peri,14
+BSR,Good Company Index,28
+BSR,Ethical Guide,57
+BSR,BCorporations,0
+BSR,Sustainability Ranking Asia,4
+BSR,EPA,8
+BSR,2020wob,109
+BSR,RSPO,20
+BSR,EUtransparency,71
+EICC,Forbes,50
+EICC,Peta,0
+EICC,Fairlabor,1
+EICC,Newsweek,45
+EICC,EPEAT,14
+EICC,BSR,21
+EICC,Measure UP,0
+EICC,Nutrition Index,0
+EICC,Medicine Index,0
+EICC,Ethisphere,14
+EICC,UN Global Compact,16
+EICC,Wikipedia,57
+EICC,Peri,2
+EICC,Good Company Index,11
+EICC,Ethical Guide,25
+EICC,BCorporations,0
+EICC,Sustainability Ranking Asia,10
+EICC,EPA,2
+EICC,2020wob,44
+EICC,RSPO,1
+EICC,EUtransparency,17
+Measure UP,Forbes,5
+Measure UP,Peta,1
+Measure UP,Fairlabor,1
+Measure UP,Newsweek,5
+Measure UP,EPEAT,0
+Measure UP,BSR,4
+Measure UP,EICC,0
+Measure UP,Nutrition Index,0
+Measure UP,Medicine Index,0
+Measure UP,Ethisphere,2
+Measure UP,UN Global Compact,3
+Measure UP,Wikipedia,12
+Measure UP,Peri,0
+Measure UP,Good Company Index,0
+Measure UP,Ethical Guide,7
+Measure UP,BCorporations,0
+Measure UP,Sustainability Ranking Asia,0
+Measure UP,EPA,1
+Measure UP,2020wob,1
+Measure UP,RSPO,1
+Measure UP,EUtransparency,3
+Nutrition Index,Forbes,11
+Nutrition Index,Peta,1
+Nutrition Index,Fairlabor,0
+Nutrition Index,Newsweek,11
+Nutrition Index,EPEAT,0
+Nutrition Index,BSR,5
+Nutrition Index,EICC,0
+Nutrition Index,Measure UP,0
+Nutrition Index,Medicine Index,0
+Nutrition Index,Ethisphere,8
+Nutrition Index,UN Global Compact,8
+Nutrition Index,Wikipedia,17
+Nutrition Index,Peri,0
+Nutrition Index,Good Company Index,3
+Nutrition Index,Ethical Guide,9
+Nutrition Index,BCorporations,0
+Nutrition Index,Sustainability Ranking Asia,0
+Nutrition Index,EPA,1
+Nutrition Index,2020wob,8
+Nutrition Index,RSPO,11
+Nutrition Index,EUtransparency,7
+Medicine Index,Forbes,19
+Medicine Index,Peta,5
+Medicine Index,Fairlabor,0
+Medicine Index,Newsweek,17
+Medicine Index,EPEAT,0
+Medicine Index,BSR,13
+Medicine Index,EICC,0
+Medicine Index,Measure UP,0
+Medicine Index,Nutrition Index,0
+Medicine Index,Ethisphere,3
+Medicine Index,UN Global Compact,12
+Medicine Index,Wikipedia,16
+Medicine Index,Peri,0
+Medicine Index,Good Company Index,3
+Medicine Index,Ethical Guide,5
+Medicine Index,BCorporations,0
+Medicine Index,Sustainability Ranking Asia,0
+Medicine Index,EPA,0
+Medicine Index,2020wob,9
+Medicine Index,RSPO,1
+Medicine Index,EUtransparency,11
+Ethisphere,Forbes,163
+Ethisphere,Peta,13
+Ethisphere,Fairlabor,4
+Ethisphere,Newsweek,153
+Ethisphere,EPEAT,7
+Ethisphere,BSR,53
+Ethisphere,EICC,14
+Ethisphere,Measure UP,2
+Ethisphere,Nutrition Index,8
+Ethisphere,Medicine Index,3
+Ethisphere,UN Global Compact,92
+Ethisphere,Wikipedia,178
+Ethisphere,Peri,20
+Ethisphere,Good Company Index,29
+Ethisphere,Ethical Guide,40
+Ethisphere,BCorporations,4
+Ethisphere,Sustainability Ranking Asia,4
+Ethisphere,EPA,10
+Ethisphere,2020wob,131
+Ethisphere,RSPO,22
+Ethisphere,EUtransparency,68
+UN Global Compact,Forbes,428
+UN Global Compact,Peta,15
+UN Global Compact,Fairlabor,4
+UN Global Compact,Newsweek,267
+UN Global Compact,EPEAT,10
+UN Global Compact,BSR,88
+UN Global Compact,EICC,16
+UN Global Compact,Measure UP,3
+UN Global Compact,Nutrition Index,8
+UN Global Compact,Medicine Index,12
+UN Global Compact,Ethisphere,92
+UN Global Compact,Wikipedia,913
+UN Global Compact,Peri,17
+UN Global Compact,Good Company Index,19
+UN Global Compact,Ethical Guide,75
+UN Global Compact,BCorporations,17
+UN Global Compact,Sustainability Ranking Asia,35
+UN Global Compact,EPA,14
+UN Global Compact,2020wob,99
+UN Global Compact,RSPO,111
+UN Global Compact,EUtransparency,329
+Wikipedia,Forbes,1236
+Wikipedia,Peta,43
+Wikipedia,Fairlabor,10
+Wikipedia,Newsweek,803
+Wikipedia,EPEAT,17
+Wikipedia,BSR,169
+Wikipedia,EICC,57
+Wikipedia,Measure UP,12
+Wikipedia,Nutrition Index,17
+Wikipedia,Medicine Index,16
+Wikipedia,Ethisphere,178
+Wikipedia,UN Global Compact,913
+Wikipedia,Peri,76
+Wikipedia,Good Company Index,96
+Wikipedia,Ethical Guide,283
+Wikipedia,BCorporations,14
+Wikipedia,Sustainability Ranking Asia,41
+Wikipedia,EPA,27
+Wikipedia,2020wob,745
+Wikipedia,RSPO,153
+Wikipedia,EUtransparency,479
+Peri,Forbes,72
+Peri,Peta,1
+Peri,Fairlabor,0
+Peri,Newsweek,75
+Peri,EPEAT,1
+Peri,BSR,14
+Peri,EICC,2
+Peri,Measure UP,0
+Peri,Nutrition Index,0
+Peri,Medicine Index,0
+Peri,Ethisphere,20
+Peri,UN Global Compact,17
+Peri,Wikipedia,76
+Peri,Good Company Index,22
+Peri,Ethical Guide,16
+Peri,BCorporations,0
+Peri,Sustainability Ranking Asia,1
+Peri,EPA,0
+Peri,2020wob,69
+Peri,RSPO,3
+Peri,EUtransparency,27
+Good Company Index,Forbes,101
+Good Company Index,Peta,9
+Good Company Index,Fairlabor,1
+Good Company Index,Newsweek,105
+Good Company Index,EPEAT,4
+Good Company Index,BSR,28
+Good Company Index,EICC,11
+Good Company Index,Measure UP,0
+Good Company Index,Nutrition Index,3
+Good Company Index,Medicine Index,3
+Good Company Index,Ethisphere,29
+Good Company Index,UN Global Compact,19
+Good Company Index,Wikipedia,96
+Good Company Index,Peri,22
+Good Company Index,Ethical Guide,22
+Good Company Index,BCorporations,1
+Good Company Index,Sustainability Ranking Asia,0
+Good Company Index,EPA,2
+Good Company Index,2020wob,99
+Good Company Index,RSPO,8
+Good Company Index,EUtransparency,37
+Ethical Guide,Forbes,133
+Ethical Guide,Peta,63
+Ethical Guide,Fairlabor,11
+Ethical Guide,Newsweek,128
+Ethical Guide,EPEAT,15
+Ethical Guide,BSR,57
+Ethical Guide,EICC,25
+Ethical Guide,Measure UP,7
+Ethical Guide,Nutrition Index,9
+Ethical Guide,Medicine Index,5
+Ethical Guide,Ethisphere,40
+Ethical Guide,UN Global Compact,75
+Ethical Guide,Wikipedia,283
+Ethical Guide,Peri,16
+Ethical Guide,Good Company Index,22
+Ethical Guide,BCorporations,8
+Ethical Guide,Sustainability Ranking Asia,6
+Ethical Guide,EPA,8
+Ethical Guide,2020wob,87
+Ethical Guide,RSPO,68
+Ethical Guide,EUtransparency,60
+BCorporations,Forbes,3
+BCorporations,Peta,23
+BCorporations,Fairlabor,1
+BCorporations,Newsweek,3
+BCorporations,EPEAT,0
+BCorporations,BSR,0
+BCorporations,EICC,0
+BCorporations,Measure UP,0
+BCorporations,Nutrition Index,0
+BCorporations,Medicine Index,0
+BCorporations,Ethisphere,4
+BCorporations,UN Global Compact,17
+BCorporations,Wikipedia,14
+BCorporations,Peri,0
+BCorporations,Good Company Index,1
+BCorporations,Ethical Guide,8
+BCorporations,Sustainability Ranking Asia,0
+BCorporations,EPA,11
+BCorporations,2020wob,4
+BCorporations,RSPO,4
+BCorporations,EUtransparency,4
+Sustainability Ranking Asia,Forbes,51
+Sustainability Ranking Asia,Peta,0
+Sustainability Ranking Asia,Fairlabor,1
+Sustainability Ranking Asia,Newsweek,19
+Sustainability Ranking Asia,EPEAT,5
+Sustainability Ranking Asia,BSR,4
+Sustainability Ranking Asia,EICC,10
+Sustainability Ranking Asia,Measure UP,0
+Sustainability Ranking Asia,Nutrition Index,0
+Sustainability Ranking Asia,Medicine Index,0
+Sustainability Ranking Asia,Ethisphere,4
+Sustainability Ranking Asia,UN Global Compact,35
+Sustainability Ranking Asia,Wikipedia,41
+Sustainability Ranking Asia,Peri,1
+Sustainability Ranking Asia,Good Company Index,0
+Sustainability Ranking Asia,Ethical Guide,6
+Sustainability Ranking Asia,BCorporations,0
+Sustainability Ranking Asia,EPA,1
+Sustainability Ranking Asia,2020wob,1
+Sustainability Ranking Asia,RSPO,2
+Sustainability Ranking Asia,EUtransparency,5
+EPA,Forbes,12
+EPA,Peta,8
+EPA,Fairlabor,1
+EPA,Newsweek,15
+EPA,EPEAT,1
+EPA,BSR,8
+EPA,EICC,2
+EPA,Measure UP,1
+EPA,Nutrition Index,1
+EPA,Medicine Index,0
+EPA,Ethisphere,10
+EPA,UN Global Compact,14
+EPA,Wikipedia,27
+EPA,Peri,0
+EPA,Good Company Index,2
+EPA,Ethical Guide,8
+EPA,BCorporations,11
+EPA,Sustainability Ranking Asia,1
+EPA,2020wob,14
+EPA,RSPO,5
+EPA,EUtransparency,10
+2020wob,Forbes,558
+2020wob,Peta,25
+2020wob,Fairlabor,6
+2020wob,Newsweek,591
+2020wob,EPEAT,6
+2020wob,BSR,109
+2020wob,EICC,44
+2020wob,Measure UP,1
+2020wob,Nutrition Index,8
+2020wob,Medicine Index,9
+2020wob,Ethisphere,131
+2020wob,UN Global Compact,99
+2020wob,Wikipedia,745
+2020wob,Peri,69
+2020wob,Good Company Index,99
+2020wob,Ethical Guide,87
+2020wob,BCorporations,4
+2020wob,Sustainability Ranking Asia,1
+2020wob,EPA,14
+2020wob,RSPO,27
+2020wob,EUtransparency,125
+RSPO,Forbes,75
+RSPO,Peta,15
+RSPO,Fairlabor,2
+RSPO,Newsweek,56
+RSPO,EPEAT,0
+RSPO,BSR,20
+RSPO,EICC,1
+RSPO,Measure UP,1
+RSPO,Nutrition Index,11
+RSPO,Medicine Index,1
+RSPO,Ethisphere,22
+RSPO,UN Global Compact,111
+RSPO,Wikipedia,153
+RSPO,Peri,3
+RSPO,Good Company Index,8
+RSPO,Ethical Guide,68
+RSPO,BCorporations,4
+RSPO,Sustainability Ranking Asia,2
+RSPO,EPA,5
+RSPO,2020wob,27
+RSPO,EUtransparency,67
+EUtransparency,Forbes,281
+EUtransparency,Peta,12
+EUtransparency,Fairlabor,3
+EUtransparency,Newsweek,231
+EUtransparency,EPEAT,4
+EUtransparency,BSR,71
+EUtransparency,EICC,17
+EUtransparency,Measure UP,3
+EUtransparency,Nutrition Index,7
+EUtransparency,Medicine Index,11
+EUtransparency,Ethisphere,68
+EUtransparency,UN Global Compact,329
+EUtransparency,Wikipedia,479
+EUtransparency,Peri,27
+EUtransparency,Good Company Index,37
+EUtransparency,Ethical Guide,60
+EUtransparency,BCorporations,4
+EUtransparency,Sustainability Ranking Asia,5
+EUtransparency,EPA,10
+EUtransparency,2020wob,125
+EUtransparency,RSPO,67

@@ -1,7 +1,7 @@
 package abstractscrapers.src.Configure;
 
 /**
- *
+ * EventTypes that are available: CLICK & SCROLL_DOWN
  * @author vasgat
  */
 public class EventType {

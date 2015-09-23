@@ -18,7 +18,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 /**
- *
+ * DynamicHTMLScraper object extends AbstractScraper and is responsible for scraping defined fields (by css selectors)
+ * from a dynamic webpage or fields from a table.
  * @author vasgat
  */
 public class DynamicHTMLScraper extends AbstractScraper {
@@ -26,6 +27,14 @@ public class DynamicHTMLScraper extends AbstractScraper {
    public String source;
    private WebDriver driver;
    
+   /**
+    * Creates a new DynamicHTMLScraper for a webpage
+    * @param baseURL: webpage base url
+    * @param relativeURL: path to the specific spot in the page
+    * @throws URISyntaxException
+    * @throws IOException
+    * @throws InterruptedException 
+    */
    public DynamicHTMLScraper(String baseURL, String relativeURL) throws URISyntaxException, IOException, InterruptedException{
       this.baseURL = baseURL;
       this.source = baseURL+relativeURL;
@@ -37,6 +46,13 @@ public class DynamicHTMLScraper extends AbstractScraper {
       Thread.sleep(20000);
    }    
     
+   /**
+    * Creates a new DynamicHTMLScraper for a webpage
+    * @param FullLink: webpage's full url
+    * @throws URISyntaxException
+    * @throws IOException
+    * @throws InterruptedException 
+    */
    public DynamicHTMLScraper(String FullLink) throws URISyntaxException, IOException, InterruptedException{
       this.source = FullLink; 
       this.driver = Selenium.setUpChromeDriver();//.setUpFireFoxDriver();//.setUpPhantomJSDriver("C:\\Program Files (x86)\\phantomjs-1.9.8-windows\\phantomjs.exe");
@@ -45,11 +61,20 @@ public class DynamicHTMLScraper extends AbstractScraper {
       Thread.sleep(20000);
    }
    
+   /**
+    * Executes Click event to the specified HTML element
+    * @param CSSSelector: points to the HTML element
+    * @throws InterruptedException 
+    */
    public void clickEvent(String CSSSelector) throws InterruptedException{
       driver.findElement(By.cssSelector(CSSSelector)).click();
       Thread.sleep(5000);
    }
    
+   /**
+    * Scrolls down to the end of the page.
+    * @throws InterruptedException 
+    */
    public void scrollDownEvent() throws InterruptedException{ 
       String currentDoc = "";      
       do{
@@ -61,6 +86,11 @@ public class DynamicHTMLScraper extends AbstractScraper {
       System.out.println("We are in the end of the page");
    }
    
+   /**
+    * Scrolls down a specific amount of times
+    * @param timesToRepeat
+    * @throws InterruptedException 
+    */
    public void scrollDownEvent(int timesToRepeat) throws InterruptedException{ 
       String currentDoc = "";      
       for (int i=0; i< timesToRepeat; i++){
@@ -71,6 +101,11 @@ public class DynamicHTMLScraper extends AbstractScraper {
       }
    }   
    
+   /**
+    * scrapes a list of specified fields from a webpage
+    * @param fields: list of fields
+    * @return a HashMap of the scraped fields
+    */
    @Override
    public HashMap scrapeFields(List<Field> fields){
 
@@ -90,6 +125,20 @@ public class DynamicHTMLScraper extends AbstractScraper {
       return ScrapedFields;      
    }
    
+   /**
+    * scrapes the specified table fields from the webpage
+    * @param tableSelector: CSS table selector
+    * @param fields: list of table fields
+    * @return an ArrayList of HashMap (corresponds to the scraped table fields)
+    */
+   
+   /**
+    * private function which scrapes columns from a table row
+    * @param fields/columns of the table
+    * @param element row of the table
+    * @return a HashMap of scraped fields
+    * @return 
+    */
    @Override
    public ArrayList<HashMap<String, Object>> scrapeTable(String tableSelector, List<Field> fields){
       ArrayList<HashMap<String, Object>> scrapedTableFields = new ArrayList();
@@ -100,6 +149,12 @@ public class DynamicHTMLScraper extends AbstractScraper {
       return scrapedTableFields;
    }
    
+   /**
+    * private function which scrapes columns from a table row
+    * @param fields/columns of the table
+    * @param element row of the table
+    * @return a HashMap of scraped fields
+    */
    private HashMap<String, Object> scrapeTableFields(List<Field> fields, WebElement element){
       HashMap<String, Object> ScrapedFields = new HashMap<String, Object>();
       for (int i=0; i<fields.size(); i++){
@@ -116,6 +171,11 @@ public class DynamicHTMLScraper extends AbstractScraper {
       return ScrapedFields;
    }   
    
+   /**
+    * scrapes a list of values of a specific field
+    * @param listSelecto CSS selector of list field
+    * @return an ArrayList of values
+    */
    public ArrayList scrapeList(String listSelector){
       ArrayList list = new ArrayList();
       List<WebElement> elements = driver.findElements(By.cssSelector(listSelector));
@@ -125,10 +185,19 @@ public class DynamicHTMLScraper extends AbstractScraper {
       return list;
    }   
    
+   /**
+    * Closes browser driver
+    */
    public void quit(){
       driver.quit();
    }
    
+   /**
+    * Returns the content of a specific field in the document
+    * @param field 
+    * @param element
+    * @return a Pair of String, Object that corresponds to field name and field value accordingly
+    */
    private Pair<String, Object> getSelectedElement(Field field, WebElement element){
       String tempName;
       Object tempValue;

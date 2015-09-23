@@ -1,7 +1,8 @@
 package abstractscrapers.src.Configure;
 
 /**
- *
+ * MongoInfo constructors define information about the mongodb database and collections 
+ * related to Snippets and Companies.
  * @author vasgat
  */
 public class MongoInfo {
