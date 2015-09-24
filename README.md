@@ -22,6 +22,7 @@ Each scraper extends AbstractScraper and implements the `scrapeFields(List<Field
           bunchScraper.scrapeFields(fields);
           
 4. `PaginationIterator` is responsible for scraping data that are distributed in different pages:
+
           StaticHTMLScraper staticScraper = new StaticHTMLScraper(baseURL, relativeURL);
           PaginationIterator paginationScraper = new PaginationIterator(staticScraper, nextPageSelector);
           paginationScraper.scrapeFields(fields);
