@@ -6,7 +6,7 @@
   "table_selector":".table > tbody:nth-child(2) > tr",
   "source_name":"RSPO",
   "company_fields" : [
-    {
+    { 
       "FieldName": "Company Name",
       "FieldValue": "td:nth-child(1)",
       "SelectorNameType": "RAW_TEXT",
