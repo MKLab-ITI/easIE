@@ -13,7 +13,7 @@
       "FieldNameType": "TEXT",
       "FieldValueType": "TEXT"
     },
-        {
+        { 
       "FieldName": "Logo",
       "FieldValue": ".logo-members > img:nth-child(1)",
       "SelectorNameType": "RAW_TEXT",

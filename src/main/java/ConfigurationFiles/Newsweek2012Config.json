@@ -13,7 +13,7 @@
       "SelectorValueType": "CSS",
       "FieldNameType": "TEXT",
       "FieldValueType": "TEXT"
-    },
+    }, 
     {
       "FieldName": "Country",
       "FieldValue": "td:nth-child(3)",

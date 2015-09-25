@@ -12,7 +12,7 @@
       "SelectorValueType": "CSS",
       "FieldNameType": "TEXT",
       "FieldValueType": "TEXT"
-    },
+    }, 
     {
       "FieldName": "Country",
       "FieldValue": ".company-desc-inner > p:nth-child(3)",

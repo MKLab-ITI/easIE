@@ -12,7 +12,7 @@
       "SelectorValueType": "CSS",
       "FieldNameType": "TEXT",
       "FieldValueType": "TEXT"
-    },
+    }, 
     {
       "FieldName": "#reg_details > div:nth-child(2) > div:nth-child(2) > label:nth-child(1)",
       "FieldValue": "#reg_details > div:nth-child(2) > div:nth-child(2) > div:nth-child(2)",

@@ -13,7 +13,7 @@
       "SelectorValueType": "CSS",
       "FieldNameType": "TEXT",
       "FieldValueType": "LINK"
-    }
+    } 
   ],
   "nextPageSelector":"ul.pagination:nth-child(3) > li:nth-child(7) > a:nth-child(1)",
   "dynamicHTML": false
