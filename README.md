@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # easIE
 easIE offers a set of wrappers for obtaining content from Static and Dynamic HTML pages by pointing to the html elements using css Selectors. An additional fuctionality is the definition of a configuration file. Users can define a configuration file in JSON format in order to extract content of a page by only defining this configuration file.
 
@@ -27,7 +26,3 @@ Each wrapper extends AbstractWrapper and implements the `extractFields(List<Fiel
           StaticHTMLWrapper staticWrapper = new StaticHTMLWrapper(baseURL, relativeURL);
           PaginationIterator paginationWrapper = new PaginationIterator(staticWrapper, nextPageSelector);
           paginationWrapper.extractFields(fields);
-=======
-# easIE
-easy Information Extraction: a framework for quickly and simply generating Web Information Extractors and Wrappers.
->>>>>>> c9f3ac56c0566502174fc592dec5b0ab5f0e22ab
