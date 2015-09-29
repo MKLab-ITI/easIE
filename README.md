@@ -1,8 +1,5 @@
 # easIE
-<<<<<<< HEAD
-=======
 easy Information Extraction: a framework for quickly and simply generating Web Information Extractors and Wrappers.
->>>>>>> 07b6be377c113c3023243a25deceb5fd5adf739b
 easIE offers a set of wrappers for obtaining content from Static and Dynamic HTML pages by pointing to the html elements using css Selectors. An additional fuctionality is the definition of a configuration file. Users can define a configuration file in JSON format in order to extract content of a page by only defining this configuration file.
 
 <h2><u>Getting started</u></h2>
