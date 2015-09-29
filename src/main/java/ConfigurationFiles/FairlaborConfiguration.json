@@ -1,0 +1,44 @@
+{
+  "url": {
+    "baseURL": "http://www.fairlabor.org"
+  },
+  "bunch_urls":["/affiliate/abc-gruppen-ab","/affiliate/adidas-group","/affiliate/apple","/affiliate/arena-group","/affiliate/barnes-noble-college-booksellers","/affiliate/colosseum","/affiliate/concept-one-accessories","/affiliate/cutter-buck-inc","/affiliate/dallas-cowboys-merchandising-ltd","/affiliate/delta-apparel-inc","/affiliate/fenix-outdoor","/affiliate/follett-higher-education-group","/affiliate/forty-seven-brand","/affiliate/fruit-loom","/affiliate/gear-sports","/affiliate/gildan-activewear-inc","/affiliate/gtm-sportswear","/affiliate/hm-hennes-mauritz-ab","/affiliate/hanesbrands","/affiliate/hugo-boss","/affiliate/j-america-inc","/affiliate/kathmandu","/affiliate/knights-apparel","/affiliate/lakeshirts-inc","/affiliate/mountain-equipment-co-op","/affiliate/nestle","/affiliate/new-balance-athletic-shoe-inc","/affiliate/new-era-cap-co-inc","/affiliate/nike-inc","/affiliate/olam","/affiliate/outdoor-cap","/affiliate/outerknown","/affiliate/outerstuff-ltd","/affiliate/patagonia","/affiliate/prana","/affiliate/puma-ag","/affiliate/pvh-corp","/affiliate/sanmar-corporation","/affiliate/syngenta","/affiliate/soliver-group","/affiliate/top-world-llc","/affiliate/tumi-inc","/affiliate/under-armour","/affiliate/wl-gore-associates-gmbh","/affiliate/zephyr-graf-x"],
+  "source_name":"Fairlabor",
+  "company_fields":[    
+    {
+      "FieldName": "Company Name",
+      "FieldValue": "#page-title",
+      "SelectorNameType": "RAW_TEXT",
+      "SelectorValueType": "CSS",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "TEXT"
+    },    
+    {
+      "FieldName": "Website",
+      "FieldValue": "div.views-field:nth-child(4) > div:nth-child(1) > a:nth-child(1)",
+      "SelectorNameType": "RAW_TEXT",
+      "SelectorValueType": "CSS",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "LINK"
+    }    
+    ],
+  "snippet_fields": [
+    {
+      "FieldName": "Description",
+      "FieldValue": ".field-item",
+      "SelectorNameType": "RAW_TEXT",
+      "SelectorValueType": "CSS",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "TEXT"
+    },
+    {
+      "FieldName": "FLA Participating Company",
+      "FieldValue": "true",
+      "SelectorNameType": "RAW_TEXT",
+      "SelectorValueType": "RAW_TEXT",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "TEXT"
+    }
+  ],
+  "dynamicHTML": false
+}

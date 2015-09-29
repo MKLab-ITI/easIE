@@ -1,0 +1,51 @@
+{
+  "url": {
+    "baseURL": "http://web.ethisphere.com",
+    "relativeURL": "/worlds-most-ethical/wme-honorees/"
+  },
+  "table_selector":"#alpha > tbody > tr",
+  "source_name":"Peta",
+  "company_fields" : [
+    { 
+      "FieldName": "Company Name",
+      "FieldValue": "td:nth-child(1)",
+      "SelectorNameType": "RAW_TEXT",
+      "SelectorValueType": "CSS",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "TEXT"
+    },
+    { 
+      "FieldName": "Country",
+      "FieldValue": "#alpha > tbody > tr:nth-child(2) > td:nth-child(1)",
+      "SelectorNameType": "RAW_TEXT",
+      "SelectorValueType": "CSS",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "TEXT"
+    },
+    { 
+      "FieldName": "Industry",
+      "FieldValue": "td:nth-child(2)",
+      "SelectorNameType": "RAW_TEXT",
+      "SelectorValueType": "CSS",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "TEXT"
+    } 
+    ],
+  "snippet_fields": [
+    {
+      "FieldName": "in Ethisphere's List: World's Most Ethical Companies",
+      "FieldValue": "true",
+      "SelectorNameType": "RAW_TEXT",
+      "SelectorValueType": "RAW_TEXT",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "TEXT"
+    }
+  ],
+  "dynamicHTML": true,
+  "event":{
+    "type":"CLICK",
+    "selector":"#display-2015 > div:nth-child(2)",
+    "timesToRepeat":"1",
+    "repetition_type" : "AFTER_ALL_EVENTS"
+  }
+}
