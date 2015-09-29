@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 import javafx.util.Pair;
 import org.openqa.selenium.By;
@@ -107,13 +108,17 @@ public class DynamicHTMLWrapper extends AbstractWrapper {
     * @return a HashMap of the extracted data fields
     */
    @Override
-   public HashMap extractFields(List<Field> fields){
-
+   public ArrayList<HashMap> extractFields(List<Field> fields){
+       
       HashMap<String, Object> ExtractedFields = new HashMap<String, Object>();
       System.out.println(fields);
       for (int i=0; i<fields.size(); i++){
-         Pair<String, Object> pair = getSelectedElement(fields.get(i), (WebElement) driver);
-         ExtractedFields.put(pair.getKey(), pair.getValue());
+          try{
+            Pair<String, Object> pair = getSelectedElement(fields.get(i), (WebElement) driver.findElement(By.tagName("html")));
+            ExtractedFields.put(pair.getKey(), pair.getValue());
+          }catch(Exception ex){
+              System.out.println(ex.getMessage());
+          }
       }
       ExtractedFields.put("source", source);
       if (!ExtractedFields.containsKey("citeyear")){
@@ -122,7 +127,9 @@ public class DynamicHTMLWrapper extends AbstractWrapper {
                  Calendar.getInstance().get(Calendar.YEAR)
          );
       }
-      return ExtractedFields;      
+      ArrayList result = new ArrayList();
+      result.add(ExtractedFields);
+      return result;      
    }
    
    /**
@@ -223,9 +230,14 @@ public class DynamicHTMLWrapper extends AbstractWrapper {
       }
       else{
          if (field.FieldValueType.equals(FieldType.text)){
+             try{
             tempValue = element.findElement(
                     By.cssSelector(field.FieldValue)
             ).getText();
+             }catch(Exception ex){
+                 tempValue = "";
+             }
+             System.out.println(tempValue);
          }
          else if (field.FieldValueType.equals(FieldType.link)){
             tempValue = element.findElement(

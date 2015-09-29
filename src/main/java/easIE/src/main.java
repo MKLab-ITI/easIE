@@ -13,9 +13,9 @@ import java.io.FileNotFoundException;
  */
 public class main {
    public static void main(String[] args) throws FileNotFoundException, IllegalConfigurationException, Exception{     
-      ConfigurationFileReader reader = new ConfigurationFileReader(new File("src/main/java/ConfigurationFiles/BCorporationConfigurationFile.json"));
+      ConfigurationFileReader reader = new ConfigurationFileReader(new File("src/main/java/ConfigurationFiles/UNGlobalCompactConfigurationFile.json"));
       WrapperExecutor executor = new WrapperExecutor(reader.getConfiguration());    
-
+      
       SnippetHandler handler = new SnippetHandler(executor.getCompanyFields(), executor.getSnippetFields());
       System.out.println(handler.getJSON());
    }

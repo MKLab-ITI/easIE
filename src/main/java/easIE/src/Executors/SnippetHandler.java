@@ -179,16 +179,23 @@ public class SnippetHandler {
     */
    public String getJSON(){
        String abstractJSON = "";
-        for(int i=0; i<company_fields.size(); i++){
-            HashMap snips;
-            if(company_fields!=null)
-                snips = company_fields.get(i);
-            else
-                snips = new HashMap();
-            snips.putAll(snippet_fields.get(i));
-            Snippet snippet = new Snippet(snips);
-            abstractJSON += snippet.getSnippetDBObject()+",";
-         }  
+       if(!company_fields.isEmpty())
+            for(int i=0; i<company_fields.size(); i++){
+                HashMap snips;
+                if(company_fields!=null)
+                    snips = company_fields.get(i);
+                else
+                    snips = new HashMap();
+                snips.putAll(snippet_fields.get(i));
+                Snippet snippet = new Snippet(snips);
+                abstractJSON += snippet.getSnippetDBObject()+",";
+             }  
+       else
+           for(int i=0; i<snippet_fields.size(); i++){
+               HashMap snips = new HashMap(snippet_fields.get(i));
+               Snippet snippet = new Snippet(snips);
+               abstractJSON += snippet.getSnippetDBObject();
+           }
         if (abstractJSON.length()>0)
             abstractJSON = "["+ abstractJSON.substring(0, abstractJSON.length()-1) +"]";
         else
