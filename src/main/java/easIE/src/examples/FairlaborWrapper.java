@@ -92,8 +92,7 @@ public class FairlaborWrapper {
    }
    
    public void getCompaniesSnippets() throws URISyntaxException, IOException, Exception{
-      StaticHTMLWrapper wrapper = new StaticHTMLWrapper("http://www.fairlabor.org","/affiliates/participating-companies");
-      PaginationIterator iter = new PaginationIterator(wrapper, ".pager-next > a:nth-child(1)");
+      PaginationIterator iter = new PaginationIterator("http://www.fairlabor.org","/affiliates/participating-companies", ".pager-next > a:nth-child(1)");
       ArrayList<HashMap> result = iter.extractTable("div.view-content > div.views-row", init);
       HashSet Links = new HashSet();
       for (int i=0; i<result.size(); i++){

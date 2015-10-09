@@ -5,9 +5,8 @@
   },
   "table_selector":".table > tbody:nth-child(2) > tr",
   "source_name":"RSPO",
-  "company_fields" : [
-    { 
-      "FieldName": "Company Name",
+  "snippet_fields": [
+            {"FieldName": "Company Name",
       "FieldValue": "td:nth-child(1)",
       "SelectorNameType": "RAW_TEXT",
       "SelectorValueType": "CSS",
@@ -20,10 +19,7 @@
       "SelectorNameType": "RAW_TEXT",
       "SelectorValueType": "CSS",
       "FieldNameType": "TEXT",
-      "FieldValueType": "TEXT"
-    }      
-    ],
-  "snippet_fields": [
+      "FieldValueType": "TEXT"},
     {
       "FieldName": "RSPO Membership type",
       "FieldValue": "td:nth-child(5)",

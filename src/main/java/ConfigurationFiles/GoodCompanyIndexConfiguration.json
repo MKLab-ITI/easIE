@@ -5,17 +5,15 @@
   },
   "source_name":"GoodCompanyIndex",
   "table_selector":"#myTable > tbody:nth-child(2) > tr",
-  "company_fields":[    
-    {
+  "snippet_fields": [
+      {
       "FieldName": "Company Name",
       "FieldValue": "td:nth-child(1)",
       "SelectorNameType": "RAW_TEXT",
       "SelectorValueType": "CSS",
       "FieldNameType": "TEXT",
       "FieldValueType": "TEXT"
-    }   
-    ],
-  "snippet_fields": [
+    } ,
     {
       "FieldName": "Fortune Rank",
       "FieldValue": "td:nth-child(2)",

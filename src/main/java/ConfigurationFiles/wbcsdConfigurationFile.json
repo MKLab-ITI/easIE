@@ -1,0 +1,46 @@
+{
+    "url": {
+        "baseURL": "http://www.wbcsd.org",
+        "relativeURL": "/about/members/members-list-region.aspx"
+    },
+    "table_selector": "div#divCphMenuMain table > tbody > tr > td > a",
+    "source_name": "wbcsd",
+    "company_fields": [
+        {
+            "FieldName": "Company Name",
+            "FieldValue": "*",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "Website",
+            "FieldValue": "*",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "LINK"
+        }
+
+    ],
+    "snippet_fields": [
+        {
+            "FieldName": "is Member of wbcsd",
+            "FieldValue": "true",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "RAW_TEXT",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        }
+    ],
+    "dynamicHTML": false,
+    "store": {
+        "as": "COMPANY_SNIPPET",
+        "toMongo": {
+            "dbname": "WikiRate_NEW",
+            "companies_collection": "Companies",
+            "snippets_collection": "Snippets"
+        }
+    }
+}

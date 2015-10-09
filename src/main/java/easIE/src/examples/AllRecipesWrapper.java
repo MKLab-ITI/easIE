@@ -112,10 +112,8 @@ public class AllRecipesWrapper {
    {
       HashSet<String> RecipeLinks = new HashSet();
       PaginationIterator PageIterator = new PaginationIterator(
-              new StaticHTMLWrapper(
                       "http://allrecipes.com",
-                      "/search/default.aspx?ms=0&origin=Recipe+Search+Results&rt=r&qt=i&pqt=i&fo=0&w0="+ingredient
-              ),
+                      "/search/default.aspx?ms=0&origin=Recipe+Search+Results&rt=r&qt=i&pqt=i&fo=0&w0="+ingredient,
               "#ctl00_CenterColumnPlaceHolder_ucPager_corePager_pageNumbers > a:nth-child(9)"
       );
       ArrayList<HashMap> recipeLinks 

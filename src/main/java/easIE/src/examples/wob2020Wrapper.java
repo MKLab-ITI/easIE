@@ -8,7 +8,6 @@ import easIE.src.MongoUtils;
 import easIE.src.OutputFormatter.CompanySnippet;
 import easIE.src.SelectorType;
 import easIE.src.Wrappers.PaginationIterator;
-import easIE.src.Wrappers.StaticHTMLWrapper;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -21,7 +20,6 @@ import java.util.Map;
  * @author vasgat
  */
 public class wob2020Wrapper {
-   public StaticHTMLWrapper wrapper;
    private ArrayList<Field> tfields; 
    
    public wob2020Wrapper() throws URISyntaxException, IOException{
@@ -64,13 +62,13 @@ public class wob2020Wrapper {
       tfields.add(field2);
       tfields.add(field3);
       tfields.add(field4);
-      
-      wrapper = new StaticHTMLWrapper("http://www.2020wob.com","/company-directory");
+
    }
    
    public void getCompaniesSnippets() throws URISyntaxException, IOException, Exception{
       PaginationIterator iterator = new PaginationIterator(
-              wrapper, 
+              "http://www.2020wob.com",
+              "/company-directory",
               ".pager-next > a:nth-child(1)"
       );
       ArrayList<HashMap> result = iterator.extractTable(".views-table > tbody:nth-child(2) > tr", tfields);

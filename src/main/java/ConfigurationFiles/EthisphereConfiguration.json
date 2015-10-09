@@ -4,7 +4,7 @@
     "relativeURL": "/worlds-most-ethical/wme-honorees/"
   },
   "table_selector":"#alpha > tbody > tr",
-  "source_name":"Peta",
+  "source_name":"Ethsiphere",
   "company_fields" : [
     { 
       "FieldName": "Company Name",

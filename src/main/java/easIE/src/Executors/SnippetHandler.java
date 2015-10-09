@@ -194,7 +194,7 @@ public class SnippetHandler {
            for(int i=0; i<snippet_fields.size(); i++){
                HashMap snips = new HashMap(snippet_fields.get(i));
                Snippet snippet = new Snippet(snips);
-               abstractJSON += snippet.getSnippetDBObject();
+               abstractJSON += snippet.getSnippetDBObject()+",";
            }
         if (abstractJSON.length()>0)
             abstractJSON = "["+ abstractJSON.substring(0, abstractJSON.length()-1) +"]";
