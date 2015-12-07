@@ -1,7 +1,7 @@
 # easIE
 easy Information Extraction: a framework for quickly and simply generating Web Information Extractors and Wrappers.
 easIE offers a set of wrappers for obtaining content from Static and Dynamic HTML pages by pointing to the html elements using css Selectors. An additional fuctionality is the definition of a configuration file. Users can define a configuration file in JSON format in order to extract content of a page by only defining this configuration file.
-
+**Note: [Here](https://youtu.be/R5glu7lgSmo) you can find a link that leads to a tech demo**
 <h2><u>Getting started</u></h2>
 
 Each wrapper extends AbstractWrapper and implements the `extractFields(List<Field> fields)` and `extractTableFields(String tableCSSselector, List<Field> fields)` methods. There are four objects that extend AbstractWrapper:
