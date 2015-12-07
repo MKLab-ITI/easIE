@@ -8,6 +8,12 @@ Desktop.ini
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
+#specific files
+dependency-reduced-pom.xml  
+nb-configuration.xml  
+nbactions.xml
+
+
 # Windows Installer files
 *.cab
 *.msi
