@@ -2472,5 +2472,9 @@
             "FieldValueType": "TEXT"
         }
     ],
-    "dynamicHTML": false
+    "dynamicHTML": false,
+    "store": {
+        "as": "ABSTRACT_SNIPPET",
+        "toHardDrive": "RSPO.json"
+    }
 }

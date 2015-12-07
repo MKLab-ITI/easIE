@@ -1,10 +1,10 @@
 {
     "url": {
-        "baseURL": "http://web.ethisphere.com",
-        "relativeURL": "/worlds-most-ethical/wme-honorees/"
+        "baseURL": "https://www.unglobalcompact.org",
+        "relativeURL": "/participation/report/cop/create-and-submit/active?page=1&per_page=250"
     },
-    "table_selector": "#display-2015 > div.tab-show > #alpha > tbody > tr",
-    "source_name": "Ethisphere",
+    "table_selector": ".table-embedded > tbody:nth-child(2) > tr",
+    "source_name": "UN Global Compact",
     "company_fields": [
         {
             "FieldName": "Company Name",
@@ -12,46 +12,47 @@
             "SelectorNameType": "RAW_TEXT",
             "SelectorValueType": "CSS",
             "FieldNameType": "TEXT",
-            "FieldValueType": "TEXT"
+            "FieldValueType": "title"
         },
         {
             "FieldName": "Country",
-            "FieldValue": "td:nth-child(3)",
+            "FieldValue": "td:nth-child(1)",
             "SelectorNameType": "RAW_TEXT",
             "SelectorValueType": "CSS",
             "FieldNameType": "TEXT",
-            "FieldValueType": "TEXT"
+            "FieldValueType": "title"
         },
         {
-            "FieldName": "Industry",
+            "FieldName": "Sector",
             "FieldValue": "td:nth-child(2)",
             "SelectorNameType": "RAW_TEXT",
             "SelectorValueType": "CSS",
             "FieldNameType": "TEXT",
-            "FieldValueType": "TEXT"
+            "FieldValueType": "title"
         }
     ],
     "snippet_fields": [
         {
-            "FieldName": "in Ethisphere's List: World's Most Ethical Companies",
-            "FieldValue": "true",
+            "FieldName": "Participant Since",
+            "FieldValue": "td:nth-child(4)",
             "SelectorNameType": "RAW_TEXT",
-            "SelectorValueType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
             "FieldNameType": "TEXT",
             "FieldValueType": "TEXT"
         },
         {
-            "FieldName": "citeyear",
-            "FieldValue": "2015",
+            "FieldName": "Global Compact Status",
+            "FieldValue": "Active",
             "SelectorNameType": "RAW_TEXT",
             "SelectorValueType": "RAW_TEXT",
             "FieldNameType": "TEXT",
             "FieldValueType": "TEXT"
         }
     ],
-    "dynamicHTML": false,    
+    "nextPageSelector": ".next_page",
+    "dynamicHTML": false,
     "store": {
         "as": "ABSTRACT_SNIPPET",
-        "toHardDrive": "Ethisphere.json"
+        "toHardDrive": "UNGlobalCompact.json"
     }
 }

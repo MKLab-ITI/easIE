@@ -13,13 +13,13 @@ import org.jsoup.nodes.Element;
  *
  * @author vasgat
  */
-public class StaticFieldExtractor extends AbstractStaticContentExtractor {
+public class FieldExtractor extends AbstractStaticContentExtractor {
 
-    StaticFieldExtractor(Element document, String source) {
+    FieldExtractor(Element document, String source) {
         super.document = document;
         this.source = source;
     }
-    
+
     @Override
     protected ArrayList run(List<Field> fields) {
         HashMap extractedFields = new HashMap();
@@ -46,22 +46,25 @@ public class StaticFieldExtractor extends AbstractStaticContentExtractor {
                 }
                 extractedFields.put(tempName, tempValue);
             }
-            extractedFields.put("source", source);
-            if (!extractedFields.containsKey("citeyear")) {
-                extractedFields.put(
-                        "citeyear",
-                        Calendar.getInstance().get(Calendar.YEAR)
-                );
-            }
             extractedFields.values().removeAll(Collections.singleton(""));
             extractedFields.values().removeAll(Collections.singleton(null));
+            if (!extractedFields.isEmpty()) {
+                extractedFields.put("source", source);
+                if (!extractedFields.containsKey("citeyear")) {
+                    extractedFields.put(
+                            "citeyear",
+                            Calendar.getInstance().get(Calendar.YEAR)
+                    );
+                }
+            }
+
         }
         ArrayList extractedContent = new ArrayList();
         extractedContent.add(extractedFields);
         return extractedContent;
     }
 
-    public ArrayList getExtractedFields(List<Field> fields){
+    public ArrayList getExtractedFields(List<Field> fields) {
         return run(fields);
     }
 }

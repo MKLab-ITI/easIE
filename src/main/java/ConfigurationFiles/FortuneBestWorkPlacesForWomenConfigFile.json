@@ -1,0 +1,105 @@
+{
+    "url": {
+        "baseURL": "http://fortune.com",
+        "relativeURL": "/best-workplaces-for-women/truewealth-1/"
+    },
+    "source_name": "Fortune500",
+    "company_fields": [
+        {
+            "FieldName": "Company Name",
+            "FieldValue": "article > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > h2:nth-child(2) > div:nth-child(1)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "Country",
+            "FieldValue": "United States",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "RAW_TEXT",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "Website",
+            "FieldValue": "article > div:nth-child(1) > div:nth-child(1) > div:nth-child(4) > table:nth-child(1) > tbody:nth-child(2) > tr:nth-child(7) > td:nth-child(2) > a:nth-child(1)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        }
+    ],
+    "snippet_fields": [
+        {
+            "FieldName": "rank in List: 100 best workplaces for women in United States",
+            "FieldValue": "article > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT",
+            "ReplaceInValue": {
+                "regex": [
+                    "\\."
+                ],
+                "with": [
+                    ""
+                ]
+            }
+        },
+        {
+            "FieldName": "Employees",
+            "FieldValue": "article > div:nth-child(1) > div:nth-child(1) > div:nth-child(4) > table:nth-child(1) > tbody:nth-child(2) > tr:nth-child(10) > td:nth-child(2)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "article > div:nth-child(1) > div:nth-child(1) > div:nth-child(4) > table:nth-child(1) > tbody:nth-child(2) > tr:nth-child(11) > th:nth-child(1)",
+            "FieldValue": "article > div:nth-child(1) > div:nth-child(1) > div:nth-child(4) > table:nth-child(1) > tbody:nth-child(2) > tr:nth-child(11) > td:nth-child(2)",
+            "SelectorNameType": "CSS",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "article > div:nth-child(1) > div:nth-child(1) > div:nth-child(4) > table:nth-child(1) > tbody:nth-child(2) > tr:nth-child(12) > th:nth-child(1)",
+            "FieldValue": "article > div:nth-child(1) > div:nth-child(1) > div:nth-child(4) > table:nth-child(1) > tbody:nth-child(2) > tr:nth-child(12) > td:nth-child(2)",
+            "SelectorNameType": "CSS",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "article > div:nth-child(1) > div:nth-child(1) > div:nth-child(4) > table:nth-child(1) > tbody:nth-child(2) > tr:nth-child(13) > th:nth-child(1)",
+            "FieldValue": "article > div:nth-child(1) > div:nth-child(1) > div:nth-child(4) > table:nth-child(1) > tbody:nth-child(2) > tr:nth-child(13) > td:nth-child(2)",
+            "SelectorNameType": "CSS",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "article > div:nth-child(1) > div:nth-child(1) > div:nth-child(4) > table:nth-child(1) > tbody:nth-child(2) > tr:nth-child(14) > th:nth-child(1)",
+            "FieldValue": "article > div:nth-child(1) > div:nth-child(1) > div:nth-child(4) > table:nth-child(1) > tbody:nth-child(2) > tr:nth-child(14) > td:nth-child(2)",
+            "SelectorNameType": "CSS",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "article > div:nth-child(1) > div:nth-child(1) > div:nth-child(4) > table:nth-child(1) > tbody:nth-child(2) > tr:nth-child(6) > th:nth-child(1)",
+            "FieldValue": "article > div:nth-child(1) > div:nth-child(1) > div:nth-child(4) > table:nth-child(1) > tbody:nth-child(2) > tr:nth-child(6) > td:nth-child(2)",
+            "SelectorNameType": "CSS",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        }
+    ],
+    "nextPageSelector": "#next-company-button",
+    "dynamicHTML": false,    
+    "store": {
+        "as": "ABSTRACT_SNIPPET",
+        "toHardDrive": "BestWorkPlacesForWomen.json"
+    }
+}

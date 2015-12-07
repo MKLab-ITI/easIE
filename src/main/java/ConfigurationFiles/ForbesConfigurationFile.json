@@ -1,0 +1,119 @@
+{
+    "url": {
+        "baseURL": "http://www.forbes.com",
+        "relativeURL": "/global2000/list/"
+    },
+    "table_selector": "#list-table-body > tr.data",
+    "source_name": "Forbes",
+    "company_fields": [
+        {
+            "FieldName": "Company Name",
+            "FieldValue": "td.name",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "Logo",
+            "FieldValue": "td.image > a > img",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "IMAGE"
+        },
+        {
+            "FieldName": "Country",
+            "FieldValue": "td:nth-child(4)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        }
+    ],
+    "snippet_fields": [
+        {
+            "FieldName": ".data > dl:nth-child(9) > dt:nth-child(1)",
+            "FieldValue": ".data > dl:nth-child(9) > dd:nth-child(2)",
+            "SelectorNameType": "CSS",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": ".data > dl:nth-child(10) > dt:nth-child(1)",
+            "FieldValue": ".data > dl:nth-child(10) > dd:nth-child(2)",
+            "SelectorNameType": "CSS",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": ".data > dl:nth-child(5) > dt:nth-child(1)",
+            "FieldValue": ".data > dl:nth-child(5) > dd:nth-child(2)",
+            "SelectorNameType": "CSS",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "rank in List: Global 2000",
+            "FieldValue": "td:nth-child(2)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT",
+            "ReplaceInValue": {
+                "regex": [
+                    "#"
+                ],
+                "with": [
+                    ""
+                ]
+            }
+        },
+        {
+            "FieldName": "Sales",
+            "FieldValue": "td:nth-child(5)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "Profits",
+            "FieldValue": "td:nth-child(6)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "Assets",
+            "FieldValue": "td:nth-child(7)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "Market Value",
+            "FieldValue": "td:nth-child(8)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        }
+    ]
+    ,
+    "event": {
+        "type": "SCROLL_DOWN",
+        "timesToRepeat": "3",
+        "repetition_type": "AFTER_ALL_EVENTS"
+    },
+    "dynamicHTML": true,
+    "store": {
+        "as": "ABSTRACT_SNIPPET",
+        "toHardDrive": "forbes.json"
+    }
+}

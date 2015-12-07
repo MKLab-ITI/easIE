@@ -37,8 +37,7 @@ public class StaticHTMLWrapper extends AbstractWrapper {
         this.baseURL = baseURL;
         this.source = baseURL + relativeURL;
         this.document = Jsoup.connect(new URI(source).toASCIIString())
-                .userAgent("Mozilla/37.0").timeout(60000).get();
-        
+                            .userAgent("Mozilla/37.0").timeout(60000).get();
         
     }
     /**
@@ -61,7 +60,7 @@ public class StaticHTMLWrapper extends AbstractWrapper {
      */
     @Override
     public ArrayList<HashMap> extractFields(List<Field> sfields) {
-        StaticFieldExtractor extractor = new StaticFieldExtractor(document, source);
+        FieldExtractor extractor = new FieldExtractor(document, source);
         return extractor.getExtractedFields(sfields);        
     }
 
@@ -74,19 +73,19 @@ public class StaticHTMLWrapper extends AbstractWrapper {
      */
     @Override
     public ArrayList<HashMap<String, Object>> extractTable(String table_selector, List<Field> fields) {
-        StaticTableFieldExtractor extractor = new StaticTableFieldExtractor(document, table_selector, source);
+        TableFieldExtractor extractor = new TableFieldExtractor(document, table_selector, source);
         return extractor.getExtractedFields(fields);    
     }
 
     @Override
     public Pair extractFields(List<Field> cfields, List<Field> sfields) {
-        StaticFieldExtractor extractor = new StaticFieldExtractor(document, source);
+        FieldExtractor extractor = new FieldExtractor(document, source);
         return new Pair(extractor.getExtractedFields(cfields), extractor.getExtractedFields(sfields));        
     }    
 
     @Override
     public Pair extractTable(String table_selector, List<Field> cfields, List<Field> sfields) {
-        StaticTableFieldExtractor extractor = new StaticTableFieldExtractor(document, table_selector, source);
+        TableFieldExtractor extractor = new TableFieldExtractor(document, table_selector, source);
         return new Pair(extractor.getExtractedFields(cfields),extractor.getExtractedFields(sfields));
     }
 }

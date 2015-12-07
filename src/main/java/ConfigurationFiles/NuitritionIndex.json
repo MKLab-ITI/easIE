@@ -1,30 +1,14 @@
 {
     "url": {
-        "baseURL": "http://web.ethisphere.com",
-        "relativeURL": "/worlds-most-ethical/wme-honorees/"
+        "baseURL": "https://www.accesstonutrition.org",
+        "relativeURL": "/global-index-2013"
     },
-    "table_selector": "#display-2015 > div.tab-show > #alpha > tbody > tr",
-    "source_name": "Ethisphere",
+    "source_name": "Nutrition Index",
+    "table_selector": "#atni-all > table:nth-child(2) > tbody:nth-child(1) > tr",
     "company_fields": [
         {
             "FieldName": "Company Name",
-            "FieldValue": "td:nth-child(1)",
-            "SelectorNameType": "RAW_TEXT",
-            "SelectorValueType": "CSS",
-            "FieldNameType": "TEXT",
-            "FieldValueType": "TEXT"
-        },
-        {
-            "FieldName": "Country",
-            "FieldValue": "td:nth-child(3)",
-            "SelectorNameType": "RAW_TEXT",
-            "SelectorValueType": "CSS",
-            "FieldNameType": "TEXT",
-            "FieldValueType": "TEXT"
-        },
-        {
-            "FieldName": "Industry",
-            "FieldValue": "td:nth-child(2)",
+            "FieldValue": "th:nth-child(2)",
             "SelectorNameType": "RAW_TEXT",
             "SelectorValueType": "CSS",
             "FieldNameType": "TEXT",
@@ -33,25 +17,33 @@
     ],
     "snippet_fields": [
         {
-            "FieldName": "in Ethisphere's List: World's Most Ethical Companies",
-            "FieldValue": "true",
+            "FieldName": "rank",
+            "FieldValue": "td:nth-child(1)",
             "SelectorNameType": "RAW_TEXT",
-            "SelectorValueType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "score",
+            "FieldValue": "td:nth-child(4)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
             "FieldNameType": "TEXT",
             "FieldValueType": "TEXT"
         },
         {
             "FieldName": "citeyear",
-            "FieldValue": "2015",
+            "FieldValue": "2013",
             "SelectorNameType": "RAW_TEXT",
             "SelectorValueType": "RAW_TEXT",
             "FieldNameType": "TEXT",
             "FieldValueType": "TEXT"
         }
     ],
-    "dynamicHTML": false,    
+    "dynamicHTML": false,
     "store": {
         "as": "ABSTRACT_SNIPPET",
-        "toHardDrive": "Ethisphere.json"
+        "toHardDrive": "NutritionIndex.json"
     }
 }

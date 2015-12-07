@@ -7,8 +7,9 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import javafx.util.Pair;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -21,11 +22,12 @@ import org.openqa.selenium.WebDriver;
  * @author vasgat
  */
 public class DynamicHTMLWrapper extends AbstractWrapper {
-
     public String baseURL;
     public String source;
     public WebDriver driver;
-
+    private DynamicHTMLFetcher fetcher;
+    
+    
     /**
      * Creates a new DynamicHTMLWrapper for a webpage
      *
@@ -38,12 +40,8 @@ public class DynamicHTMLWrapper extends AbstractWrapper {
     public DynamicHTMLWrapper(String baseURL, String relativeURL) throws URISyntaxException, IOException, InterruptedException {
         this.baseURL = baseURL;
         this.source = baseURL + relativeURL;
-        this.driver = Selenium.setUpChromeDriver();
-        this.driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-        this.driver.get(
-                baseURL + relativeURL
-        );
-        Thread.sleep(20000);
+        this.fetcher = new DynamicHTMLFetcher(baseURL + relativeURL);
+        this.driver = (WebDriver) fetcher.driver;
     }
 
     /**
@@ -56,10 +54,8 @@ public class DynamicHTMLWrapper extends AbstractWrapper {
      */
     public DynamicHTMLWrapper(String FullLink) throws URISyntaxException, IOException, InterruptedException {
         this.source = FullLink;
-        this.driver = Selenium.setUpChromeDriver();
-        this.driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-        this.driver.get(FullLink);
-        Thread.sleep(20000);
+        this.fetcher = new DynamicHTMLFetcher(FullLink);
+        this.driver = (WebDriver) fetcher.driver;
     }
 
     /**
@@ -113,8 +109,8 @@ public class DynamicHTMLWrapper extends AbstractWrapper {
      */
     @Override
     public ArrayList<HashMap> extractFields(List<Field> fields) {
-        DynamicFieldExtractor extractor
-                = new DynamicFieldExtractor(driver, source);
+        FieldExtractor extractor
+                = new FieldExtractor((Element) fetcher.getHTMLDocument(), source);
         return extractor.run(fields);
     }
 
@@ -128,8 +124,8 @@ public class DynamicHTMLWrapper extends AbstractWrapper {
      */
     @Override
     public ArrayList<HashMap<String, Object>> extractTable(String tableSelector, List<Field> fields) {
-        DynamicTableFieldExtractor extractor
-                = new DynamicTableFieldExtractor(tableSelector, driver, source);
+        TableFieldExtractor extractor
+                = new TableFieldExtractor((Element) fetcher.getHTMLDocument(),tableSelector, source);
         return extractor.run(fields);
     }
 
@@ -142,13 +138,17 @@ public class DynamicHTMLWrapper extends AbstractWrapper {
 
     @Override
     public Object extractFields(List<Field> cfields, List<Field> sfields) throws URISyntaxException, IOException, Exception {
-        DynamicFieldExtractor extractor = new DynamicFieldExtractor(driver, source);
+        FieldExtractor extractor = new FieldExtractor((Element) fetcher.getHTMLDocument(), source);
         return new Pair(extractor.getExtractedFields(cfields), extractor.getExtractedFields(sfields));
     }
 
     @Override
     public Pair extractTable(String tableSelector, List<Field> cfields, List<Field> sfields) throws URISyntaxException, IOException, Exception {
-        DynamicTableFieldExtractor extractor = new DynamicTableFieldExtractor(tableSelector, driver, source);
+        TableFieldExtractor extractor = new TableFieldExtractor((Element) fetcher.getHTMLDocument(),tableSelector, source);
         return new Pair(extractor.getExtractedFields(cfields), extractor.getExtractedFields(sfields));
+    }
+    
+    public Document getHTMLDocument(){
+        return (Document) fetcher.getHTMLDocument();
     }
 }

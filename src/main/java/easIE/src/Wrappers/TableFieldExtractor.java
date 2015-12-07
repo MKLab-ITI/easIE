@@ -14,11 +14,12 @@ import org.jsoup.select.Elements;
  *
  * @author vasgat
  */
-public class StaticTableFieldExtractor extends AbstractStaticContentExtractor{
+public class TableFieldExtractor extends AbstractStaticContentExtractor {
+
     private String source_name;
     private String table_selector;
 
-    StaticTableFieldExtractor(Element document, String table_selector, String source_name) {
+    TableFieldExtractor(Element document, String table_selector, String source_name) {
         this.document = document;
         this.table_selector = table_selector;
         this.source_name = source_name;
@@ -35,9 +36,10 @@ public class StaticTableFieldExtractor extends AbstractStaticContentExtractor{
         }
         return extractedContent;
     }
-    
-     /**
+
+    /**
      * extracts data from the specified table fields
+     *
      * @param tableSelector: CSS table selector
      * @param fields: list of table fields
      * @return an ArrayList of HashMap (corresponds to the extracted table
@@ -67,16 +69,18 @@ public class StaticTableFieldExtractor extends AbstractStaticContentExtractor{
             }
             ExtractedFields.put(tempName, tempValue);
         }
-        ExtractedFields.put("source", source_name);
-        if (!ExtractedFields.containsKey("citeyear")) {
-            ExtractedFields.put(
-                    "citeyear",
-                    Calendar.getInstance().get(Calendar.YEAR)
-            );
-        }
         ExtractedFields.values().removeAll(Collections.singleton(""));
         ExtractedFields.values().removeAll(Collections.singleton(null));
+        if (!ExtractedFields.isEmpty()) {
+            ExtractedFields.put("source", source_name);
+            if (!ExtractedFields.containsKey("citeyear")) {
+                ExtractedFields.put(
+                        "citeyear",
+                        Calendar.getInstance().get(Calendar.YEAR)
+                );
+            }
+        }
         return ExtractedFields;
     }
-    
+
 }

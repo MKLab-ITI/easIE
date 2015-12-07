@@ -140,7 +140,7 @@ public class Validator {
    }
    
    private static void eventValidator() throws IllegalConfigurationException{
-      if (config.event.type.equals(EventType.CLICK)){
+      if (config.event.type!=null && config.event.type.equals(EventType.CLICK)){
          if (config.event.selector==null){
             throw new IllegalConfigurationException(
                new NullPointerException(
@@ -160,7 +160,7 @@ public class Validator {
             );
          }
       }
-      else if(config.event.type.equals(EventType.SCROLL_DOWN)){
+      else if(config.event.type!=null && config.event.type.equals(EventType.SCROLL_DOWN)){
          if (config.event.timesToRepeat==null)
             config.event.timesToRepeat = 1;
          if (config.event.selector!=null){

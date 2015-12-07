@@ -1,29 +1,13 @@
 {
     "url": {
-        "baseURL": "http://web.ethisphere.com",
-        "relativeURL": "/worlds-most-ethical/wme-honorees/"
+        "baseURL": "http://www.accesstomedicineindex.org",
+        "relativeURL": "/ranking"
     },
-    "table_selector": "#display-2015 > div.tab-show > #alpha > tbody > tr",
-    "source_name": "Ethisphere",
+    "source_name": "Medicine Index",
+    "table_selector": "#criterium-all-criteria > div:nth-child(2) > table:nth-child(1) > tbody:nth-child(1) > tr",
     "company_fields": [
         {
             "FieldName": "Company Name",
-            "FieldValue": "td:nth-child(1)",
-            "SelectorNameType": "RAW_TEXT",
-            "SelectorValueType": "CSS",
-            "FieldNameType": "TEXT",
-            "FieldValueType": "TEXT"
-        },
-        {
-            "FieldName": "Country",
-            "FieldValue": "td:nth-child(3)",
-            "SelectorNameType": "RAW_TEXT",
-            "SelectorValueType": "CSS",
-            "FieldNameType": "TEXT",
-            "FieldValueType": "TEXT"
-        },
-        {
-            "FieldName": "Industry",
             "FieldValue": "td:nth-child(2)",
             "SelectorNameType": "RAW_TEXT",
             "SelectorValueType": "CSS",
@@ -33,25 +17,33 @@
     ],
     "snippet_fields": [
         {
-            "FieldName": "in Ethisphere's List: World's Most Ethical Companies",
-            "FieldValue": "true",
+            "FieldName": "total rank",
+            "FieldValue": "td:nth-child(1)",
             "SelectorNameType": "RAW_TEXT",
-            "SelectorValueType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "overall score",
+            "FieldValue": "td:nth-child(5)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
             "FieldNameType": "TEXT",
             "FieldValueType": "TEXT"
         },
         {
             "FieldName": "citeyear",
-            "FieldValue": "2015",
+            "FieldValue": "2014",
             "SelectorNameType": "RAW_TEXT",
             "SelectorValueType": "RAW_TEXT",
             "FieldNameType": "TEXT",
             "FieldValueType": "TEXT"
         }
     ],
-    "dynamicHTML": false,    
+    "dynamicHTML": false,
     "store": {
         "as": "ABSTRACT_SNIPPET",
-        "toHardDrive": "Ethisphere.json"
+        "toHardDrive": "MedicinIndex.json"
     }
 }

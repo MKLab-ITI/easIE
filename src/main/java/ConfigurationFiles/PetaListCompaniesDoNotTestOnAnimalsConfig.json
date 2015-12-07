@@ -1,0 +1,72 @@
+{
+    "url": {
+        "baseURL": "http://features.peta.org/",
+        "relativeURL": "/cruelty-free-company-search/cruelty_free_companies_search.aspx?Donottest=8&Product=0&Dotest=-1&Regchange=-1&Country=-1&Keyword="
+    },
+    "table_selector": "#ctl00_ContentPlaceHolder1_gv_CompanySearch > tbody:nth-child(1) > tr",
+    "source_name": "Peta",
+    "company_fields": [
+        {
+            "FieldName": "Company Name",
+            "FieldValue": "td:nth-child(2) > a:nth-child(1) > span:nth-child(1)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT",
+            "ReplaceInValue": {
+                "regex": [
+                    "\\(.*\\)"
+                ],
+                "with": [
+                    ""
+                ]
+            }
+        }
+    ],
+    "snippet_fields": [
+        {
+            "FieldName": "Does Tests on Animals",
+            "FieldValue": false,
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "RAW_TEXT",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "Vegan Company",
+            "FieldValue": "td:nth-child(3)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "Features PETA Logo",
+            "FieldValue": "td:nth-child(5)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "PETA Mall Partner",
+            "FieldValue": "td:nth-child(4)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        }
+    ],
+    "nextPageSelector": ".next > a:nth-child(1)",
+    "dynamicHTML": true,
+    "event": {
+        "type": "CLICK",
+        "selector": "#ctl00_ContentPlaceHolder1_ddlResultCount > option:nth-child(4)",
+        "timesToRepeat": "1",
+        "repetition_type": "AFTER_ALL_EVENTS"
+    },
+    "store": {
+        "as": "ABSTRACT_SNIPPET",
+        "toHardDrive": "CompaniesDoNotTestOnAnimals.json"
+    }
+}

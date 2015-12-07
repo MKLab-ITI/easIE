@@ -110,6 +110,7 @@ public class WrapperExecutor {
                     } else {
                         execExtractFields(wrapper);
                     }
+                    wrapper.quit();
                 } else {
                     wrapper.scrollDownEvent(config.event.timesToRepeat);
                     if (config.table_selector != null) {
@@ -117,6 +118,7 @@ public class WrapperExecutor {
                     } else {
                         execExtractFields(wrapper);
                     }
+                    wrapper.quit();
                 }
             }
         } else if (config.url.baseURL == null && config.url.relativeURL == null && config.url.fullURL != null) {

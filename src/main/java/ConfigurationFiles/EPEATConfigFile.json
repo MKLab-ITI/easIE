@@ -1,0 +1,33 @@
+{
+  "url": {
+    "baseURL": "http://ww2.epeat.net",
+    "relativeURL": "/companyList.aspx"
+  },
+  "source_name":"EPEAT",
+  "table_selector":".styled > tbody:nth-child(1) > tr",
+  "company_fields" : [
+    {
+      "FieldName": "Company Name",
+      "FieldValue": "td",
+      "SelectorNameType": "RAW_TEXT",
+      "SelectorValueType": "CSS",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "TEXT"
+    }      
+    ],
+  "snippet_fields": [
+    {
+      "FieldName": "Manufacturer with EPEAT-Registered Products",
+      "FieldValue": true,
+      "SelectorNameType": "RAW_TEXT",
+      "SelectorValueType": "RAW_TEXT",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "TEXT"
+    }
+  ],
+  "dynamicHTML": false,
+    "store": {
+        "as": "ABSTRACT_SNIPPET",
+        "toHardDrive": "EPEAT.json"
+    }
+}

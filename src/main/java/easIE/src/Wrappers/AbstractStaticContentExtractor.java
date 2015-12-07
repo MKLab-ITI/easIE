@@ -44,7 +44,9 @@ public abstract class AbstractStaticContentExtractor extends AbstractContentExtr
             tempName = element.select(field.FieldName).attr("href");
         } else if ((field.FieldNameType.equals(FieldType.image))) {
             tempName = element.select(field.FieldName).attr("src");
-        } else {
+        } else if ((field.FieldNameType.equals(FieldType.html))) {
+            tempName = element.select(field.FieldName).html();
+        }else {
             tempName = element.select(field.FieldName).attr(field.FieldValueType);
         }
         if (field.SelectorValueType.equals(SelectorType.rawtext)) {
@@ -57,7 +59,9 @@ public abstract class AbstractStaticContentExtractor extends AbstractContentExtr
             tempValue = element.select(field.FieldValue).attr("src");
         } else if (field.FieldValueType.equals(FieldType.list)) {
             tempValue = extractList(field.FieldValue);
-        } else {
+        } else if (field.FieldValueType.equals(FieldType.html)) {
+            tempValue = element.select(field.FieldValue).html();
+        }else {
             tempValue = element.select(field.FieldValue).attr(field.FieldValueType);
         }
         return new Pair<String, Object>(tempName, tempValue);
@@ -68,7 +72,7 @@ public abstract class AbstractStaticContentExtractor extends AbstractContentExtr
         ArrayList list = new ArrayList();
         Elements elements = document.select(listSelector);
         for (int i = 0; i < elements.size(); i++) {
-            list.add(elements.get(i).text());
+            list.add(elements.get(i).attr("href"));
         }
         return list;
     }

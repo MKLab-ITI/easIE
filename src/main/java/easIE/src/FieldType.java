@@ -9,4 +9,5 @@ public class FieldType {
    public static final String link = "LINK";
    public static final String image = "IMAGE";
    public static final String list = "LIST";
+   public static final String html = "HTML";
 }

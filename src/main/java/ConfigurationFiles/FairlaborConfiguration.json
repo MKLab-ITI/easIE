@@ -33,12 +33,16 @@
     },
     {
       "FieldName": "FLA Participating Company",
-      "FieldValue": "true",
+      "FieldValue": true,
       "SelectorNameType": "RAW_TEXT",
       "SelectorValueType": "RAW_TEXT",
       "FieldNameType": "TEXT",
       "FieldValueType": "TEXT"
     }
   ],
-  "dynamicHTML": false
+  "dynamicHTML": false,
+    "store": {
+        "as": "ABSTRACT_SNIPPET",
+        "toHardDrive": "Fairlabor.json"
+    }
 }

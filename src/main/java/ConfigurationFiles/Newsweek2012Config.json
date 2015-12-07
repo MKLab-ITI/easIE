@@ -90,10 +90,9 @@
   "dynamicHTML": true,
   "store": {
     "as": "COMPANY_SNIPPET",
-    "toMongo": {
-        "dbname": "WikiRate_NEW",
-        "companies_collection":"Companies",
-        "snippets_collection":"Snippets"
+    "store": {
+        "as": "ABSTRACT_SNIPPET",
+        "toHardDrive": "Newsweek2012.json"
     }
   }
 }

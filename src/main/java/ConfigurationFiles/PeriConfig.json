@@ -1,14 +1,14 @@
 {
     "url": {
-        "baseURL": "http://www.goodcompanyindex.com",
-        "relativeURL": "/wp/wp-content/themes/hulk/company_summary.php?yr=2014"
+        "baseURL": "http://www.peri.umass.edu",
+        "relativeURL": "/toxicair_current/"
     },
-    "source_name": "GoodCompanyIndex",
-    "table_selector": "#myTable > tbody:nth-child(2) > tr",
+    "table_selector": "#c2580 > table:nth-child(1) > tbody:nth-child(1) > tr",
+    "source_name": "Peri",
     "company_fields": [
         {
             "FieldName": "Company Name",
-            "FieldValue": "td:nth-child(1)",
+            "FieldValue": "td:nth-child(2) > p.bodytext",
             "SelectorNameType": "RAW_TEXT",
             "SelectorValueType": "CSS",
             "FieldNameType": "TEXT",
@@ -17,15 +17,15 @@
     ],
     "snippet_fields": [
         {
-            "FieldName": "Fortune Rank",
-            "FieldValue": "td:nth-child(2)",
+            "FieldName": "Rank in Peri List",
+            "FieldValue": "td:nth-child(1)",
             "SelectorNameType": "RAW_TEXT",
             "SelectorValueType": "CSS",
             "FieldNameType": "TEXT",
             "FieldValueType": "TEXT"
         },
         {
-            "FieldName": "Stock Ticker",
+            "FieldName": "Toxic score(pounds released x toxicity x population exposure)",
             "FieldValue": "td:nth-child(3)",
             "SelectorNameType": "RAW_TEXT",
             "SelectorValueType": "CSS",
@@ -33,7 +33,7 @@
             "FieldValueType": "TEXT"
         },
         {
-            "FieldName": "Good Company Grade",
+            "FieldName": "Millions of pounds of toxic air releases",
             "FieldValue": "td:nth-child(4)",
             "SelectorNameType": "RAW_TEXT",
             "SelectorValueType": "CSS",
@@ -41,7 +41,7 @@
             "FieldValueType": "TEXT"
         },
         {
-            "FieldName": "Overall Good Company Score",
+            "FieldName": "Millions of pounds of toxic incineration transfers",
             "FieldValue": "td:nth-child(5)",
             "SelectorNameType": "RAW_TEXT",
             "SelectorValueType": "CSS",
@@ -49,7 +49,7 @@
             "FieldValueType": "TEXT"
         },
         {
-            "FieldName": "Good Employer Score",
+            "FieldName": "Poor Share",
             "FieldValue": "td:nth-child(6)",
             "SelectorNameType": "RAW_TEXT",
             "SelectorValueType": "CSS",
@@ -57,7 +57,7 @@
             "FieldValueType": "TEXT"
         },
         {
-            "FieldName": "Good Seller Score",
+            "FieldName": "Minority Share",
             "FieldValue": "td:nth-child(7)",
             "SelectorNameType": "RAW_TEXT",
             "SelectorValueType": "CSS",
@@ -65,8 +65,24 @@
             "FieldValueType": "TEXT"
         },
         {
-            "FieldName": "Good Steward Score",
-            "FieldValue": "td:nth-child(8)",
+            "FieldName": "Confidential audit interviews?",
+            "FieldValue": "td:nth-child(9)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "Published audit results?",
+            "FieldValue": "td:nth-child(10)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "Worker complaint procedure?",
+            "FieldValue": "td:nth-child(11)",
             "SelectorNameType": "RAW_TEXT",
             "SelectorValueType": "CSS",
             "FieldNameType": "TEXT",
@@ -74,7 +90,7 @@
         },
         {
             "FieldName": "citeyear",
-            "FieldValue": "2011",
+            "FieldValue": "2013",
             "SelectorNameType": "RAW_TEXT",
             "SelectorValueType": "RAW_TEXT",
             "FieldNameType": "TEXT",
@@ -84,6 +100,6 @@
     "dynamicHTML": false,
     "store": {
         "as": "ABSTRACT_SNIPPET",
-        "toHardDrive": "GoodCompanyIndex.json"
-    }  
+        "toHardDrive": "PeriListCompanies.json"
+    }
 }

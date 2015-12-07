@@ -1,10 +1,10 @@
 {
   "url": {
     "baseURL": "http://www.newsweek.com",
-    "relativeURL": "/2012/10/22/newsweek-green-rankings-2012-u-s-500-list.html"
+    "relativeURL": "/green/worlds-greenest-companies-2014"
   },
   "source_name":"Newsweek",
-  "table_selector":"#DataTables_Table_0 > tbody:nth-child(3) > tr",
+  "table_selector":".hasStickyHeaders > tbody > tr",
   "company_fields" : [
     {
       "FieldName": "Company Name",
@@ -16,15 +16,15 @@
     }, 
     {
       "FieldName": "Country",
-      "FieldValue": "United States",
+      "FieldValue": "td:nth-child(3)",
       "SelectorNameType": "RAW_TEXT",
-      "SelectorValueType": "RAW_TEXT",
+      "SelectorValueType": "CSS",
       "FieldNameType": "TEXT",
       "FieldValueType": "TEXT"
     },
     {
       "FieldName": "Sector",
-      "FieldValue": "td:nth-child(3)",
+      "FieldValue": "td:nth-child(4)",
       "SelectorNameType": "RAW_TEXT",
       "SelectorValueType": "CSS",
       "FieldNameType": "TEXT",
@@ -33,7 +33,7 @@
     ],
   "snippet_fields": [
     {
-      "FieldName": "Newsweek US Rank 2012",
+      "FieldName": "Newsweek US Rank 2014",
       "FieldValue": "td:nth-child(1)",
       "SelectorNameType": "RAW_TEXT",
       "SelectorValueType": "CSS",
@@ -41,15 +41,7 @@
       "FieldValueType": "TEXT"
     },
     {
-      "FieldName": "Impact",
-      "FieldValue": "td:nth-child(5)",
-      "SelectorNameType": "RAW_TEXT",
-      "SelectorValueType": "CSS",
-      "FieldNameType": "TEXT",
-      "FieldValueType": "TEXT"
-    },
-    {
-      "FieldName": "Management",
+      "FieldName": "Energy Productivity",
       "FieldValue": "td:nth-child(6)",
       "SelectorNameType": "RAW_TEXT",
       "SelectorValueType": "CSS",
@@ -57,7 +49,7 @@
       "FieldValueType": "TEXT"
     },
     {
-      "FieldName": "Disclosure",
+      "FieldName": "Carbon Productivity",
       "FieldValue": "td:nth-child(7)",
       "SelectorNameType": "RAW_TEXT",
       "SelectorValueType": "CSS",
@@ -65,7 +57,7 @@
       "FieldValueType": "TEXT"
     },
     {
-      "FieldName": "Newsweek Green Score",
+      "FieldName": "Water Productivity",
       "FieldValue": "td:nth-child(8)",
       "SelectorNameType": "RAW_TEXT",
       "SelectorValueType": "CSS",
@@ -73,8 +65,56 @@
       "FieldValueType": "TEXT"
     },
     {
+      "FieldName": "Waste Productivity",
+      "FieldValue": "td:nth-child(9)",
+      "SelectorNameType": "RAW_TEXT",
+      "SelectorValueType": "CSS",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "TEXT"
+    },
+    {
+      "FieldName": "Reputation",
+      "FieldValue": "td:nth-child(10)",
+      "SelectorNameType": "RAW_TEXT",
+      "SelectorValueType": "CSS",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "TEXT"
+    },
+    {
+      "FieldName": "Pay Link",
+      "FieldValue": "td:nth-child(11)",
+      "SelectorNameType": "RAW_TEXT",
+      "SelectorValueType": "CSS",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "TEXT"
+    },
+    {
+      "FieldName": "Sustainability Themed Committee",
+      "FieldValue": "td:nth-child(12)",
+      "SelectorNameType": "RAW_TEXT",
+      "SelectorValueType": "CSS",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "TEXT"
+    },
+    {
+      "FieldName": "Audit",
+      "FieldValue": "td:nth-child(13)",
+      "SelectorNameType": "RAW_TEXT",
+      "SelectorValueType": "CSS",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "TEXT"
+    },
+    {
+      "FieldName": "Newsweek Green Score",
+      "FieldValue": "td:nth-child(14)",
+      "SelectorNameType": "RAW_TEXT",
+      "SelectorValueType": "CSS",
+      "FieldNameType": "TEXT",
+      "FieldValueType": "TEXT"
+    },
+    {
       "FieldName": "citeyear",
-      "FieldValue": "2012",
+      "FieldValue": "2014",
       "SelectorNameType": "RAW_TEXT",
       "SelectorValueType": "RAW_TEXT",
       "FieldNameType": "TEXT",
@@ -83,16 +123,13 @@
   ],
   "event":{
   	"type":"CLICK",
-  	"selector":".pager_top > div:nth-child(1) > ul:nth-child(2) > li:nth-child(4)",
+  	"selector":".table-links > li:nth-child(4) > a:nth-child(1)",
   	"timesToRepeat": 1,
   	"repetition_type":"AFTER_ALL_EVENTS"
   },
   "dynamicHTML": true,
-  "store": {
-    "as": "COMPANY_SNIPPET",
     "store": {
         "as": "ABSTRACT_SNIPPET",
-        "toHardDrive": "Newsweek2012US.json"
+        "toHardDrive": "NewsweekUS.json"
     }
-  }
 }

@@ -1,10 +1,10 @@
 {
     "url": {
-        "baseURL": "http://www.goodcompanyindex.com",
-        "relativeURL": "/wp/wp-content/themes/hulk/company_summary.php?yr=2014"
+        "baseURL": "http://www.measureup.org.uk",
+        "relativeURL": "/allcompanies/"
     },
-    "source_name": "GoodCompanyIndex",
-    "table_selector": "#myTable > tbody:nth-child(2) > tr",
+    "table_selector": ".maintable > table > tbody > tr",
+    "source_name": "Measure UP",
     "company_fields": [
         {
             "FieldName": "Company Name",
@@ -17,7 +17,7 @@
     ],
     "snippet_fields": [
         {
-            "FieldName": "Fortune Rank",
+            "FieldName": "Ethical code?",
             "FieldValue": "td:nth-child(2)",
             "SelectorNameType": "RAW_TEXT",
             "SelectorValueType": "CSS",
@@ -25,7 +25,7 @@
             "FieldValueType": "TEXT"
         },
         {
-            "FieldName": "Stock Ticker",
+            "FieldName": "Code applies to supply chain?",
             "FieldValue": "td:nth-child(3)",
             "SelectorNameType": "RAW_TEXT",
             "SelectorValueType": "CSS",
@@ -33,7 +33,7 @@
             "FieldValueType": "TEXT"
         },
         {
-            "FieldName": "Good Company Grade",
+            "FieldName": "Living wages?",
             "FieldValue": "td:nth-child(4)",
             "SelectorNameType": "RAW_TEXT",
             "SelectorValueType": "CSS",
@@ -41,7 +41,7 @@
             "FieldValueType": "TEXT"
         },
         {
-            "FieldName": "Overall Good Company Score",
+            "FieldName": "Factory address list?",
             "FieldValue": "td:nth-child(5)",
             "SelectorNameType": "RAW_TEXT",
             "SelectorValueType": "CSS",
@@ -49,7 +49,7 @@
             "FieldValueType": "TEXT"
         },
         {
-            "FieldName": "Good Employer Score",
+            "FieldName": "Factories audited every 2 years",
             "FieldValue": "td:nth-child(6)",
             "SelectorNameType": "RAW_TEXT",
             "SelectorValueType": "CSS",
@@ -57,7 +57,7 @@
             "FieldValueType": "TEXT"
         },
         {
-            "FieldName": "Good Seller Score",
+            "FieldName": "Company staff visit factories?",
             "FieldValue": "td:nth-child(7)",
             "SelectorNameType": "RAW_TEXT",
             "SelectorValueType": "CSS",
@@ -65,7 +65,7 @@
             "FieldValueType": "TEXT"
         },
         {
-            "FieldName": "Good Steward Score",
+            "FieldName": "Unannounced factory checks?",
             "FieldValue": "td:nth-child(8)",
             "SelectorNameType": "RAW_TEXT",
             "SelectorValueType": "CSS",
@@ -73,8 +73,32 @@
             "FieldValueType": "TEXT"
         },
         {
+            "FieldName": "Confidential audit interviews?",
+            "FieldValue": "td:nth-child(9)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "Published audit results?",
+            "FieldValue": "td:nth-child(10)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "Worker complaint procedure?",
+            "FieldValue": "td:nth-child(11)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
             "FieldName": "citeyear",
-            "FieldValue": "2011",
+            "FieldValue": "2014",
             "SelectorNameType": "RAW_TEXT",
             "SelectorValueType": "RAW_TEXT",
             "FieldNameType": "TEXT",
@@ -84,6 +108,6 @@
     "dynamicHTML": false,
     "store": {
         "as": "ABSTRACT_SNIPPET",
-        "toHardDrive": "GoodCompanyIndex.json"
-    }  
+        "toHardDrive": "MeasureUP.json"
+    }
 }
