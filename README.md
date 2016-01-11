@@ -29,4 +29,4 @@ Each wrapper extends AbstractWrapper and implements the `extractFields(List<Fiel
           PaginationIterator paginationWrapper = new PaginationIterator(staticWrapper, nextPageSelector);
           paginationWrapper.extractFields(fields);
           
-Some working examples can be found [Here](https://github.com/MKLab-ITI/easIE/tree/master/src/main/java/easIE/src/examples)
+Some **working examples** can be found [here](https://github.com/MKLab-ITI/easIE/tree/master/src/main/java/easIE/src/examples)
