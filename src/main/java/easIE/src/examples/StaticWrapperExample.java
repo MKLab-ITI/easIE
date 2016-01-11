@@ -1,4 +1,4 @@
-package com.mycompany.scrapejobs;
+package easIE.src.examples;
 
 import easIE.src.Executors.SnippetHandler;
 import easIE.src.Field;
