@@ -1,0 +1,57 @@
+{
+    "url": {
+        "baseURL": "http://www.corporateknights.com",
+        "relativeURL": "/reports/2016-global-100/2016-global-100-results-14533333/"
+    },
+    "table_selector": "#table_1 > tbody:nth-child(3) > tr",
+    "source_name": "Ethisphere",
+    "company_fields": [
+        {
+            "FieldName": "Company Name",
+            "FieldValue": "td:nth-child(2)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "Country",
+            "FieldValue": "td:nth-child(3)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "Industry",
+            "FieldValue": "td:nth-child(4)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        }
+    ],
+    "snippet_fields": [
+        {
+            "FieldName": "Rank in Global 100 Most Sustainable Corporations",
+            "FieldValue": "td:nth-child(1)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "Corporate Knights Score",
+            "FieldValue": "td:nth-child(5)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        }
+    ],
+  "event":{
+      "sequence_of_events": ["CLICK","CLICK"],
+      "sequence_of_selectors": [".selecter-selected", "span.selecter-item:nth-child(5)"]
+  },
+    "dynamicHTML": true
+}
