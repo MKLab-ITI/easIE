@@ -1,0 +1,146 @@
+{
+    "url": {
+        "baseURL": "http://fortune.com",
+        "relativeURL": "/fortune500/2012"
+    },
+    "source_name": "Fortune",
+    "table_selector": ".content-well > div:nth-child(1) > article",
+    "company_fields": [
+        {
+            "FieldName": "Company Name",
+            "FieldValue": "div.article-title > h1",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "Website",
+            "FieldValue": "table.highlights-table > tbody > tr:nth-child(5) > td:nth-child(2)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "Country",
+            "FieldValue": "United States",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "RAW_TEXT",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        }
+    ],
+    "snippet_fields": [
+        {
+            "FieldName": "Rank in List: Fortune 500",
+            "FieldValue": "table.highlights-table > tbody > tr:nth-child(1) > td:nth-child(2)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "table.ranking-article-data-table > tbody > tr:nth-child(1) > th:nth-child(1)",
+            "FieldValue": "table.ranking-article-data-table > tbody > tr:nth-child(1) > td:nth-child(2)",
+            "SelectorNameType": "CSS",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT",
+            "ReplaceInValue": {
+                "regex": [
+                    "-"
+                ],
+                "with": [
+                    ""
+                ]
+            }
+        },
+        {
+            "FieldName": "table.ranking-article-data-table > tbody > tr:nth-child(2) > th:nth-child(1)",
+            "FieldValue": "table.ranking-article-data-table > tbody > tr:nth-child(2) > td:nth-child(2)",
+            "SelectorNameType": "CSS",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT",
+            "ReplaceInValue": {
+                "regex": [
+                    "-"
+                ],
+                "with": [
+                    ""
+                ]
+            }
+        },
+        {
+            "FieldName": "table.ranking-article-data-table > tbody > tr:nth-child(3) > th:nth-child(1)",
+            "FieldValue": "table.ranking-article-data-table > tbody > tr:nth-child(3) > td:nth-child(2)",
+            "SelectorNameType": "CSS",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT",
+            "ReplaceInValue": {
+                "regex": [
+                    "-"
+                ],
+                "with": [
+                    ""
+                ]
+            }
+        },
+        {
+            "FieldName": "table.ranking-article-data-table > tbody > tr:nth-child(4) > th:nth-child(1)",
+            "FieldValue": "table.ranking-article-data-table > tbody > tr:nth-child(4) > td:nth-child(2)",
+            "SelectorNameType": "CSS",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT",
+            "ReplaceInValue": {
+                "regex": [
+                    "-"
+                ],
+                "with": [
+                    ""
+                ]
+            }
+        },
+        {
+            "FieldName": "table.ranking-article-data-table > tbody > tr:nth-child(5) > th:nth-child(1)",
+            "FieldValue": "table.ranking-article-data-table > tbody > tr:nth-child(5) > td:nth-child(2)",
+            "SelectorNameType": "CSS",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT",
+            "ReplaceInValue": {
+                "regex": [
+                    "-"
+                ],
+                "with": [
+                    ""
+                ]
+            }
+        },
+        {
+            "FieldName": "citeyear",
+            "FieldValue": "2012",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "RAW_TEXT",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT",
+            "ReplaceInValue": {
+                "regex": [
+                    "-"
+                ],
+                "with": [
+                    ""
+                ]
+            }
+        }
+    ],
+    "dynamicHTML": true,
+    "event": {
+        "type": "SCROLL_DOWN",
+        "timesToRepeat": "500",
+        "repetition_type": "AFTER_ALL_EVENTS"
+    }
+}
