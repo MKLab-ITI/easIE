@@ -1,0 +1,29 @@
+{
+    "url": {
+        "baseURL": "http://www.bsr.org",
+        "relativeURL": "/en/membership/member-list"
+    },
+    "source_name": "BSR",
+    "table_selector": "div.section-start > div.container.body-text > div.row > div.col-md-4 > p",
+    "company_fields": [
+        {
+            "FieldName": "Company Name",
+            "FieldValue": "*",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        }
+    ],
+    "snippet_fields": [
+        {
+            "FieldName": "BSR member",
+            "FieldValue": true,
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "RAW_TEXT",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        }
+    ],
+    "dynamicHTML": false
+}
