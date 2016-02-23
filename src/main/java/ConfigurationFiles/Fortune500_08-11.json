@@ -49,7 +49,6 @@
             "FieldValueType": "TEXT"
         }
     ],
-    "nextPageSelector": "#next-company-button",
     "dynamicHTML": true,
     "event": {
         "type": "SCROLL_DOWN",
