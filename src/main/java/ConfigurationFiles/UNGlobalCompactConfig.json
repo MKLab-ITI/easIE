@@ -33,7 +33,7 @@
     ],
     "snippet_fields": [
         {
-            "FieldName": "Participant Since",
+            "FieldName": "Participant in UN Global Compact Since",
             "FieldValue": "td:nth-child(4)",
             "SelectorNameType": "RAW_TEXT",
             "SelectorValueType": "CSS",
