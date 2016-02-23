@@ -1,0 +1,61 @@
+{
+    "url": {
+        "baseURL": "http://archive.fortune.com",
+        "relativeURL": "/magazines/fortune/best-companies/2013/list/?iid=bc_sp_full"
+    },
+    "table_selector":"#listTable > tbody:nth-child(2) > tr",
+    "source_name": "Fortune",
+    "company_fields": [
+        {
+            "FieldName": "Company Name",
+            "FieldValue": "td:nth-child(2)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "Country",
+            "FieldValue": "United States",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "RAW_TEXT",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        }
+    ],
+    "snippet_fields": [
+        {
+            "FieldName": "Rank in list: Best Companies to Work For",
+            "FieldValue": "td:nth-child(1)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "Job growth",
+            "FieldValue": "td:nth-child(3)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "U.S. Employees",
+            "FieldValue": "td:nth-child(4)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "citeyear",
+            "FieldValue": "2013",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "RAW_TEXT",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        }
+    ],
+    "dynamicHTML": false
+}
