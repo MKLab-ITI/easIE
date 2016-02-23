@@ -4,7 +4,7 @@
         "relativeURL": "/reports/2016-global-100/2016-global-100-results-14533333/"
     },
     "table_selector": "#table_1 > tbody:nth-child(3) > tr",
-    "source_name": "Ethisphere",
+    "source_name": "CorporateKnights",
     "company_fields": [
         {
             "FieldName": "Company Name",
