@@ -41,8 +41,8 @@
             "FieldValueType": "TEXT"
         },
         {
-            "FieldName": "table.ranking-article-data-table > tbody > tr:nth-child(1) > th:nth-child(1)",
-            "FieldValue": "table.ranking-article-data-table > tbody > tr:nth-child(1) > td:nth-child(2)",
+            "FieldName": "table.ranking-article-data-table:nth-child(1) > tbody > tr:nth-child(1) > th:nth-child(1)",
+            "FieldValue": "table.ranking-article-data-table:nth-child(1) > tbody > tr:nth-child(1) > td:nth-child(2)",
             "SelectorNameType": "CSS",
             "SelectorValueType": "CSS",
             "FieldNameType": "TEXT",
@@ -57,8 +57,8 @@
             }
         },
         {
-            "FieldName": "table.ranking-article-data-table > tbody > tr:nth-child(2) > th:nth-child(1)",
-            "FieldValue": "table.ranking-article-data-table > tbody > tr:nth-child(2) > td:nth-child(2)",
+            "FieldName": "table.ranking-article-data-table:nth-child(1) > tbody > tr:nth-child(2) > th:nth-child(1)",
+            "FieldValue": "table.ranking-article-data-table:nth-child(1) > tbody > tr:nth-child(2) > td:nth-child(2)",
             "SelectorNameType": "CSS",
             "SelectorValueType": "CSS",
             "FieldNameType": "TEXT",
@@ -73,8 +73,8 @@
             }
         },
         {
-            "FieldName": "table.ranking-article-data-table > tbody > tr:nth-child(3) > th:nth-child(1)",
-            "FieldValue": "table.ranking-article-data-table > tbody > tr:nth-child(3) > td:nth-child(2)",
+            "FieldName": "table.ranking-article-data-table:nth-child(1) > tbody > tr:nth-child(3) > th:nth-child(1)",
+            "FieldValue": "table.ranking-article-data-table:nth-child(1) > tbody > tr:nth-child(3) > td:nth-child(2)",
             "SelectorNameType": "CSS",
             "SelectorValueType": "CSS",
             "FieldNameType": "TEXT",
@@ -89,8 +89,8 @@
             }
         },
         {
-            "FieldName": "table.ranking-article-data-table > tbody > tr:nth-child(4) > th:nth-child(1)",
-            "FieldValue": "table.ranking-article-data-table > tbody > tr:nth-child(4) > td:nth-child(2)",
+            "FieldName": "table.ranking-article-data-table:nth-child(1) > tbody > tr:nth-child(4) > th:nth-child(1)",
+            "FieldValue": "table.ranking-article-data-table:nth-child(1) > tbody > tr:nth-child(4) > td:nth-child(2)",
             "SelectorNameType": "CSS",
             "SelectorValueType": "CSS",
             "FieldNameType": "TEXT",
@@ -105,8 +105,8 @@
             }
         },
         {
-            "FieldName": "table.ranking-article-data-table > tbody > tr:nth-child(5) > th:nth-child(1)",
-            "FieldValue": "table.ranking-article-data-table > tbody > tr:nth-child(5) > td:nth-child(2)",
+            "FieldName": "table.ranking-article-data-table:nth-child(1) > tbody > tr:nth-child(5) > th:nth-child(1)",
+            "FieldValue": "table.ranking-article-data-table:nth-child(1) > tbody > tr:nth-child(5) > td:nth-child(2)",
             "SelectorNameType": "CSS",
             "SelectorValueType": "CSS",
             "FieldNameType": "TEXT",
