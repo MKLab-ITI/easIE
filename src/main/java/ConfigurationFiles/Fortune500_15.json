@@ -1,10 +1,9 @@
 {
     "url": {
         "baseURL": "http://fortune.com",
-        "relativeURL": "/fortune500/2015"
+        "relativeURL": "/fortune500/walmart-1/"
     },
     "source_name": "Fortune",
-    "table_selector": ".content-well > div:nth-child(1) > article",
     "company_fields": [
         {
             "FieldName": "Company Name",
@@ -154,6 +153,6 @@
             }
         }
     ],
-     "nextPageSelector": "#next-company-button",
+    "nextPageSelector": "#next-company-button",
     "dynamicHTML": false
 }
