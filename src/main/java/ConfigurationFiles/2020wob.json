@@ -1,0 +1,54 @@
+{
+    "url": {
+        "baseURL": "https://www.2020wob.com",
+        "relativeURL": "/company-directory"
+    },
+    "table_selector": ".views-table > tbody:nth-child(2) > tr",
+    "source_name": "wob2020",
+    "company_fields": [
+        {
+            "FieldName": "Company Name",
+            "FieldValue": "td:nth-child(1)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "Sector",
+            "FieldValue": "td:nth-child(6)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        },
+        {
+            "FieldName": "Country",
+            "FieldValue": "td:nth-child(7)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT",
+            "ReplaceInValue": {
+                "regex": [
+                    "^[a-zA-Z\\s]+$"
+                ],
+                "with": [
+                    "United States"
+                ]
+            }
+        }
+    ],
+    "snippet_fields": [
+        {
+            "FieldName": "% of Women on the board of directors",
+            "FieldValue": "td:nth-child(5)",
+            "SelectorNameType": "RAW_TEXT",
+            "SelectorValueType": "CSS",
+            "FieldNameType": "TEXT",
+            "FieldValueType": "TEXT"
+        }
+    ],
+    "nextPageSelector": ".pager-next > a",
+    "dynamicHTML": false
+}
