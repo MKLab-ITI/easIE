@@ -1553,14 +1553,6 @@
             "SelectorValueType": "CSS",
             "FieldNameType": "TEXT",
             "FieldValueType": "TEXT"
-        },
-        {
-            "FieldName": "list",
-            "FieldValue": "div.view-content:nth-child(2) > div.views-row > div.views-field > span > a",
-            "SelectorNameType": "RAW_TEXT",
-            "SelectorValueType": "CSS",
-            "FieldNameType": "TEXT",
-            "FieldValueType": "LIST"
         }
     ],
     "dynamicHTML": false
