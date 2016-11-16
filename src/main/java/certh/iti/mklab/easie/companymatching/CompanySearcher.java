@@ -191,7 +191,7 @@ public class CompanySearcher {
 
                 corpus.addDocument(document);
             }
-        }
+        } 
         cursor.close();
     }
 }

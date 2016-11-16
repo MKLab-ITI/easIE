@@ -32,6 +32,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException, ProcessingException, Exception {
         if (args.length == 1) {
+            
             ConfigurationReader reader = new ConfigurationReader(args[0], ".");
             Configuration config = reader.getConfiguration();
 
