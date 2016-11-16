@@ -9,7 +9,7 @@ import java.util.HashMap;
  * @author vasgat
  */
 public class TFIDFSimilarity {
-    
+     
     /**
      * Calculates tf-idf sililarity between two documents given 
      * @param tfidf: collection of documents with tf-idf weights
