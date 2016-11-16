@@ -1,0 +1,69 @@
+{
+    "url": {
+        "base_url": "http://features.peta.org",
+        "relative_url": "/cruelty-free-company-search/cruelty_free_companies_search.aspx?Donottest=8&Product=0&Dotest=-1&Regchange=-1&Country=-1&Keyword="
+    },
+    "source_name": "PETA",
+    "table_selector": "#ctl00_ContentPlaceHolder1_gv_CompanySearch > tbody:nth-child(1) > tr",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "td:nth-child(2)",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "Does Tests on Animals",
+            "value": "false"
+        },
+        {
+            "label": "Features PETA Logo",
+            "value": {
+                "selector": "td:nth-child(5)",
+                "type": "text",
+                "replace":{
+                    "regex":["L"],
+                    "with":["true"]
+                }
+            }
+        },
+        {
+            "label": "Vegan Company",
+            "value": {
+                "selector": "td:nth-child(3)",
+                "type": "text",
+                "replace":{
+                    "regex":["V"],
+                    "with":["true"]
+                }
+            }
+        },
+        {
+            "label": "PETA Mall Partner",
+            "value": {
+                "selector": "td:nth-child(4)",
+                "type": "text",
+                "replace":{
+                    "regex":["M"],
+                    "with":["true"]
+                }
+            }
+        }
+    ],
+    "events":{
+        "type":"CLICK",
+        "selector":"#ctl00_ContentPlaceHolder1_ddlResultCount > option:nth-child(4)",
+        "times_to_repeat":1,
+        "extraction_type":"AFTER_ALL_EVENTS"
+    },
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": true
+}

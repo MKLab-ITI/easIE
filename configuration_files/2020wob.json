@@ -1,0 +1,51 @@
+{
+    "url": {
+        "base_url": "https://www.2020wob.com",
+        "relative_url": "/company-directory"
+    },
+    "source_name": "2020wob",
+    "table_selector": ".views-table > tbody:nth-child(2) > tr",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "td:nth-child(1)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Sector",
+            "value": {
+                "selector": "td:nth-child(6)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Country",
+            "value": {
+                "selector": "td:nth-child(7)",
+                "type": "text",
+                "replace":{
+                    "regex":[".+"],
+                    "with":["United States"]
+                }
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "% of Women",
+            "value": {
+                "selector": "td:nth-child(5)",
+                "type": "text"
+            }
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": false
+}

@@ -1,0 +1,54 @@
+{
+    "url": {
+        "base_url": "http://archive.fortune.com",
+        "relative_url": "/magazines/fortune/bestcompanies/2009/full_list/"
+    },
+    "table_selector": ".cnnwith220inset > tbody:nth-child(2) > tr",
+    "source_name": "Fortune",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "td:nth-child(2)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Country", 
+            "value": "United States"
+        }
+    ],
+    "metrics": [
+        {
+            "label": "Rank in list: Best Companies to Work For",
+            "value": {
+                "selector": "td:nth-child(1)",
+                "type": "text"
+            },
+            "citeyear":2009
+        },
+        {
+            "label": "Job growth",
+            "value": {
+                "selector": "td:nth-child(3)",
+                "type": "text"
+            },
+            "citeyear":2009
+        },
+        {
+            "label": "U.S. Employees",
+            "value": {
+                "selector": "td:nth-child(4)",
+                "type": "text"
+            },
+            "citeyear":2009
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": false
+}

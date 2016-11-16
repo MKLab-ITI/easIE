@@ -1,0 +1,86 @@
+{
+    "url": {
+        "base_url": "http://www.newsweek.com",
+        "relative_url": "/2012/10/22/newsweek-green-rankings-2012-u-s-500-list.html"
+    },
+    "source_name": "Newsweek",
+    "table_selector": "#DataTables_Table_0 > tbody:nth-child(3) > tr",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "td:nth-child(2)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Country",
+            "value": {
+                "selector": "td:nth-child(3)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Industry",
+            "value": {
+                "selector": "td:nth-child(4)",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "Impact",
+            "value": {
+                "selector": "td:nth-child(6)",
+                "type": "text"
+            },
+            "citeyear": 2012
+        },
+        {
+            "label": "Management",
+            "value": {
+                "selector": "td:nth-child(7)",
+                "type": "text"
+            },
+            "citeyear": 2012
+        },
+        {
+            "label": "Disclosure",
+            "value": {
+                "selector": "td:nth-child(8)",
+                "type": "text"
+            },
+            "citeyear": 2012
+        },
+        {
+            "label": "Green Score",
+            "value": {
+                "selector": "td:nth-child(9)",
+                "type": "text"
+            },
+            "citeyear": 2012
+        },
+        {
+            "label": "Newsweek US Rank 2012",
+            "value": {
+                "selector": "td:nth-child(1)",
+                "type": "text"
+            },
+            "citeyear": 2012
+        }
+    ],
+    "events": {
+        "type": "CLICK",
+        "selector": ".pager_top > div:nth-child(1) > ul:nth-child(2) > li:nth-child(4)",
+        "times_to_repeat": 1,
+        "extraction_type": "AFTER_ALL_EVENTS"
+    },
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": true
+}

@@ -1,0 +1,62 @@
+{
+    "url": {
+        "base_url": "http://fortune.com",
+        "relative_url": "/change-the-world/vodafone-and-safaricom-1/"
+    },
+    "source_name": "Fortune",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "article > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > h1:nth-child(2) > div:nth-child(1)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Country",
+            "value": {
+                "selector":"table.company-data-table:nth-child(1) > tbody > tr:nth-child(3) > td:nth-child(2)",
+                "type":"text"
+            }
+        },
+        {
+            "label": "Website",
+            "value": {
+                "selector": "table.company-data-table:nth-child(1) > tbody > tr:nth-child(3) > td:nth-child(7) > a",
+                "type": "link"
+            }
+        },
+        {
+            "label": {
+                "selector": "table.company-data-table:nth-child(1) > tbody > tr:nth-child(2) > th:nth-child(1)",
+                "type": "text"
+            },
+            "value": {
+                "selector": "table.company-data-table:nth-child(1) > tbody > tr:nth-child(2) > td:nth-child(2)",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "Rank in List: Change the World",
+            "value": {
+                "selector": ".company-rank",
+                "type": "text",
+                "replace":{
+                    "regex":["\\."],
+                    "with":[""]
+                }
+            },
+            "citeyear":2015
+        }
+    ],
+    "next_page_selector": "#next-company-button",
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": false
+}

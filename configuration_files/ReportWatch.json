@@ -1,0 +1,53 @@
+{
+    "url": {
+        "base_url": "http://www.reportwatch.net",
+        "relative_url":"/annual-report-on-annual-reports-2015/who-ranks-where/"
+    },
+    "source_name": "ReportWatch",
+    "table_selector":".default > tbody:nth-child(1) > tr",
+    "company_info": [
+        {
+            "label": "company_name",
+            "value": {
+                "selector": "td:nth-child(1)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "country",
+            "value": {
+                "selector": "td:nth-child(2)",
+                "type": "text",
+                "replace":{
+                    "regex":["-.*"],
+                    "with":[""]
+                }
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "ReportWatch rating",
+            "value": {
+                "selector": "td:nth-child(4)",
+                "type": "text"
+            },
+            "citeyear":2015
+        },
+        {
+            "label": "ReportWatch Rank",
+            "value": {
+                "selector": "td:nth-child(3)",
+                "type": "text"
+            },
+            "citeyear":2015
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WR_testDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": false
+}

@@ -1,0 +1,105 @@
+{
+    "url": {
+        "base_url": "http://examples.integratedreporting.org",
+        "relative_url": "/search_recognized_reports?organisation_industry=&report_year=&award_category=&page_num=1"
+    },
+    "source_name": "Intergrated Reporting",
+    "table_selector": "div.featured_report",
+    "metrics": [
+        {
+            "label": "crawl_to",
+            "value": {
+                "selector": "a:nth-child(1)",
+                "type": "link"
+            }
+        }
+    ],
+    "next_page_selector": ".col_content > ul:nth-child(1) > li:nth-child(5) > a:nth-child(1)",
+    "crawl": {
+        "company_info": [
+            {
+                "label": "Company Name",
+                "value": {
+                    "selector": ".organisation_details > h2:nth-child(1)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "Organization type",
+                "value": {
+                    "selector": ".organisation_details > p:nth-child(2)",
+                    "type": "text",
+                    "replace": {
+                        "regex": [
+                            "Organization type:"
+                        ],
+                        "with": [
+                            ""
+                        ]
+                    }
+                }
+            },
+            {
+                "label": "Industry",
+                "value": {
+                    "selector": ".organisation_details > p:nth-child(3)",
+                    "type": "text",
+                    "replace": {
+                        "regex": [
+                            "Industry:"
+                        ],
+                        "with": [
+                            ""
+                        ]
+                    }
+                }
+            },
+            {
+                "label": "Region",
+                "value": {
+                    "selector": ".organisation_details > p:nth-child(4)",
+                    "type": "text",
+                    "replace": {
+                        "regex": [
+                            "Region:"
+                        ],
+                        "with": [
+                            ""
+                        ]
+                    }
+                }
+            }
+        ],
+        "metrics": [
+            {
+                "label": {
+                    "selector": ".report_details_heading_text > h3:nth-child(1)",
+                    "type": "text"
+                },
+                "value": {
+                    "selector": ".download_button > a:nth-child(1)",
+                    "type": "link"
+                },
+                "citeyear":{
+                    "selector": ".report_details_heading_text > h3:nth-child(1)",
+                    "type": "integer",
+                    "replace": {
+                        "regex": [
+                            "[^0-9]*"
+                        ],
+                        "with": [
+                            ""
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "testing_framework",
+        "companies_collection": "Companies",
+        "metrics_collection": "Metrics"
+    },
+    "dynamic_page": false
+}

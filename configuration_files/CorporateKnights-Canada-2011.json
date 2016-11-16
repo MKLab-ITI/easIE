@@ -1,0 +1,56 @@
+{
+    "url": {
+        "base_url": "http://www.corporateknights.com",
+        "relative_url": "/reports/2011-best-50/2011-best-50-results-13070256/"
+    },
+    "source_name": "Corporate Knights",
+    "table_selector": "#table_1 > tbody:nth-child(3) > tr",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "td:nth-child(2)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Country",
+            "value": "Canada"
+        },
+        {
+            "label": "Industry",
+            "value": {
+                "selector": "td:nth-child(3)",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "Overall Corporate Knights Score",
+            "value": {
+                "selector": "td:nth-child(4)",
+                "type": "text"
+            },
+            "citeyear": 2011
+        },
+        {
+            "label": "Corporate Knights Rank: Best 50 Corporate Citizens in Canada",
+            "value": {
+                "selector": "td:nth-child(1)",
+                "type": "text"
+            },
+            "citeyear": 2011
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": true,
+    "events": {
+        "type": "SCROLL_DOWN"
+    }
+}

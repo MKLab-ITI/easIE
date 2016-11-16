@@ -1,0 +1,141 @@
+{
+    "url": {
+        "base_url": "https://www.eff.org",
+        "relative_url": "/who-has-your-back-2012"
+    },
+    "source_name": "Electronic Frontier Foundation",
+    "table_selector": "#starchart > tbody:nth-child(1) > tr",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "td:nth-child(1) > center > img:nth-child(1)",
+                "type": "alt"
+            }
+        },
+        {
+            "label": "Logo",
+            "value": {
+                "selector": "td:nth-child(1) > center > img:nth-child(1)",
+                "type": "image",
+                "replace":{
+                    "regex":["^"],
+                    "with":["https://www.eff.org"]
+                }
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "Tells users about data demands",
+            "value": {
+                "selector": "td:nth-child(2) > center > img:nth-child(1)",
+                "type": "src",
+                "replace": {
+                    "regex": [
+                        ".*/files/checklist-1\\.png",
+                        ".*/files/checklist-3\\.png",
+                        ".*/sites/default/files/star_0\\.png",
+                        ".*/sites/default/files/checklist-1\\.png",
+                        ".*/files/checklist-2-left\\.png",
+                        ".*/files/checklist-2\\.png"
+                    ],
+                    "with": [
+                        "No",
+                        "Yes",
+                        "Yes",
+                        "No",
+                        "steps in the right direction",
+                        "steps in the right direction"
+                    ]
+                }
+            }
+        },
+        {
+            "label": "Be transparent about government requests",
+            "value": {
+                "selector": "td:nth-child(3) > center > img",
+                "type": "src",
+                "replace": {
+                    "regex": [
+                        ".*/files/checklist-1\\.png",
+                        ".*/files/checklist-3\\.png",
+                        ".*/sites/default/files/star_0\\.png",
+                        ".*/sites/default/files/checklist-1\\.png",
+                        ".*/files/checklist-2-left\\.png",
+                        ".*/files/checklist-2\\.png"
+                    ],
+                    "with": [
+                        "No",
+                        "Yes",
+                        "Yes",
+                        "No",
+                        "steps in the right direction",
+                        "steps in the right direction"
+                    ]
+                }
+            }
+        },
+        {
+            "label": "Fight for user privacy in the courts",
+            "value": {
+                "selector": "td:nth-child(4) > center > img",
+                "type": "src",
+                "replace": {
+                    "regex": [
+                        ".*/files/checklist-1\\.png",
+                        ".*/files/checklist-3\\.png",
+                        ".*/sites/default/files/star_0\\.png",
+                        ".*/sites/default/files/checklist-1\\.png",
+                        ".*/files/checklist-2-left\\.png",
+                        ".*/files/checklist-2\\.png"
+                    ],
+                    "with": [
+                        "No",
+                        "Yes",
+                        "Yes",
+                        "No",
+                        "steps in the right direction",
+                        "steps in the right direction"
+                    ]
+                }
+            }
+        },
+        {
+            "label": "Fight for user privacy in Congress",
+            "value": {
+                "selector": "td:nth-child(5) > center > img",
+                "type": "src",
+                "replace": {
+                    "regex": [
+                        ".*/files/checklist-1\\.png",
+                        ".*/files/checklist-3\\.png",
+                        ".*/sites/default/files/star_0\\.png",
+                        ".*/sites/default/files/checklist-1\\.png",
+                        ".*/files/checklist-2-left\\.png",
+                        ".*/files/checklist-2\\.png"
+                    ],
+                    "with": [
+                        "No",
+                        "Yes",
+                        "Yes",
+                        "No",
+                        "steps in the right direction",
+                        "steps in the right direction"
+                    ]
+                }
+            }
+        },
+        {
+            "label": "citeyear",
+            "value": "2012"
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": false
+}

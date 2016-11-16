@@ -1,0 +1,81 @@
+{
+    "url": {
+        "base_url": "http://www.bitc.org.uk",
+        "relative_url": "/services/benchmarking/cr-index/results-and-insight-2014/company-listing"
+    },
+    "source_name": "BITC",
+    "table_selector": "#table-1 > tbody:nth-child(2) > tr",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "td:nth-child(1)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Sector",
+            "value": {
+                "selector": "td:nth-child(2)",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "Coverage",
+            "value": {
+                "selector": "td:nth-child(4)",
+                "type": "text"
+            },
+            "citeyear": 2013
+        },
+        {
+            "label": "Perfomance Band",
+            "value": {
+                "selector": "td:nth-child(3)",
+                "type": "text"
+            },
+            "citeyear": 2013
+        },
+        {
+            "label": "Perfomance Band",
+            "value": {
+                "selector": "td:nth-child(3) > p > span > img",
+                "type": "src",
+                "replace": {
+                    "regex": [
+                        "/sites/default/files/kcfinder/images/cr_index/ratings/CR-Index-magenta-stars-master-1-star.jpg",
+                        "/sites/default/files/kcfinder/images/cr_index/ratings/CR-Index-magenta-stars-master-1.5.jpg",
+                        "/sites/default/files/kcfinder/images/cr_index/ratings/CR-Index-magenta-stars-master-2.jpg",
+                        "/sites/default/files/kcfinder/images/cr_index/ratings/CR-Index-magenta-stars-master-2.5.jpg",
+                        "/sites/default/files/kcfinder/images/cr_index/ratings/CR-Index-magenta-stars-master-3.jpg",
+                        "/sites/default/files/kcfinder/images/cr_index/ratings/CR-Index-magenta-stars-master-3.5.jpg",
+                        "/sites/default/files/kcfinder/images/cr_index/ratings/CR-Index-magenta-stars-master-4.jpg",
+                        "/sites/default/files/kcfinder/images/cr_index/ratings/CR-Index-magenta-stars-master-4.5.jpg",
+                        "/sites/default/files/kcfinder/images/cr_index/ratings/CR-Index-magenta-stars-master-5.jpg"
+                    ],
+                    "with": [
+                        "63%",
+                        "71%",
+                        "78%",
+                        "84%",
+                        "89%",
+                        "93%",
+                        "96%",
+                        "98%",
+                        "99%"
+                    ]
+                }
+            },
+            "citeyear": 2013
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "testing_framework",
+        "companies_collection": "Companies",
+        "metrics_collection": "Metrics"
+    },
+    "dynamic_page": false
+}

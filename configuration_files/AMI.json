@@ -1,0 +1,42 @@
+{
+    "url": {
+        "base_url": "http://www.accesstomedicineindex.org",
+        "relative_url": "/ranking"
+    },
+    "source_name": "Access to Medicine Index",
+    "table_selector": "#criterium-all-criteria > div:nth-child(2) > table:nth-child(1) > tbody:nth-child(1) > tr",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "td:nth-child(2) > a:nth-child(1)",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "Access to Medicine Index Score",
+            "value": {
+                "selector": "td:nth-child(5)",
+                "type": "text"
+            },
+            "citeyear": 2014
+        },
+        {
+            "label": "Access to Medicine Index Ranking",
+            "value": {
+                "selector": "td:nth-child(1)",
+                "type": "text"
+            },
+            "citeyear": 2014
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": false
+}

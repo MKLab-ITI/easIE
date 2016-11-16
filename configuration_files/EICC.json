@@ -1,0 +1,30 @@
+{
+    "url": {
+        "base_url": "http://www.eiccoalition.org",
+        "relative_url": "/about/members/"
+    },
+    "source_name": "EICC",
+    "table_selector": "ul.memberList li",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "*",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "EICC member",
+            "value": "true"
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": false
+}

@@ -1,0 +1,222 @@
+{
+    "url": {
+        "base_url": "https://www.accesstonutrition.org",
+        "relative_url": "/index/2016"
+    },
+    "source_name": "Access to Nutrition Index",
+    "table_selector": "#atni-all > table:nth-child(2) > tbody:nth-child(1) > tr",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "th:nth-child(2)",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "Access to Nutrition Index Score",
+            "value": {
+                "selector": "td:nth-child(4)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Access to Nutrition Index Ranking",
+            "value": {
+                "selector": "td:nth-child(1)",
+                "type": "text"
+            }
+        },
+        {
+            "label": {
+                "selector": "td.balk div.deel.cat-a",
+                "type": "title",
+                "replace": {
+                    "regex": [
+                        ":.*"
+                    ],
+                    "with": [
+                        " Score"
+                    ]
+                }
+            },
+            "value": {
+                "selector": "td.balk div.deel.cat-a",
+                "type": "title",
+                "replace": {
+                    "regex": [
+                        ".*: "
+                    ],
+                    "with": [
+                        ""
+                    ]
+                }
+            }
+        },
+        {
+            "label": {
+                "selector": "td.balk div.deel.cat-b",
+                "type": "title",
+                "replace": {
+                    "regex": [
+                        ":.*"
+                    ],
+                    "with": [
+                        " Score"
+                    ]
+                }
+            },
+            "value": {
+                "selector": "td.balk div.deel.cat-b",
+                "type": "title",
+                "replace": {
+                    "regex": [
+                        ".*: "
+                    ],
+                    "with": [
+                        ""
+                    ]
+                }
+            }
+        },
+        {
+            "label": {
+                "selector": "td.balk div.deel.cat-c",
+                "type": "title",
+                "replace": {
+                    "regex": [
+                        ":.*"
+                    ],
+                    "with": [
+                        " Score"
+                    ]
+                }
+            },
+            "value": {
+                "selector": "td.balk div.deel.cat-c",
+                "type": "title",
+                "replace": {
+                    "regex": [
+                        ".*: "
+                    ],
+                    "with": [
+                        ""
+                    ]
+                }
+            }
+        },
+        {
+            "label": {
+                "selector": "td.balk div.deel.cat-d",
+                "type": "title",
+                "replace": {
+                    "regex": [
+                        ":.*"
+                    ],
+                    "with": [
+                        " Score"
+                    ]
+                }
+            },
+            "value": {
+                "selector": "td.balk div.deel.cat-d",
+                "type": "title",
+                "replace": {
+                    "regex": [
+                        ".*: "
+                    ],
+                    "with": [
+                        ""
+                    ]
+                }
+            }
+        },
+        {
+            "label": {
+                "selector": "td.balk div.deel.cat-e",
+                "type": "title",
+                "replace": {
+                    "regex": [
+                        ":.*"
+                    ],
+                    "with": [
+                        " Score"
+                    ]
+                }
+            },
+            "value": {
+                "selector": "td.balk div.deel.cat-e",
+                "type": "title",
+                "replace": {
+                    "regex": [
+                        ".*: "
+                    ],
+                    "with": [
+                        ""
+                    ]
+                }
+            }
+        },
+        {
+            "label": {
+                "selector": "td.balk div.deel.cat-f",
+                "type": "title",
+                "replace": {
+                    "regex": [
+                        ":.*"
+                    ],
+                    "with": [
+                        " Score"
+                    ]
+                }
+            },
+            "value": {
+                "selector": "td.balk div.deel.cat-f",
+                "type": "title",
+                "replace": {
+                    "regex": [
+                        ".*: "
+                    ],
+                    "with": [
+                        ""
+                    ]
+                }
+            }
+        },
+        {
+            "label": {
+                "selector": "td.balk div.deel.cat-g",
+                "type": "title",
+                "replace": {
+                    "regex": [
+                        ":.*"
+                    ],
+                    "with": [
+                        " Score"
+                    ]
+                }
+            },
+            "value": {
+                "selector": "td.balk div.deel.cat-g",
+                "type": "title",
+                "replace": {
+                    "regex": [
+                        ".*: "
+                    ],
+                    "with": [
+                        ""
+                    ]
+                }
+            }
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB_SEC3",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": false
+}

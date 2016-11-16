@@ -1,0 +1,47 @@
+{
+    "url": {
+        "base_url": "http://sustainability-ranking.channelnewsasia.com",
+        "relative_url": "/top100.html"
+    },
+    "source_name": "Sustainability Asia's Ranking",
+    "table_selector": "div.col-md-4 > div.block.sm",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "h3",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Country",
+            "value": {
+                "selector": "div.info > h5",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Industry",
+            "value": {
+                "selector": "div.info > h6",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "Rank in Sustainability Asia's Ranking",
+            "value": {
+                "selector": "div.number",
+                "type": "text"
+            }
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "testing_framework",
+        "companies_collection": "Companies",
+        "metrics_collection": "Metrics"
+    },
+    "dynamic_page": false
+}

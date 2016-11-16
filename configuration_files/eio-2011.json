@@ -1,0 +1,170 @@
+{
+    "url": {
+        "base_url": "http://www.eio.org.uk",
+        "relative_url": "/etindex.php?page=overview1&ranking=Global_800"
+    },
+    "table_selector": "#eio_rankings > tbody:nth-child(3) > tr",
+    "source_name": "EIO",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "td:nth-child(2)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Country",
+            "value": {
+                "selector": "td.country",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "Market Value ($Million)",
+            "value": {
+                "selector": "td:nth-child(4)",
+                "type": "text",
+                "replace": {
+                    "regex": [
+                        ","
+                    ],
+                    "with": [
+                        ""
+                    ]
+                }
+            },
+            "citeyear":2011
+        },
+        {
+            "label": "Reported Scope 1+2 Total (tCO2e)",
+            "value": {
+                "selector": "td:nth-child(5)",
+                "type": "text",
+                "replace": {
+                    "regex": [
+                        ","
+                    ],
+                    "with": [
+                        ""
+                    ]
+                }
+            },
+            "citeyear":2011
+        },
+        {
+            "label": "Scope 1+2 Intensity",
+            "value": {
+                "selector": "td:nth-child(6)",
+                "type": "text",
+                "replace": {
+                    "regex": [
+                        ","
+                    ],
+                    "with": [
+                        ""
+                    ]
+                }
+            },
+            "citeyear":2011
+        },
+        {
+            "label": "Reported Scope 3 Total (tCO2e)",
+            "value": {
+                "selector": "td:nth-child(7)",
+                "type": "text",
+                "replace": {
+                    "regex": [
+                        ","
+                    ],
+                    "with": [
+                        ""
+                    ]
+                }
+            },
+            "citeyear":2011
+        },
+        {
+            "label": "Reported Scope 3 Intensity",
+            "value": {
+                "selector": "td:nth-child(8)",
+                "type": "text",
+                "replace": {
+                    "regex": [
+                        ","
+                    ],
+                    "with": [
+                        ""
+                    ]
+                }
+            },
+            "citeyear":2011
+        },
+        {
+            "label": "Accepted or Inferred Scope 3 Intensity",
+            "value": {
+                "selector": "td:nth-child(9)",
+                "type": "text",
+                "replace": {
+                    "regex": [
+                        ","
+                    ],
+                    "with": [
+                        ""
+                    ]
+                }
+            },
+            "citeyear":2011
+        },
+        {
+            "label": "No. of Scope 3 Categories Reported",
+            "value": {
+                "selector": "td:nth-child(10)",
+                "type": "text",
+                "replace": {
+                    "regex": [
+                        ","
+                    ],
+                    "with": [
+                        ""
+                    ]
+                }
+            },
+            "citeyear":2011
+        },
+        {
+            "label": "Combined Scope 1+2+3 Intensity",
+            "value": {
+                "selector": "td:nth-child(11)",
+                "type": "text",
+                "replace": {
+                    "regex": [
+                        ","
+                    ],
+                    "with": [
+                        ""
+                    ]
+                }
+            },
+            "citeyear":2011
+        },
+        {
+            "label": "ET Carbon Ranking",
+            "value": {
+                "selector": "td:nth-child(1)",
+                "type": "text"
+            },
+            "citeyear":2011
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "next_page_selector": ".next_page",
+    "dynamic_page": false
+}

@@ -1,0 +1,51 @@
+{
+    "url": {
+        "base_url": "http://www.irceline.be",
+        "relative_url": "/tables/actair/actair.php?lan=en"
+    },
+    "table_selector": ".responsive > tbody:nth-child(1) > tr",
+    "source_name": "Fortune",
+    "company_info": [
+        {
+            "label": "City",
+            "value": {
+                "selector": "td:nth-child(2)",
+                "type": "text",
+                "replace":{
+                    "regex":["$"],
+                    "with":[" MIN"]
+                }
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "O3",
+            "value": {
+                "selector": "td:nth-child(3)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "NO2",
+            "value": {
+                "selector": "td:nth-child(4)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "CO",
+            "value": {
+                "selector": "td:nth-child(5)",
+                "type": "text"
+            }
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": false
+}

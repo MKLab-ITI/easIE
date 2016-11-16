@@ -1,0 +1,30 @@
+{
+    "url": {
+        "base_url": "http://ww2.epeat.net",
+        "relative_url": "/companyList.aspx"
+    },
+    "source_name": "EPEAT",
+    "table_selector": ".styled > tbody:nth-child(1) > tr",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "td:nth-child(1)",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "EPEAT member",
+            "value": "true"
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": false
+}

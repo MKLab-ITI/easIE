@@ -1,0 +1,84 @@
+{
+    "url": {
+        "base_url": "https://scholar.google.com",
+        "relative_url": "/citations?view_op=view_org&hl=en&org=15565238550923390865&before_author=RLaC_6cBAAAJ&astart=0"
+    },
+    "table_selector": "#gsc_ccl div.gsc_1usr",
+    "source_name": "Google Scholar",
+    "company_info": [
+        {
+            "label": "Researcher Name",
+            "value": {
+                "selector": "div:nth-child(2) > h3:nth-child(1) > a:nth-child(1)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Google Scholar Profile",
+            "value": {
+                "selector": "div:nth-child(2) > h3:nth-child(1) > a:nth-child(1)",
+                "type": "link",
+                "replace": {
+                    "regex": [
+                        "^"
+                    ],
+                    "with": [
+                        "https://scholar.google.com"
+                    ]
+                }
+            }
+        },
+        {
+            "label": "Organization",
+            "value": "Centre for Research and Technology Hellas"
+        },
+        {
+            "label": "Institute",
+            "value": "Information Technologies Institute"
+        },
+        {
+            "label": "Cited by",
+            "value": {
+                "selector": "div:nth-child(2) > div:nth-child(5)",
+                "type": "text",
+                "replace": {
+                    "regex": [
+                        "Cited by "
+                    ],
+                    "with": [
+                        ""
+                    ]
+                }
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "Cited by",
+            "value": {
+                "selector": "div:nth-child(2) > div:nth-child(5)",
+                "type": "text",
+                "replace": {
+                    "regex": [
+                        "Cited by "
+                    ],
+                    "with": [
+                        ""
+                    ]
+                }
+            }
+        }
+    ],
+    "events": {
+        "type": "CLICK",
+        "times_to_repeat": 4,
+        "selector": "#gsc_ab_rti > span:nth-child(1) > button:nth-child(3)",
+        "extraction_type": "AFTER_EACH_EVENT"
+    },
+    "store": {
+        "format": "ABSTRACT_METRIC",
+        "database": "Google_Scholar",
+        "metrics_collection": "Authors"
+    },
+    "dynamic_page": true
+}

@@ -1,0 +1,35 @@
+{
+    "url": {
+        "base_url": "http://www.cleanclothes.org",
+        "relative_url": "/news/2013/05/14/more-brands-commit-to-the-accord-on-fire-building-safety-in-bangladesh"
+    },
+    "source_name": "Clean Clothes Campaign",
+    "table_selector": "#parent-fieldname-text > ol:nth-child(2) > li",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "*",
+                "type": "text",
+                "replace":{
+                    "regex":["^[0-9]+\\."],
+                    "with":[""]
+                }
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "commit to the Accord on Fire & Building Safety in Bangladesh",
+            "value": "true",
+            "citeyear":2013
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": false
+}

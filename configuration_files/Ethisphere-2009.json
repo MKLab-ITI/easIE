@@ -1,0 +1,45 @@
+{
+    "url": {
+        "base_url": "http://worldsmostethicalcompanies.ethisphere.com",
+        "relative_url": "/honorees/"
+    },
+    "source_name": "Ethisphere",
+    "table_selector": "#tablepress-wme2009 > tbody:nth-child(2) > tr",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "td:nth-child(1)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Industry",
+            "value": {
+                "selector": "td:nth-child(2)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Country",
+            "value": {
+                "selector": "td:nth-child(3)",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "In list World's Most Ethical Companies 2009",
+            "value": "true",
+            "citeyear": 2009
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": false
+}

@@ -1,0 +1,53 @@
+{
+    "url": {
+        "base_url": "http://www.reportwatch.net",
+        "relative_url": "/annual-report-on-annual-reports-2015/top-400-annual-reports/"
+    },
+    "source_name": "Report Watch",
+    "table_selector": ".default > tbody:nth-child(2) > tr",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "td:nth-child(2)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Country",
+            "value": {
+                "selector": "td:nth-child(3)",
+                "type": "text",
+                "replace":{
+                    "regex":["-.*"],
+                    "with":[""]
+                }
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "Retport Rating",
+            "value": {
+                "selector": "td:nth-child(4)",
+                "type": "text",
+                "citeyear":2015
+            }
+        },
+        {
+            "label": "Retport Rank",
+            "value": {
+                "selector": "td:nth-child(1)",
+                "type": "text",
+                "citeyear":2015
+            }
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": false
+}

@@ -1,0 +1,101 @@
+{
+    "url": {
+        "base_url": "https://www.unglobalcompact.org",
+        "relative_url": "/what-is-gc/participants/search?utf8=%E2%9C%93&search[keywords]=&search[organization_types][]=2&search[organization_types][]=3&search[organization_types][]=5&search[organization_types][]=15&search[organization_types][]=19&search[per_page]=50&search[sort_field]=&search[sort_direction]=asc"
+    },
+    "table_selector": ".participants-table > tbody:nth-child(2) > tr",
+    "source_name": "UN Global Compact",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "th.name",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Sector",
+            "value": {
+                "selector": "td.sector",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Country",
+            "value": {
+                "selector": "td.country",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "Participant in UN Global Compact Since",
+            "value": {
+                "selector": "td.joined-on",
+                "type": "text"
+            }
+        },
+        {
+            "label": "crawl_to",
+            "value": {
+                "selector": "th.name > a:nth-child(1)",
+                "type": "link"
+            }
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "next_page_selector":".next_page",
+    "dynamic_page": false,
+    "crawl": {
+        "company_info": [
+            {
+                "label": "Website",
+                "value": {
+                    "selector": ".participant-website-link",
+                    "type": "link"
+                }
+            }
+        ],
+        "metrics": [
+            {
+                "label": "Global Compact Status",
+                "value": {
+                    "selector": "div.column:nth-child(3) > dl:nth-child(2) > dd:nth-child(8)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "crawl_to",
+                "value": {
+                    "selector": ".tab-cop",
+                    "type": "link"
+                }
+            }
+        ],
+        "crawl": {
+            "table_selector": ".table-embedded > tbody:nth-child(2) > tr",
+            "metrics": [
+                {
+                    "label": {
+                        "selector": "td.title",
+                        "type": "text"
+                    },
+                    "value": {
+                        "selector": "td.title > a",
+                        "type": "link"
+                    },
+                    "citeyear": {
+                        "selector": "td.year",
+                        "type": "integer"
+                    }
+                }
+            ]
+        }
+    }
+}

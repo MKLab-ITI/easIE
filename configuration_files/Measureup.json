@@ -1,0 +1,106 @@
+{
+    "url": {
+        "base_url": "http://www.measureup.org.uk",
+        "relative_url": "/allcompanies/"
+    },
+    "source_name": "Measure Up",
+    "table_selector": ".maintable > table:nth-child(1) > tbody:nth-child(1) > tr",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "td:nth-child(1) > a",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "Ethical Code?",
+            "value": {
+                "selector": "td:nth-child(2) > a",
+                "type": "title"
+            },
+            "citeyear": 2014
+        },
+        {
+            "label": "Code applies to supply chain?",
+            "value": {
+                "selector": "td:nth-child(3) > a",
+                "type": "title"
+            },
+            "citeyear":2014
+        },
+        {
+            "label": "Living wages?",
+            "value": {
+                "selector": "td:nth-child(4) > a",
+                "type": "title"
+            },
+            "citeyear":2014
+        },
+        {
+            "label": "Factory address list?",
+            "value": {
+                "selector": "td:nth-child(5) > a",
+                "type": "title"
+            },
+            "citeyear":2014
+        },
+        {
+            "label": "Factories audited every 2 years?",
+            "value": {
+                "selector": "td:nth-child(6) > a",
+                "type": "title"
+            },
+            "citeyear":2014
+        },
+        {
+            "label": "Company staff visit factories?",
+            "value": {
+                "selector": "td:nth-child(7) > a",
+                "type": "title"
+            },
+            "citeyear":2014
+        },
+        {
+            "label": "Unannounced factory checks?",
+            "value": {
+                "selector": "td:nth-child(8) > a",
+                "type": "title"
+            },
+            "citeyear":2014
+        },
+        {
+            "label": "Confidential audit interviews?",
+            "value": {
+                "selector": "td:nth-child(9) > a",
+                "type": "title"
+            },
+            "citeyear":2014
+        },
+        {
+            "label": "Published audit results?",
+            "value": {
+                "selector": "td:nth-child(10) > a",
+                "type": "title"
+            },
+            "citeyear":2014
+        },
+        {
+            "label": "Worker complaint procedure?",
+            "value": {
+                "selector": "td:nth-child(11) > a",
+                "type": "title"
+            },
+            "citeyear":2014
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": false
+}

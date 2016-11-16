@@ -1,0 +1,68 @@
+{
+    "url": {
+        "base_url": "http://www.corporateknights.com",
+        "relative_url": "/reports/2013-global-100/2013-global-100-results-13587838/"
+    },
+    "source_name": "Corporate Knights",
+    "table_selector": "#table_1 > tbody:nth-child(3) > tr",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "td:nth-child(2)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Country",
+            "value": {
+                "selector": "td:nth-child(3)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Industry",
+            "value": {
+                "selector": "td:nth-child(4)",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "Overall Corporate Knights Score",
+            "value": {
+                "selector": "td:nth-child(5)",
+                "type": "text"
+            },
+            "citeyear":2013
+        },
+        {
+            "label": "Corporate Knights Rank",
+            "value": {
+                "selector": "td:nth-child(1)",
+                "type": "text"
+            },
+            "citeyear":2013
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": true,
+    "events": [
+        {
+            "type": "CLICK",
+            "selector": ".selecter-selected",
+            "times_to_repeat": 1
+        },
+        {
+            "type": "CLICK",
+            "selector": "span.selecter-item:nth-child(5)",
+            "times_to_repeat": 1
+        }
+    ]
+}

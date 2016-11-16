@@ -1,0 +1,34 @@
+{
+    "url": {
+        "base_url": "http://www.fcpablog.com",
+        "relative_url": "/blog/2011/10/11/the-corporate-investigations-list-october-2011.html"
+    },
+    "source_name": "FCPA",
+    "table_selector": "div.body:nth-child(3) > table:nth-child(7) > tbody:nth-child(1) > tr",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "td:nth-child(2)",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": " in Corporate Investigations List (January 2012)",
+            "value": "true"
+        },
+        {
+            "label": "citeyear",
+            "value": "2011"
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": false
+}

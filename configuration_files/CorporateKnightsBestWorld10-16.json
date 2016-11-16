@@ -1,0 +1,70 @@
+{
+    "url": {
+        "base_url": "http://www.corporateknights.com",
+        "relative_url": "/reports/2015-best-50/2015-best-50-results-14333042/"
+    },
+    "source_name": "CorporateKnights",
+    "table_selector": "#table_1 > tbody:nth-child(3) > tr",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "td:nth-child(2)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Country",
+            "value": {
+                "selector": "td:nth-child(3)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Industry",
+            "value": {
+                "selector": "td:nth-child(4)",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "rank in List: Global 100 Most Sustainable Corporations",
+            "value": {
+                "selector": "td:nth-child(1)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Corporates Knights Score",
+            "value": {
+                "selector": "td:nth-child(5)",
+                "type": "text"
+            }
+        },
+        {
+            "label":"citeyear",
+            "value":"2015"
+        }
+    ],
+    "events": [
+        {
+            "type": "CLICK",
+            "selector": ".selecter-selected",
+            "times_to_repeat": 1
+        },
+        {
+            "type": "CLICK",
+            "selector": "span.selecter-item:nth-child(5)",
+            "times_to_repeat": 1
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": true
+}

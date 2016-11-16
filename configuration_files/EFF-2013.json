@@ -1,0 +1,134 @@
+{
+    "url": {
+        "base_url": "https://www.eff.org",
+        "relative_url": "/who-has-your-back-2013"
+    },
+    "table_selector": "#starchart > tbody:nth-child(1) > tr",
+    "source_name": "EFF",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "td:nth-child(1) > img",
+                "type": "alt"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "Requires a warrant for content",
+            "value": {
+                "selector": "td:nth-child(2) > img",
+                "type": "src",
+                "replace": {
+                    "regex": [
+                        "/sites/default/files/star_0.png",
+                        "/sites/default/files/checklist-1.png"
+                    ],
+                    "with": [
+                        "Yes",
+                        "No"
+                    ]
+                }
+            },
+            "citeyear":2013
+        },
+        {
+            "label": "Tells users about government data demands",
+            "value": {
+                "selector": "td:nth-child(3) > img",
+                "type": "src",
+                "replace": {
+                    "regex": [
+                        "/sites/default/files/star_0.png",
+                        "/sites/default/files/checklist-1.png"
+                    ],
+                    "with": [
+                        "Yes",
+                        "No"
+                    ]
+                }
+            },
+            "citeyear":2013
+        },
+        {
+            "label": "Publishes transparency reports",
+            "value": {
+                "selector": "td:nth-child(4) > img",
+                "type": "src",
+                "replace": {
+                    "regex": [
+                        "/sites/default/files/star_0.png",
+                        "/sites/default/files/checklist-1.png"
+                    ],
+                    "with": [
+                        "Yes",
+                        "No"
+                    ]
+                }
+            },
+            "citeyear":2013
+        },
+        {
+            "label": "Publishes law enforcement guidelines",
+            "value": {
+                "selector": "td:nth-child(5) > img",
+                "type": "src",
+                "replace": {
+                    "regex": [
+                        "/sites/default/files/star_0.png",
+                        "/sites/default/files/checklist-1.png"
+                    ],
+                    "with": [
+                        "Yes",
+                        "No"
+                    ]
+                }
+            },
+            "citeyear":2013
+        },
+        {
+            "label": "Fights for users' privacy rights in courts",
+            "value": {
+                "selector": "td:nth-child(6) > img",
+                "type": "src",
+                "replace": {
+                    "regex": [
+                        "/sites/default/files/star_0.png",
+                        "/sites/default/files/checklist-1.png"
+                    ],
+                    "with": [
+                        "Yes",
+                        "No"
+                    ]
+                }
+            },
+            "citeyear":2013
+        },
+        {
+            "label": "Fights for users’ privacy rights in Congress",
+            "value": {
+                "selector": "td:nth-child(7) > img",
+                "type": "src",
+                "replace": {
+                    "regex": [
+                        "/sites/default/files/star_0.png",
+                        "/sites/default/files/checklist-1.png"
+                    ],
+                    "with": [
+                        "Yes",
+                        "No"
+                    ]
+                }
+            },
+            "citeyear":2013
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": false
+}

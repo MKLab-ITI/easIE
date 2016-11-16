@@ -1,0 +1,126 @@
+{
+    "url": {
+        "base_url": "http://www.newsweek.com",
+        "relative_url": "/green-2015/top-green-companies-world-2015"
+    },
+    "source_name": "Newsweek",
+    "table_selector": ".hasStickyHeaders > tbody:nth-child(3) > tr",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "td:nth-child(3)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Country",
+            "value": {
+                "selector": "td:nth-child(4)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Industry",
+            "value": {
+                "selector": "td:nth-child(6)",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "Energy Productivity",
+            "value": {
+                "selector": "td:nth-child(7)",
+                "type": "text"
+            },
+            "citeyear": 2015
+        },
+        {
+            "label": "Carbon Productivity",
+            "value": {
+                "selector": "td:nth-child(8)",
+                "type": "text"
+            },
+            "citeyear": 2015
+        },
+        {
+            "label": "Water Productivity",
+            "value": {
+                "selector": "td:nth-child(9)",
+                "type": "text"
+            },
+            "citeyear": 2015
+        },
+        {
+            "label": "Waste Productivity",
+            "value": {
+                "selector": "td:nth-child(10)",
+                "type": "text"
+            },
+            "citeyear": 2015
+        },
+        {
+            "label": "Green Revenue",
+            "value": {
+                "selector": "td:nth-child(11)",
+                "type": "text"
+            },
+            "citeyear": 2015
+        },
+        {
+            "label": "Pay Link",
+            "value": {
+                "selector": "td:nth-child(12)",
+                "type": "text"
+            },
+            "citeyear": 2015
+        },
+        {
+            "label": "Sustainability Themed Commitee",
+            "value": {
+                "selector": "td:nth-child(13)",
+                "type": "text"
+            },
+            "citeyear": 2015
+        },
+        {
+            "label": "Audit Score",
+            "value": {
+                "selector": "td:nth-child(14)",
+                "type": "text"
+            },
+            "citeyear": 2015
+        },
+        {
+            "label": "NewsweekGreen Score",
+            "value": {
+                "selector": "td:nth-child(2)",
+                "type": "text"
+            },
+            "citeyear": 2015
+        },
+        {
+            "label": "Newsweek Global Rank 2015",
+            "value": {
+                "selector": "td:nth-child(1)",
+                "type": "text"
+            },
+            "citeyear": 2015
+        }
+    ],
+    "events": {
+        "type": "CLICK",
+        "selector":".view-toggle",
+        "times_to_repeat":1,
+        "extraction_type":"AFTER_ALL_EVENTS"
+    },
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": true
+}

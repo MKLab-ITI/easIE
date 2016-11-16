@@ -1,0 +1,49 @@
+{
+    "url": {
+        "base_url": "http://www.fairlabor.org",
+        "relative_url": "/affiliates"
+    },
+    "source_name": "Fairlabor",
+    "table_selector": "div.views-row",
+    "metrics": [
+        {
+            "label": "crawl_to",
+            "value": {
+                "selector": "div:nth-child(1) > div:nth-child(1) > a:nth-child(1)",
+                "type": "link"
+            }
+        }
+    ],
+    "crawl": {
+        "company_info": [
+            {
+                "label": "Company Name",
+                "value": {
+                    "selector": "#page-title",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "Website",
+                "value": {
+                    "selector": "div.views-field:nth-child(4) > div:nth-child(1) > a:nth-child(1)",
+                    "type": "link"
+                }
+            }
+        ],
+        "metrics": [
+            {
+                "label": "Fairlabor member",
+                "value": "true"
+            }
+        ]
+    },
+    "next_page_selector": ".pager-next > a:nth-child(1)",
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": false
+}

@@ -1,0 +1,199 @@
+{
+    "url": {
+        "base_url": "http://www.eio.org.uk",
+        "relative_url": "/Global_800_2013.html"
+    },
+    "source_name": "Environmental Investment Organisation",
+    "table_selector": ".rankings_Global_800 > tbody:nth-child(4) > tr",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "td:nth-child(2)",
+                "type": "title"
+            }
+        },
+        {
+            "label": "Country",
+            "value": {
+                "selector": "td:nth-child(3)",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "Market Value ($Millions)",
+            "value": {
+                "selector": "td:nth-child(4)",
+                "type": "text",
+                "replace": {
+                    "regex": [
+                        ",",
+                        "-",
+                        "No Data"
+                    ],
+                    "with": [
+                        "",
+                        "",
+                        ""
+                    ]
+                }
+            }
+        },
+        {
+            "label": "Reported Scope 1+2 Total (tCO2e)",
+            "value": {
+                "selector": "td:nth-child(5)",
+                "type": "text",
+                "replace": {
+                    "regex": [
+                        ",",
+                        "-",
+                        "No Data"
+                    ],
+                    "with": [
+                        "",
+                        "",
+                        ""
+                    ]
+                }
+            }
+        },
+        {
+            "label": "Scope 1+2 Intensity",
+            "value": {
+                "selector": "td:nth-child(6)",
+                "type": "text",
+                "replace": {
+                    "regex": [
+                        ",",
+                        "-",
+                        "No Data"
+                    ],
+                    "with": [
+                        "",
+                        "",
+                        ""
+                    ]
+                }
+            }
+        },
+        {
+            "label": "Reported Scope 3 Total (tCO2e)",
+            "value": {
+                "selector": "td:nth-child(7)",
+                "type": "text",
+                "replace": {
+                    "regex": [
+                        ",",
+                        "-",
+                        "No Data"
+                    ],
+                    "with": [
+                        "",
+                        "",
+                        ""
+                    ]
+                }
+            }
+        },
+        {
+            "label": "Reported Scope 3 Intensity",
+            "value": {
+                "selector": "td:nth-child(8)",
+                "type": "text",
+                "replace": {
+                    "regex": [
+                        ",",
+                        "-",
+                        "No Data"
+                    ],
+                    "with": [
+                        "",
+                        "",
+                        ""
+                    ]
+                }
+            }
+        },
+        {
+            "label": "Accepted or Inferred Scope 3 Intensity",
+            "value": {
+                "selector": "td:nth-child(9)",
+                "type": "text",
+                "replace": {
+                    "regex": [
+                        ",",
+                        "-",
+                        "No Data"
+                    ],
+                    "with": [
+                        "",
+                        "",
+                        ""
+                    ]
+                }
+            }
+        },
+        {
+            "label": "No. of Scope 3 Categories Reported",
+            "value": {
+                "selector": "td:nth-child(10)",
+                "type": "text",
+                "replace": {
+                    "regex": [
+                        ",",
+                        "-",
+                        "No Data"
+                    ],
+                    "with": [
+                        "",
+                        "",
+                        ""
+                    ]
+                }
+            }
+        },
+        {
+            "label": "Combined Scope 1+2+3 Intensity",
+            "value": {
+                "selector": "td:nth-child(11)",
+                "type": "text",
+                "replace": {
+                    "regex": [
+                        ",",
+                        "-",
+                        "No Data"
+                    ],
+                    "with": [
+                        "",
+                        "",
+                        ""
+                    ]
+                }
+            }
+        },
+        {
+            "label": "Rank in Environmental Investment Organisation",
+            "value": {
+                "selector": "td:nth-child(1)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "citeyear",
+            "value": "2013"
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "events":{
+        "type":"SCROLL_DOWN"
+    },
+    "dynamic_page": true
+}

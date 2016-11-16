@@ -1,0 +1,54 @@
+{
+    "url": {
+        "base_url": "http://fortune.com",
+        "relative_url": "/fortune500/2008/"
+    },
+    "source_name": "Fortune",
+    "table_selector":".content-well > div:nth-child(1) > article",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "div.article-title > h1",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Country",
+            "value": "United States"
+        },
+        {
+            "label": "Website",
+            "value": {
+                "selector": "table.highlights-table > tbody > tr:nth-child(5) > td:nth-child(2)",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "rank in List: Fortune 500",
+            "value": {
+                "selector": "table.highlights-table > tbody > tr:nth-child(1) > td:nth-child(2)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "citeyear",
+            "value": "2008"
+        }
+    ],
+    "events":{
+        "type":"SCROLL_DOWN",
+        "selector":"",
+        "times_to_repeat":1000,
+        "extraction_type":"AFTER_ALL_EVENTS"
+    },
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": true
+}

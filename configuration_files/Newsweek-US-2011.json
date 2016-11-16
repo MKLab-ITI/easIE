@@ -1,0 +1,86 @@
+{
+    "url": {
+        "base_url": "https://web.archive.org",
+        "relative_url": "/web/20120130052928/http://www.thedailybeast.com/newsweek/features/green-rankings/2011/us.html"
+    },
+    "source_name": "Newsweek",
+    "table_selector": ".display > tbody:nth-child(3) > tr",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "td:nth-child(2)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Country",
+            "value": {
+                "selector": "td:nth-child(3)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Industry",
+            "value": {
+                "selector": "td:nth-child(4)",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "Impact",
+            "value": {
+                "selector": "td:nth-child(6)",
+                "type": "text"
+            },
+            "citeyear": 2011
+        },
+        {
+            "label": "Management",
+            "value": {
+                "selector": "td:nth-child(7)",
+                "type": "text"
+            },
+            "citeyear": 2011
+        },
+        {
+            "label": "Disclosure",
+            "value": {
+                "selector": "td:nth-child(8)",
+                "type": "text"
+            },
+            "citeyear": 2011
+        },
+        {
+            "label": "Green Score",
+            "value": {
+                "selector": "td:nth-child(5)",
+                "type": "text"
+            },
+            "citeyear": 2011
+        },
+        {
+            "label": "Newsweek US Rank 2011",
+            "value": {
+                "selector": "td:nth-child(1)",
+                "type": "text"
+            },
+            "citeyear": 2011
+        }
+    ],
+    "events": {
+        "type": "CLICK",
+        "selector": ".pager_top > div:nth-child(1) > div:nth-child(2)",
+        "times_to_repeat": 19,
+        "extraction_type": "AFTER_EACH_EVENT"
+    },
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB_SEC3",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": true
+}

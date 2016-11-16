@@ -1,0 +1,183 @@
+{
+    "url": {
+        "base_url": "http://ec.europa.eu"
+    },
+    "group_of_urls": [
+        "/transparencyregister/public/consultation/listlobbyists.do?letter=A&alphabetName=LatinAlphabet",
+        "/transparencyregister/public/consultation/listlobbyists.do?letter=B&alphabetName=LatinAlphabet",
+        "/transparencyregister/public/consultation/listlobbyists.do?letter=C&alphabetName=LatinAlphabet",
+        "/transparencyregister/public/consultation/listlobbyists.do?letter=D&alphabetName=LatinAlphabet",
+        "/transparencyregister/public/consultation/listlobbyists.do?letter=E&alphabetName=LatinAlphabet",
+        "/transparencyregister/public/consultation/listlobbyists.do?letter=F&alphabetName=LatinAlphabet",
+        "/transparencyregister/public/consultation/listlobbyists.do?letter=G&alphabetName=LatinAlphabet",
+        "/transparencyregister/public/consultation/listlobbyists.do?letter=H&alphabetName=LatinAlphabet",
+        "/transparencyregister/public/consultation/listlobbyists.do?letter=I&alphabetName=LatinAlphabet",
+        "/transparencyregister/public/consultation/listlobbyists.do?letter=J&alphabetName=LatinAlphabet",
+        "/transparencyregister/public/consultation/listlobbyists.do?letter=K&alphabetName=LatinAlphabet",
+        "/transparencyregister/public/consultation/listlobbyists.do?letter=L&alphabetName=LatinAlphabet",
+        "/transparencyregister/public/consultation/listlobbyists.do?letter=M&alphabetName=LatinAlphabet",
+        "/transparencyregister/public/consultation/listlobbyists.do?letter=N&alphabetName=LatinAlphabet",
+        "/transparencyregister/public/consultation/listlobbyists.do?letter=O&alphabetName=LatinAlphabet",
+        "/transparencyregister/public/consultation/listlobbyists.do?letter=P&alphabetName=LatinAlphabet",
+        "/transparencyregister/public/consultation/listlobbyists.do?letter=Q&alphabetName=LatinAlphabet",
+        "/transparencyregister/public/consultation/listlobbyists.do?letter=R&alphabetName=LatinAlphabet",
+        "/transparencyregister/public/consultation/listlobbyists.do?letter=S&alphabetName=LatinAlphabet",
+        "/transparencyregister/public/consultation/listlobbyists.do?letter=T&alphabetName=LatinAlphabet",
+        "/transparencyregister/public/consultation/listlobbyists.do?letter=U&alphabetName=LatinAlphabet",
+        "/transparencyregister/public/consultation/listlobbyists.do?letter=V&alphabetName=LatinAlphabet",
+        "/transparencyregister/public/consultation/listlobbyists.do?letter=W&alphabetName=LatinAlphabet",
+        "/transparencyregister/public/consultation/listlobbyists.do?letter=X&alphabetName=LatinAlphabet",
+        "/transparencyregister/public/consultation/listlobbyists.do?letter=Y&alphabetName=LatinAlphabet",
+        "/transparencyregister/public/consultation/listlobbyists.do?letter=Z&alphabetName=LatinAlphabet"
+    ],
+    "source_name": "EUtransparency",
+    "table_selector": "#listUsersTable > tbody:nth-child(2) > tr",
+    "metrics": [
+        {
+            "label": "crawl_to",
+            "value": {
+                "selector": "td:nth-child(3) > a",
+                "type": "link"
+            }
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "testing_framework",
+        "companies_collection": "Companies",
+        "metrics_collection": "Metrics"
+    },
+    "dynamic_page": true,
+    "events": {
+        "type": "CLICK",
+        "selector": ".table-responsive > ul:nth-child(1) > li:nth-child(7) > a:nth-child(1)",
+        "times_to_repeat": 20,
+        "extraction_type": "AFTER_EACH_EVENT"
+    },
+    "crawl": {
+        "dynamic_page": false,
+        "company_info": [
+            {
+                "label": "Company Name",
+                "value": {
+                    "selector": "#reg_details > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > p:nth-child(1)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "Website",
+                "value": {
+                    "selector": ".truncate",
+                    "type": "link"
+                }
+            },
+            {
+                "label": "Acronym",
+                "value": {
+                    "selector": "#reg_details > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > p:nth-child(1)",
+                    "type": "text"
+                }
+            }
+        ],
+        "metrics": [
+            {
+                "label": "Participation in EU structures and platforms: Consultative committees",
+                "value": {
+                    "selector": "#reg_activities > div:nth-child(2) > div:nth-child(5) > div:nth-child(2) > p:nth-child(1)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "Participation in EU structures and platforms: High-level groups (European Commission)",
+                "value": {
+                    "selector": "div.col-sm-7:nth-child(4) > p:nth-child(1)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "Participation in EU structures and platforms: High-level groups (European Commission)",
+                "value": {
+                    "selector": "div.col-sm-7:nth-child(4) > p:nth-child(1)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "Participation in EU structures and platforms: Industry forums (European Parliament)",
+                "value": {
+                    "selector": "#reg_activities > div:nth-child(2) > div:nth-child(8) > div:nth-child(2) > p:nth-child(1)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "Participation in EU structures and platforms: Complementary Information",
+                "value": {
+                    "selector": "#reg_activities > div:nth-child(2) > div:nth-child(9) > div:nth-child(2) > p:nth-child(1)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "Number of persons involved from the organisation expressed in % of working time",
+                "value": {
+                    "selector": "#reg_members > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > p:nth-child(1)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "Number of persons involved in the EU transparency activities: Full time equivalent (FTE)",
+                "value": {
+                    "selector": "#reg_members > div:nth-child(2) > div:nth-child(3) > div:nth-child(2) > p:nth-child(1)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "Number of persons involved in the EU transparency activities",
+                "value": {
+                    "selector": "#reg_members > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > p:nth-child(1)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "Number of persons involved in the EU transparency activities",
+                "value": {
+                    "selector": "#reg_members > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > p:nth-child(1)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "Number of persons involved in the EU transparency activities: Complementary information",
+                "value": {
+                    "selector": "#reg_members > div:nth-child(2) > div:nth-child(4) > div:nth-child(2) > p:nth-child(1)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "Main EU initiatives, policies and legislative files followed by the organisation",
+                "value": {
+                    "selector": "#reg_activities > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > p:nth-child(1)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "Membership of any associations/(con)federations/networks or other bodies",
+                "value": {
+                    "selector": "#reg_membership > div:nth-child(2) > div:nth-child(4) > div:nth-child(2) > p:nth-child(1)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "Financial year",
+                "value": {
+                    "selector": "#reg_financial > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > p:nth-child(1)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "Estimate of the annual costs related to activities covered by the register",
+                "value": {
+                    "selector": "#reg_financial > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > p:nth-child(1)",
+                    "type": "text"
+                }
+            }
+        ]
+    }
+}

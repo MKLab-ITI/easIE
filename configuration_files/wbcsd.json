@@ -1,0 +1,37 @@
+{
+    "url": {
+        "base_url": "http://www.wbcsd.org",
+        "relative_url": "/about/members/members-list-region.aspx"
+    },
+    "source_name": "wbcsd",
+    "table_selector": "div#divCphMenuMain table > tbody > tr > td > a",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "*",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Website",
+            "value": {
+                "selector": "*",
+                "type": "link"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "is Member of wbcsd",
+            "value": "true"
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "testing_framework",
+        "companies_collection": "Companies",
+        "metrics_collection": "Metrics"
+    },
+    "dynamic_page": false
+}

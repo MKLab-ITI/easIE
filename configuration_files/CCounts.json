@@ -1,0 +1,45 @@
+{
+    "url": {
+        "base_url": "http://www.climatecounts.org/",
+        "relative_url": ""
+    },
+    "table_selector": "#company_climate_scores_dialog > div.company_name",
+    "source_name": "Climate Counts",
+    "metrics": [
+        {
+            "label": "crawl_to",
+            "value": {
+                "selector": "a",
+                "type": "link"
+            }
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "next_page_selector":".next_page",
+    "dynamic_page": false,
+    "crawl": {
+        "company_info": [
+            {
+                "label": "Company Name",
+                "value": {
+                    "selector": "#company_score_company_title > h1:nth-child(1)",
+                    "type": "text"
+                }
+            }
+        ],
+        "metrics": [
+            {
+                "label": "Company Score in Climate Counts",
+                "value": {
+                    "selector": "#company_score_score",
+                    "type": "text"
+                }
+            }
+        ]
+    }
+}

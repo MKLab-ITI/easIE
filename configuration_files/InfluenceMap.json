@@ -1,0 +1,71 @@
+{
+    "url": {
+        "base_url": "http://influencemap.org"
+    },
+    "group_of_urls":["http://influencemap.org/company/Koch-Industries","http://influencemap.org/company/Phillips-66","http://influencemap.org/company/Reliance-Industries","http://influencemap.org/company/Valero-Energy","http://influencemap.org/company/Exxon-Mobil","http://influencemap.org/company/Comcast-ff0c1dd853828f5d921b6f44e4cc97a3","http://influencemap.org/company/Occidental-Petroleum","http://influencemap.org/company/Duke-Energy","http://influencemap.org/company/Hon-Hai-Precision-Industry","http://influencemap.org/company/Chevron-f4b47c4ea77f0f6249ba7f77d4f210ff","http://influencemap.org/company/LyondellBasell-Industries","http://influencemap.org/company/Conoco-Phillips","http://influencemap.org/company/UnitedHealth-Group","http://influencemap.org/company/Woodside-Petroleum","http://influencemap.org/company/Hutchison-Whampoa","http://influencemap.org/company/Marathon-Oil","http://influencemap.org/company/Canadian-Natural-Resources","http://influencemap.org/company/BP-94bc79de9cd9bff157e9d554618aaa09","http://influencemap.org/company/Caterpillar-23fa28232337f0149d9f7c694a2e5325","http://influencemap.org/company/BASF-9c2526b336864ffb52b43107fe4296b5","http://influencemap.org/company/America-Movil","http://influencemap.org/company/Toray-Industries-Inc","http://influencemap.org/company/CVS-Health","http://influencemap.org/company/Mitsui-Co","http://influencemap.org/company/Solvay-446f69cce18f12102496bfc9e71bc0cd","http://influencemap.org/company/Lukoil-137a7d601da038d6fea9fbc2653de0f1","http://influencemap.org/company/Schlumberger-5720686f8f1927845aeab68ecf4f29d3","http://influencemap.org/company/Dow-Chemical","http://influencemap.org/company/Cargill-0b04c96b22896371ee3ff5b38ab91a25","http://influencemap.org/company/EOG-Resources","http://influencemap.org/company/Total-5a9f086d9a2ce300529ea4eb020d1aa3","http://influencemap.org/company/Bayer-6c618bc4a9be17c4f6812721dc5e2ca7","http://influencemap.org/company/Merck-00fa3a33e65b337f3c68eaebfef624a3","http://influencemap.org/company/21st-Century-Fox","http://influencemap.org/company/Daimler-28530a4914fd654eaf2de6ef8feb5470","http://influencemap.org/company/Rio-Tinto-Group","http://influencemap.org/company/Time-Warner","http://influencemap.org/company/Hess-Corporation","http://influencemap.org/company/Mitsubishi-Corporation","http://influencemap.org/company/Home-Depot","http://influencemap.org/company/Fiat-Chrysler-Automobiles","http://influencemap.org/company/Hyundai-Motor","http://influencemap.org/company/Boeing-8069fc81ee891c2f7dda59ed922b5e24","http://influencemap.org/company/Ford-Motor","http://influencemap.org/company/Delta-Air-Lines","http://influencemap.org/company/General-Electric","http://influencemap.org/company/Procter-Gamble","http://influencemap.org/company/ENI-f50369f20d3a3fdc4c2ce661963277d0","http://influencemap.org/company/Royal-Dutch-Shell","http://influencemap.org/company/Roche-Group","http://influencemap.org/company/Asahi-Kasei","http://influencemap.org/company/Shinetsu-Chemicals","http://influencemap.org/company/Volkswagen-9e7f6038049cce3caa35490440a6a54b","http://influencemap.org/company/Suncor-Energy","http://influencemap.org/company/AT-T","http://influencemap.org/company/Sumitomo-Chemicals","http://influencemap.org/company/Airbus-Group","http://influencemap.org/company/Sanofi-9117d5b849b012576ac290290b12cdd0","http://influencemap.org/company/Mitsubishi-Chemical-Holdings","http://influencemap.org/company/BHP-Billiton","http://influencemap.org/company/Intel-d529169d00787bfdcc3ec143fe6335a9","http://influencemap.org/company/Renault-da6a2597b9d24c063ad54d8be696efdf","http://influencemap.org/company/British-American-Tobacco","http://influencemap.org/company/DuPont-8c18677f67d0a9c3b17cf6f08dacaf3b","http://influencemap.org/company/Pfizer-f9ce5545ca4f4ddf29b96ae6b3d033f3","http://influencemap.org/company/Hitachi-f7b013181feb77224ad7d20e24f5088d","http://influencemap.org/company/General-Motors","http://influencemap.org/company/BMW-Group","http://influencemap.org/company/IBM-c8583f2ea91cb2532221be534b45f8cf","http://influencemap.org/company/Verizon-Communications","http://influencemap.org/company/Toyota-Motor","http://influencemap.org/company/Honeywell-International","http://influencemap.org/company/Moller-Maersk-Group","http://influencemap.org/company/United-Parcel-Service","http://influencemap.org/company/Walgreens-Boots-Alliance","http://influencemap.org/company/E-ON","http://influencemap.org/company/EDF-72fdabf53d6bf3e73276df658a32042a","http://influencemap.org/company/Honda-Motor","http://influencemap.org/company/Amgen-6d86a2bbadbc8b348728bea3e5f301f7","http://influencemap.org/company/Oracle-ece56be9dd10c60f99c3cc1efc3cd7c6","http://influencemap.org/company/Express-Scripts-Holding","http://influencemap.org/company/Nippon-Telegraph-Telephone","http://influencemap.org/company/Siemens-c03250d0a463d5cd7dbeebe141e2927b","http://influencemap.org/company/Nissan-abdc9326775d476cb90209eca8efc593","http://influencemap.org/company/Microsoft-7d653460f792e07f6b11b6c4fe696330","http://influencemap.org/company/Enel-e3acfc23c1f0dfd05759e00c3fa35175","http://influencemap.org/company/Softbank-3e421d159f729b8a21bf09fee96440cb","http://influencemap.org/company/Wal-mart-Stores","http://influencemap.org/company/DSM-1d6ed59bb42a9a746c65e0ef6c6a3729","http://influencemap.org/company/Philip-Morris-International","http://influencemap.org/company/Deutsche-Post","http://influencemap.org/company/PPG-Industries","http://influencemap.org/company/L-Oreal","http://influencemap.org/company/ABB-d7802783986d7f034330ac9d41e780c0","http://influencemap.org/company/Samsung-Electronics","http://influencemap.org/company/Orange-1e6f21d24698e844912f160790bfd65c","http://influencemap.org/company/Novartis-d398fd975ca5697fd0bcfd54c15c5d48","http://influencemap.org/company/PepsiCo-33074bfca647ae041e776b4f3ede20b9","http://influencemap.org/company/Johnson-Johnson","http://influencemap.org/company/AkzoNobel-5cac54004a0ef3484a8a2fccabc7dcf9","http://influencemap.org/company/Qualcomm-9380583664736f3c7a46da316d431f1e","http://influencemap.org/company/Hewlett-Packard","http://influencemap.org/company/Iberdrola-a88bc60c58e2b3aa71b04be5271cc8c3","http://influencemap.org/company/United-Technologies","http://influencemap.org/company/Telefonica-3f7ceb0624e18a6c2ecb1ff7afcd7c6b","http://influencemap.org/company/Walt-Disney","http://influencemap.org/company/Coca-Cola","http://influencemap.org/company/Cisco-Systems","http://influencemap.org/company/Mondelez-International","http://influencemap.org/company/Google-55106f7e39973bc5344cdf3b71aaed19","http://influencemap.org/company/Vinci-9ff469f0cfd2dd50a1c5b42997e17fe2","http://influencemap.org/company/Nestle-ed1237ea9a806b4921ed6578c090c549","http://influencemap.org/company/Apple-385f398538b2e6145dcb8afdc945c263","http://influencemap.org/company/Vodafone-Group","http://influencemap.org/company/Anheuser-Busch-InBev","http://influencemap.org/company/Telsa-Motors","http://influencemap.org/company/National-Grid","http://influencemap.org/company/Unilever-be41a93200d3068f15897ef51795038b","http://influencemap.org/company/GlaxoSmithKline-98a322c9a334e18ed3426a42bccf37af","http://influencemap.org/company/Deutsche-Telekom"],
+    "source_name": "InfluenceMap",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": ".public-view > div:nth-child(3) > div:nth-child(1) > h2.name",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Country",
+            "value": {
+                "selector": "div.col-sm-6:nth-child(1) > div:nth-child(2) > span:nth-child(2)",
+                "type": "text",
+                "replace":{
+                    "regex":[".*,"],
+                    "with":[""]
+                }
+            }
+        },
+        {
+            "label": "Website",
+            "value": {
+                "selector": "div.col-sm-6:nth-child(2) > div:nth-child(1) > span:nth-child(2) > a:nth-child(1)",
+                "type": "link"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "Performace Bands",
+            "value": {
+                "selector": ".band",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Organisation Score",
+            "value": {
+                "selector": ".orgscore > div:nth-child(1)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Relationship Score",
+            "value": {
+                "selector": ".secscore > div:nth-child(1)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Engagement Score",
+            "value": {
+                "selector": ".engagement > div:nth-child(1)",
+                "type": "text"
+            }
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": false
+}

@@ -1,0 +1,72 @@
+{
+    "url": {
+        "base_url": "http://www.rspo.org",
+        "relative_url": "/members/all"
+    },
+    "source_name": "RSPO",
+    "table_selector": ".table > tbody:nth-child(2) > tr",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "td:nth-child(1)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Country",
+            "value": {
+                "selector": "td:nth-child(2)",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "crawl_to",
+            "value": {
+                "selector": "td:nth-child(1) > a",
+                "type": "link"
+            }
+        },
+        {
+            "label": "RSPO member",
+            "value": "true"
+        }
+    ],
+    "next_page_selector": ".next > a:nth-child(1)",
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "testing_framework",
+        "companies_collection": "Companies",
+        "metrics_collection": "Metrics"
+    },
+    "dynamic_page": false,
+    "crawl": {
+        "company_info": [
+            {
+                "label": "Sector",
+                "value": {
+                    "selector": "p.member_profile:nth-child(6)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "Website",
+                "value": {
+                    "selector": ".descr-profile > a:nth-child(13)",
+                    "type": "link"
+                }
+            }
+        ],
+        "metrics": [
+            {
+                "label": "About",
+                "value": {
+                    "selector": ".text-desc-members",
+                    "type": "text"
+                }
+            }
+        ]
+    }
+}

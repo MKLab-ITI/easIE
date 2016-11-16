@@ -1,0 +1,94 @@
+{
+    "url": {
+        "base_url": "http://web.archive.org/web/20160305182053/https://www3.epa.gov/greenpower/partners/",
+        "relative_url": ""
+    },
+    "source_name": "EPA",
+    "table_selector": "table.wikitable:nth-child(10) > tbody:nth-child(2) > tr",
+    "company_info":[
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "td:nth-child(1)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Country",
+            "value": "United States"
+        }
+    ],
+    "metrics": [
+        {
+            "label": "crawl_to",
+            "value": {
+                "selector": "td:nth-child(1) > a:nth-child(1)",
+                "type": "link"
+            }
+        }
+    ],
+    "crawl": {
+        "company_info": [
+            {
+                "label": "Organization Type",
+                "value": {
+                    "selector": "tr.tint:nth-child(3) > td:nth-child(2)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "Website",
+                "value": {
+                    "selector": "#listing > tbody:nth-child(1) > tr:nth-child(10) > td:nth-child(1) > a:nth-child(1)",
+                    "type": "link",
+                    "replace":{
+                        "regex":["/web/20150617140810/"],
+                        "with":[""]
+                    }
+                }
+            }
+        ],
+        "metrics": [
+            {
+                "label": "Annual Green Power Usage (kWh)",
+                "value": {
+                    "selector": "#listing > tbody:nth-child(1) > tr:nth-child(4) > td:nth-child(2)",
+                    "type": "text",
+                    "replace":{
+                        "regex":[","],
+                        "with":[""]
+                    }
+                }
+            },
+            {
+                "label": "Percentage Green Power",
+                "value": {
+                    "selector": "tr.tint:nth-child(5) > td:nth-child(2)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "Purchasing Third-Party Certified Green Power Product?",
+                "value": {
+                    "selector": "#listing > tbody:nth-child(1) > tr:nth-child(6) > td:nth-child(2)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "Organization-wide Partner",
+                "value": {
+                    "selector": "tr.tint:nth-child(7) > td:nth-child(2)",
+                    "type": "text"
+                }
+            }
+        ]
+    },
+    "next_page_selector": ".pager-next > a:nth-child(1)",
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": false
+}

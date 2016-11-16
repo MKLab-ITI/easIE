@@ -1,0 +1,94 @@
+{
+    "url": {
+        "base_url": "http://www.bcorporation.net",
+        "relative_url": "/community/find-a-b-corp"
+    },
+    "source_name": "BCorporations",
+    "table_selector": "div.views-row",
+    "metrics": [
+        {
+            "label": "crawl_to",
+            "value": {
+                "selector": "div.views-field-field-logo > span > a",
+                "type": "link"
+            }
+        }
+    ],
+    "next_page_selector": ".next_page",
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "testing_framework",
+        "companies_collection": "Companies",
+        "metrics_collection": "Metrics"
+    },
+    "dynamic_page": false,
+    "crawl": {
+        "company_info": [
+            {
+                "label": "Company Name",
+                "value": {
+                    "selector": "#page-title",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "Website",
+                "value": {
+                    "selector": ".company-desc-inner > a:nth-child(4)",
+                    "type": "link"
+                }
+            },
+            {
+                "label": "Country",
+                "value": {
+                    "selector": ".company-desc-inner > p:nth-child(3)",
+                    "type": "text"
+                }
+            }
+        ],
+        "metrics": [
+            {
+                "label": "Environment B Corporation score",
+                "value": {
+                    "selector": ".field-name-field-environment > div:nth-child(1) > div:nth-child(1)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "Workers B Corporation score",
+                "value": {
+                    "selector": ".field-name-field-workers > div:nth-child(1) > div:nth-child(1)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "Customers B Corporation score",
+                "value": {
+                    "selector": ".field-name-field-consumers > div:nth-child(1) > div:nth-child(1)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "Community B Corporation score",
+                "value": {
+                    "selector": ".field-name-field-community > div:nth-child(1) > div:nth-child(1)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "Governance B Corporation score",
+                "value": {
+                    "selector": ".field-name-field-governance > div:nth-child(1) > div:nth-child(1)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "Overall B Corporation score",
+                "value": {
+                    "selector": ".field-name-field-governance > div:nth-child(1) > div:nth-child(1)",
+                    "type": "text"
+                }
+            }
+        ]
+    }
+}

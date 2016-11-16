@@ -1,0 +1,83 @@
+{
+    "url": {
+        "base_url": "http://www.forbes.com",
+        "relative_url": "/global2000/list/"
+    },
+    "source_name": "Forbes",
+    "table_selector": "#list-table-body > tr",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "td:nth-child(3)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Country",
+            "value": {
+                "selector": "td:nth-child(4)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Logo",
+            "value": {
+                "selector": "td:nth-child(1) > a > img",
+                "type": "src"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "Rank in Forbes",
+            "value": {
+                "selector": "td:nth-child(2)",
+                "type": "text"
+            },
+            "citeyear": 2015
+        },
+        {
+            "label": "Sales",
+            "value": {
+                "selector": "td:nth-child(5)",
+                "type": "text"
+            },
+            "citeyear": 2015
+        },
+        {
+            "label": "Profits",
+            "value": {
+                "selector": "td:nth-child(6)",
+                "type": "text"
+            },
+            "citeyear": 2015
+        },
+        {
+            "label": "Assets",
+            "value": {
+                "selector": "td:nth-child(7)",
+                "type": "text"
+            },
+            "citeyear": 2015
+        },
+        {
+            "label": "Market Value",
+            "value": {
+                "selector": "td:nth-child(8)",
+                "type": "text"
+            },
+            "citeyear": 2015
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": true,
+    "events":{
+        "type":"SCROLL_DOWN"
+    }
+}

@@ -1,0 +1,66 @@
+{
+    "url": {
+        "base_url": "http://www.goodcompanyindex.com",
+        "relative_url": "/wp/wp-content/themes/hulk/company_summary.php?yr=2011"
+    },
+    "source_name": "Good Company Index",
+    "table_selector": "#myTable > tbody:nth-child(2) > tr",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "td:nth-child(1)",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "Good Company Grade",
+            "value": {
+                "selector": "td:nth-child(4)",
+                "type": "text"
+            },
+            "citeyear": 2011
+        },
+        {
+            "label": "Overall Good Company Score",
+            "value": {
+                "selector": "td:nth-child(5)",
+                "type": "text"
+            },
+            "citeyear": 2011
+        },
+        {
+            "label": "Good Employer Score",
+            "value": {
+                "selector": "td:nth-child(6)",
+                "type": "text"
+            },
+            "citeyear": 2011
+        },
+        {
+            "label": "Good Seller Score",
+            "value": {
+                "selector": "td:nth-child(7)",
+                "type": "text"
+            },
+            "citeyear": 2011
+        },
+        {
+            "label": "Good Steward Score",
+            "value": {
+                "selector": "td:nth-child(8)",
+                "type": "text"
+            },
+            "citeyear": 2011
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": false
+}

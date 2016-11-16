@@ -1,0 +1,137 @@
+{
+    "url": {
+        "base_url": "https://www.unglobalcompact.org",
+        "relative_url": "/what-is-gc/participants/search?page=1&search[keywords]=&search[organization_types][]=2&search[organization_types][]=3&search[organization_types][]=5&search[organization_types][]=15&search[organization_types][]=19&search[per_page]=50&search[sort_direction]=asc&search[sort_field]=&utf8=✓"
+    },
+    "source_name": "UN Global Compact",
+    "table_selector": ".participants-table > tbody:nth-child(2) > tr",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "th.name",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Type",
+            "value": {
+                "selector": "td.type",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Sector",
+            "value": {
+                "selector": "td.sector",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Country",
+            "value": {
+                "selector": "td.country",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "crawl_to",
+            "value": {
+                "selector": "th.name > a",
+                "type": "link"
+            }
+        }
+    ],
+    "next_page_selector":".next_page",
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB_SEC3",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": false,
+    "crawl": {
+        "company_info": [
+            {
+                "label": "website",
+                "value": {
+                    "selector": ".participant-website-link",
+                    "type": "link"
+                }
+            }
+        ],
+        "metrics": [
+            {
+                "label": {
+                    "selector": "div.column:nth-child(3) > dl:nth-child(2) > dt:nth-child(7)",
+                    "type": "text",
+                    "replace": {
+                        "regex": [
+                            ":"
+                        ],
+                        "with": [
+                            ""
+                        ]
+                    }
+                },
+                "value": {
+                    "selector": "div.column:nth-child(3) > dl:nth-child(2) > dd:nth-child(8)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": {
+                    "selector": "div.column:nth-child(3) > dl:nth-child(2) > dt:nth-child(9)",
+                    "type": "text",
+                    "replace": {
+                        "regex": [
+                            ":"
+                        ],
+                        "with": [
+                            ""
+                        ]
+                    }
+                },
+                "value": {
+                    "selector": "div.column:nth-child(3) > dl:nth-child(2) > dd:nth-child(10)",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "UN Global Compact: Member Since",
+                "value": {
+                    "selector": ".company-information-since > time",
+                    "type": "text"
+                }
+            },
+            {
+                "label": "crawl_to",
+                "value": {
+                    "selector": ".tab-cop",
+                    "type": "link"
+                }
+            }
+        ],
+        "crawl": {
+            "table_selector":"article.tab-content:nth-child(3) > table:nth-child(3) > tbody:nth-child(2) > tr",
+            "metrics": [
+                {
+                    "label": {
+                        "selector": "td.title",
+                        "type": "text"
+                    },
+                    "value": {
+                        "selector": "td.title > a",
+                        "type": "link"
+                    },
+                    "citeyear":{
+                        "selector":"th.year",
+                        "type":"integer"
+                    }
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "url": {
+        "base_url": "http://www.bsr.org",
+        "relative_url": "/en/membership/member-list"
+    },
+    "source_name": "BSR",
+    "table_selector": "div.section-start:nth-child(8) > div:nth-child(1) > div:nth-child(1) > div.col-md-4 > p",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "*",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "BSR member",
+            "value": "true"
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": false
+}

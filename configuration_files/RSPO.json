@@ -1,0 +1,75 @@
+{
+    "url": {
+        "base_url": "http://www.rspo.org",
+        "relative_url": "/members/all"
+    },
+    "source_name": "RSPO",
+    "table_selector": ".table > tbody:nth-child(2) > tr",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "td:nth-child(1)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "Country",
+            "value": {
+                "selector": "td:nth-child(2)",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "RSPO Status",
+            "value": {
+                "selector": "td:nth-child(3)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "RSPO Member Since",
+            "value": {
+                "selector": "td:nth-child(4)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "crawl_to",
+            "value": {
+                "selector": "td:nth-child(1) > a",
+                "type": "link"
+            }
+        }
+    ],
+    "next_page_selector":".next > a:nth-child(1)",
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": false,
+    "crawl": {
+        "company_info": [
+            {
+                "label": "Website",
+                "value": {
+                    "selector": ".descr-profile > a:nth-child(13)",
+                    "type": "text"
+                }
+            }
+        ],
+        "metrics": [
+            {
+                "label": "About",
+                "value": {
+                    "selector": ".text-desc-members",
+                    "type": "text"
+                }
+            }
+        ]
+    }
+}

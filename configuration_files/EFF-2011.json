@@ -1,0 +1,114 @@
+{
+    "url": {
+        "base_url": "https://www.eff.org",
+        "relative_url": "/who-has-your-back-2011"
+    },
+    "table_selector": "#starchart > tbody:nth-child(1) > tr",
+    "source_name": "EFF",
+    "company_info": [
+        {
+            "label": "Company Name",
+            "value": {
+                "selector": "td:nth-child(1) > img",
+                "type": "alt"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "Tell users about data demands",
+            "value": {
+                "selector": "td:nth-child(2) > img",
+                "type": "src",
+                "replace": {
+                    "regex": [
+                        "https://www.eff.org/files/checklist-1.png",
+                        "https://www.eff.org/files/checklist-3.png",
+                        "https://www.eff.org/files/checklist-2.png",
+                        "https://www.eff.org/files/checklist-2-left.png"
+                    ],
+                    "with": [
+                        "Yes",
+                        "No",
+                        "taking steps in the right direction",
+                        "taking steps in the right direction"
+                    ]
+                }
+            },
+            "citeyear":2011
+        },
+        {
+            "label": "Be transparent about government requests",
+            "value": {
+                "selector": "td:nth-child(3) > img",
+                "type": "src",
+                "replace": {
+                    "regex": [
+                        "https://www.eff.org/files/checklist-1.png",
+                        "https://www.eff.org/files/checklist-3.png",
+                        "https://www.eff.org/files/checklist-2.png",
+                        "https://www.eff.org/files/checklist-2-left.png"
+                    ],
+                    "with": [
+                        "Yes",
+                        "No",
+                        "taking steps in the right direction",
+                        "taking steps in the right direction"
+                    ]
+                }
+            },
+            "citeyear":2011
+        },
+        {
+            "label": "Fight for user privacy in the courts",
+            "value": {
+                "selector": "td:nth-child(4) > img",
+                "type": "src",
+                "replace": {
+                    "regex": [
+                        "https://www.eff.org/files/checklist-1.png",
+                        "https://www.eff.org/files/checklist-3.png",
+                        "https://www.eff.org/files/checklist-2.png",
+                        "https://www.eff.org/files/checklist-2-left.png"
+                    ],
+                    "with": [
+                        "Yes",
+                        "No",
+                        "taking steps in the right direction",
+                        "taking steps in the right direction"
+                    ]
+                }
+            },
+            "citeyear":2011
+        },
+        {
+            "label": "Fight for user privacy in Congress",
+            "value": {
+                "selector": "td:nth-child(5) > img",
+                "type": "src",
+                "replace": {
+                    "regex": [
+                        "https://www.eff.org/files/checklist-1.png",
+                        "https://www.eff.org/files/checklist-3.png",
+                        "https://www.eff.org/files/checklist-2.png",
+                        "https://www.eff.org/files/checklist-2-left.png"
+                    ],
+                    "with": [
+                        "Yes",
+                        "No",
+                        "taking steps in the right direction",
+                        "taking steps in the right direction"
+                    ]
+                }
+            },
+            "citeyear":2011
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WikiRateDB",
+        "companies_collection": "Companies",
+        "metrics_collection": "Snippets"
+    },
+    "dynamic_page": false
+}
