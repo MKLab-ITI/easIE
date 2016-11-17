@@ -4,7 +4,7 @@ easy Information Extraction: is an easy-to-use information extraction framework 
 **Note: [Here](http://easie.iti.gr) you can find the web support of easIE**
 <h2><u>Getting started</u></h2>
 
-Each extractor extends AbstractHTMLExtractor and implements the `extractFields(List<ScrapableField> fields)` and `extractTable(String tableCSSselector, List<ScrapableField> fields)` methods. There are four objects that extend AbstractHTMLExtractor:
+Each extractor extends AbstractHTMLExtractor and implements the `extractFields(List<ScrapableField> fields)` and `extractTable(String table_selector, List<ScrapableField> fields)` methods. There are four objects that extend AbstractHTMLExtractor:
 
 1. `StaticHTMLExtractor` is responsible for extracting content from static HTML pages:
 
