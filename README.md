@@ -1,32 +1,29 @@
 # easIE
-easy Information Extraction: a framework for quickly and simply generating Web Information Extractors and Wrappers.
-easIE offers a set of wrappers for obtaining content from Static and Dynamic HTML pages by pointing to the html elements using css Selectors. An additional fuctionality is the definition of a configuration file. Users can define a configuration file in JSON format in order to extract content of a page by only defining this configuration file.
+easy Information Extraction: is an easy-to-use information extraction framework that extracts data about companies from heterogeneous Web sources in a semi-automatic manner. It allows admin users to extract data about companies from heterogeneous Web sources in a semi-automatic manner by only defining a configuration file. The framework is quickly and simply generating Web Information Extractors and Wrappers. easIE offers a set of wrappers for obtaining content from Static and Dynamic HTML pages by pointing to the html elements using css Selectors.
 
-**Note: [Here](https://youtu.be/R5glu7lgSmo) you can find a link that leads to a tech demo**
+**Note: [Here](http://easie.iti.gr) you can find the web support of easIE**
 <h2><u>Getting started</u></h2>
 
-Each wrapper extends AbstractWrapper and implements the `extractFields(List<Field> fields)` and `extractTableFields(String tableCSSselector, List<Field> fields)` methods. There are four objects that extend AbstractWrapper:
+Each extractor extends AbstractHTMLExtractor and implements the `extractFields(List<ScrapableField> fields)` and `extractTableFields(String tableCSSselector, List<ScrapableField> fields)` methods. There are four objects that extend AbstractHTMLExtractor:
 
-1. `StaticHTMLWrapper` is responsible for extracting content from static HTML pages:
+1. `StaticHTMLExtractor` is responsible for extracting content from static HTML pages:
 
-          StaticHTMLWrapper staticWrapper = new StaticHTMLWrapper(baseURL, relativeURL);
-          staticWrapper.extractFields(fields);
+          StaticHTMLExtractor extractor = new StaticHTMLExtractor(base_url, relative_url);
+          extractor.extractFields(fields);
 
-2. `DynamicHTMLWrapper` is responsible for executing a number of events to a dynamic HTML page and extracting the defined contents: 
+2. `DynamicHTMLExtractor` is responsible for executing a number of events to a dynamic HTML page and extracting the defined contents: 
 
-          DynamicHTMLWrapper dynamicWrapper = new DynamicHTMLWrapper(baseURL, relativeURL);
-          dymamicWrapper.clickEvent(elementCSSselector);
-          dynamicWrapper.extractFields(fields);
+          DynamicHTMLExtractor extractor = new DynamicHTMLWrapper(base_url, relative_url, chrome_driver_path);
+          extractor.browser_emulator.clickEvent(css_selector);
+          extractor.extractFields(fields);
 
-3. `BunchWrapper` is responsible for extracting content from a group of static HTML pages with similar structure:
+3. `GroupHTMLExtractor` is responsible for extracting content from a group of static HTML pages with similar structure:
 
-          BunchWrapper bunchWrapper = new BunchWrapper(groupOfPages);
-          bunchWrapper.extractFields(fields);
+          GroupHTMLExtractor extractor = new GroupHTMLExtractor(group_of_pages);
+          extractor.extractFields(fields);
           
 4. `PaginationIterator` is responsible for extracting data that are distributed in different pages:
 
-          StaticHTMLWrapper staticWrapper = new StaticHTMLWrapper(baseURL, relativeURL);
-          PaginationIterator paginationWrapper = new PaginationIterator(staticWrapper, nextPageSelector);
-          paginationWrapper.extractFields(fields);
+          PaginationIterator extractor = new PaginationIterator(base_url, relative_url, next_page_selector);
+          extractor.extractFields(fields);
           
-Some **working examples** can be found [here](https://github.com/MKLab-ITI/easIE/tree/master/src/main/java/easIE/src/examples)
