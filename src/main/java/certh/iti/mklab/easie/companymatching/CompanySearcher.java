@@ -25,6 +25,7 @@ import com.mongodb.client.MongoCursor;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import org.apache.commons.collections4.Predicate;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
@@ -121,7 +122,22 @@ public class CompanySearcher {
 
         HashMap<String, Double> candidates = new HashMap();
 
-        Iterator<CompanyDocument> it = corpus.iterator(country);
+        Predicate predicate = new Predicate<CompanyDocument>() {
+            @Override
+            public boolean evaluate(CompanyDocument object) {
+                if (country == null && document.country == null) {
+                    return true;
+                }
+
+                if (document.country == null) {
+                    return false;
+                }
+                return object.country.equals(country);
+            }
+        };
+
+        Iterator<CompanyDocument> it = corpus.iterator(predicate);
+
         int i = 0;
         while (it.hasNext()) {
             System.out.println(i++);
@@ -191,7 +207,7 @@ public class CompanySearcher {
 
                 corpus.addDocument(document);
             }
-        } 
+        }
         cursor.close();
     }
 }
