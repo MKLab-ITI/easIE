@@ -140,7 +140,6 @@ public class CompanySearcher {
 
         int i = 0;
         while (it.hasNext()) {
-            System.out.println(i++);
             CompanyDocument company = it.next();
 
             double similarity = tfidf.similarity("candidate", company.id);
