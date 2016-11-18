@@ -150,7 +150,7 @@ public class CompanySearcher {
         }
 
         if (candidates.size() > 0) {
-            String id = (String) MapFunctionsUtils.getTopValues(candidates, 1).keySet().iterator().next();
+            String id = (String) MapFunctionsUtils.getTopValues2(candidates, 1).keySet().iterator().next();
             return new ObjectId(id.replaceAll("_.*", ""));
         }
 
