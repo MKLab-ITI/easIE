@@ -125,11 +125,11 @@ public class CompanySearcher {
         Predicate predicate = new Predicate<CompanyDocument>() {
             @Override
             public boolean evaluate(CompanyDocument object) {
-                if (country == null && document.country == null) {
+                if (country == null && object.country == null) {
                     return true;
                 }
 
-                if (document.country == null) {
+                if (object.country == null) {
                     return false;
                 }
                 return object.country.equals(country);
