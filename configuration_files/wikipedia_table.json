@@ -1,0 +1,51 @@
+{
+    "url": {
+        "base_url": "https://en.wikipedia.org",
+        "relative_url": "/wiki/List_of_largest_companies_by_revenue"
+    },
+    "table_selector": ".wikitable > tbody > tr",
+    "source_name": "wikipedia",
+    "company_info": [
+        {
+            "label": "company_name",
+            "value": {
+                "selector": "td:nth-child(2)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "industry",
+            "value": {
+                "selector": "td:nth-child(3)",
+                "type": "text"
+            }
+        },
+        {
+            "label": "country",
+            "value": {
+                "selector": "td:nth-child(7) > a",
+                "type": "text"
+            }
+        }
+    ],
+    "metrics": [
+        {
+            "label": "Revenue",
+            "value": {
+                "selector": "td:nth-child(4)",
+                "type": "numerical",
+                "replace":{
+                    "regex":["^"],
+                    "with":["Millions of "]
+                }
+            }
+        }
+    ],
+    "store": {
+        "format": "COMPANY_METRIC",
+        "database": "WR_test_db",
+        "companies_collection": "companies",
+        "metrics_collection": "metrics"
+    },
+    "dynamic_page": false
+}
