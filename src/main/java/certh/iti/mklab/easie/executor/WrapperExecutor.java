@@ -15,18 +15,19 @@
  */
 package certh.iti.mklab.easie.executor;
 
-import certh.iti.mklab.easie.Key;
 import certh.iti.mklab.easie.executor.handlers.DataHandler;
 import certh.iti.mklab.easie.configuration.Configuration;
+import certh.iti.mklab.easie.exception.PaginationException;
+import certh.iti.mklab.easie.exception.RelativeURLException;
 import certh.iti.mklab.easie.executor.generators.DynamicWrapperGenerator;
 import certh.iti.mklab.easie.executor.generators.StaticWrapperGenerator;
 import certh.iti.mklab.easie.executor.generators.WrapperGenerator;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
+import org.bson.Document;
 
 /**
  * WrapperExecutor extracts contents as defined in Configuration object
@@ -36,8 +37,8 @@ import java.util.HashSet;
 public class WrapperExecutor {
 
     private Configuration config;
-    private ArrayList<HashMap> metrics;
-    private ArrayList<HashMap> company_info;
+    private ArrayList<ArrayList<Document>> metrics;
+    private ArrayList<ArrayList<Document>> company_info;
     private String ChromeDriverPath;
 
     /**
@@ -49,18 +50,18 @@ public class WrapperExecutor {
      * @throws IOException
      * @throws Exception
      */
-    public WrapperExecutor(Configuration config, String ChromeDriverPath) throws URISyntaxException, IOException, Exception {
+    public WrapperExecutor(Configuration config, String ChromeDriverPath) throws URISyntaxException, IOException, InterruptedException, PaginationException, RelativeURLException {
         this.config = config;
-        this.company_info = new ArrayList<HashMap>();
-        this.metrics = new ArrayList<HashMap>();
+        this.company_info = new ArrayList<ArrayList<Document>>();
+        this.metrics = new ArrayList<ArrayList<Document>>();
         this.ChromeDriverPath = ChromeDriverPath;
         this.wrapperGeneration();
     }
 
-    public WrapperExecutor(Configuration config) throws URISyntaxException, IOException, Exception {
+    public WrapperExecutor(Configuration config) throws URISyntaxException, IOException, InterruptedException, PaginationException, RelativeURLException {
         this.config = config;
-        this.company_info = new ArrayList<HashMap>();
-        this.metrics = new ArrayList<HashMap>();
+        this.company_info = new ArrayList<ArrayList<Document>>();
+        this.metrics = new ArrayList<ArrayList<Document>>();
         this.ChromeDriverPath = "C:\\Users\\vasgat\\Desktop\\Scrapers";
         this.wrapperGeneration();
     }
@@ -83,7 +84,7 @@ public class WrapperExecutor {
      * @throws IOException
      * @throws Exception
      */
-    private void wrapperGeneration() throws URISyntaxException, IOException, Exception {
+    private void wrapperGeneration() throws URISyntaxException, IOException, InterruptedException, PaginationException, RelativeURLException {
         WrapperGenerator wrapper;
         if (config.dynamic_page) {
             wrapper = new DynamicWrapperGenerator(config, ChromeDriverPath);
@@ -97,14 +98,18 @@ public class WrapperExecutor {
         metrics = wrapper.extraction_handler.getMetrics();
 
         Configuration config_crawl = config.crawl;
-        int current_year = Calendar.getInstance().get(Calendar.YEAR);
+
         while (config_crawl != null) {
 
             HashMap<String, Integer> group_of_urls = new HashMap();
 
             for (int i = 0; i < metrics.size(); i++) {
                 try {
-                    group_of_urls.put(config.url.base_url + (((String) metrics.get(i).get(new Key("crawl_to", current_year))).replace(config.url.base_url, "")), i);
+                    for (int j = 0; j < metrics.get(i).size(); j++) {
+                        if ((metrics.get(i)).get(j).containsValue("crawl_to")) {
+                            group_of_urls.put(config.url.base_url + (((String) metrics.get(i).get(j).getString("value")).replace(config.url.base_url, "")), i);
+                        }
+                    }
                 } catch (NullPointerException e) {
 
                 }
@@ -126,65 +131,47 @@ public class WrapperExecutor {
 
             wrapper_crawl.execute();
 
-            ArrayList<HashMap> temp_company_info = wrapper_crawl.extraction_handler.getCompanies();
-            ArrayList<HashMap> temp_metrics = wrapper_crawl.extraction_handler.getMetrics();
+            ArrayList<Document> temp_company_info = wrapper_crawl.extraction_handler.getCompanies();
+            ArrayList<ArrayList<Document>> temp_metrics = wrapper_crawl.extraction_handler.getMetrics();
 
             if (company_info.isEmpty()) {
                 for (int i = 0; i < metrics.size(); i++) {
-                    company_info.add(new HashMap());
+                    company_info.add(new ArrayList());
                 }
             }
 
             for (int i = 0; i < temp_metrics.size(); i++) {
                 try {
-
-                    int index = group_of_urls.get(temp_metrics.get(i).get("source"));
-                    HashMap temp_metric = metrics.get(index);
-                    temp_metric.putAll(temp_metrics.get(i));
-                    temp_metric.remove("crawl_to");
+                    int index = group_of_urls.get(temp_metrics.get(i).get(0).get("source"));
+                    ArrayList<Document> temp_metric = metrics.get(index);
+                    temp_metric.addAll(temp_metrics.get(i));
 
                     metrics.set(index, temp_metric);
 
-                    HashMap temp_company = company_info.get(index);
-                    if (temp_company_info.size() > 0) {
-                        temp_company.putAll(temp_company_info.get(i));
+                    ArrayList<Document> temp_company = company_info.get(index);
+                    if (temp_company.size() > 0) {
+                        temp_company.get(0).putAll(temp_company_info.get(i));
                     }
 
                     company_info.set(index, temp_company);
 
                 } catch (NullPointerException e1) {
-                    try {
-                        int index = group_of_urls.get(temp_company_info.get(i).get("source"));
-                        HashMap temp_metric = metrics.get(index);
-                        temp_metric.putAll(temp_metrics.get(i));
-                        temp_metric.remove("crawl_to");
-                        temp_metric.put("source", temp_company_info.get(i).get("source"));
-
-                        metrics.set(index, temp_metric);
-
-                        HashMap temp_company = company_info.get(index);
-                        temp_company.putAll(temp_company_info.get(i));
-
-                        company_info.set(index, temp_company);
-                    } catch (NullPointerException e2) {
-
-                    } catch (IndexOutOfBoundsException e3) {
-
-                    }
+                    System.out.println(e1.getMessage());
+                } catch (IndexOutOfBoundsException ex) {
                 }
             }
             config_crawl = config_crawl.crawl;
         }
-        for (int i = 0; i < metrics.size(); i++) {
+        /*for (int i = 0; i < metrics.size(); i++) {
             metrics.get(i).remove(new Key("crawl_to", current_year));
-        }
+        }*/
     }
 
-    public ArrayList<HashMap> getExtractedMetrics() {
+    public ArrayList<ArrayList<Document>> getExtractedMetrics() {
         return this.metrics;
     }
 
-    public ArrayList<HashMap> getCompanyInfo() {
+    public ArrayList<ArrayList<Document>> getCompanyInfo() {
         return this.company_info;
     }
 }

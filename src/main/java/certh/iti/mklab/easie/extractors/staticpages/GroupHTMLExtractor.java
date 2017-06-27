@@ -33,6 +33,7 @@ import java.util.concurrent.Future;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.util.Pair;
+import org.bson.Document;
 
 /**
  * BunchWrapper object extends AbstractWrapper and is responsible for extracting
@@ -73,8 +74,8 @@ public class GroupHTMLExtractor extends AbstractHTMLExtractor {
      * @throws Exception
      */
     @Override
-    public List<HashMap> extractFields(List<ScrapableField> fields) throws URISyntaxException, IOException, Exception {
-        ArrayList<HashMap> extractedFields = new ArrayList();
+    public List<Document> extractFields(List<ScrapableField> fields) throws URISyntaxException, IOException {
+        ArrayList<Document> extractedFields = new ArrayList();
 
         Iterator links = group_of_urls.iterator();
         ExecutorService executorService = Executors.newFixedThreadPool(numThreads);
@@ -116,8 +117,8 @@ public class GroupHTMLExtractor extends AbstractHTMLExtractor {
      * @throws Exception
      */
     @Override
-    public List<HashMap> extractTable(String tableSelector, List<ScrapableField> fields) throws URISyntaxException, IOException, Exception {
-        ArrayList<HashMap> extractedFields = new ArrayList();
+    public List<Document> extractTable(String tableSelector, List<ScrapableField> fields) throws URISyntaxException, IOException {
+        ArrayList<Document> extractedFields = new ArrayList();
 
         Iterator links = group_of_urls.iterator();
         ExecutorService executorService = Executors.newFixedThreadPool(numThreads);

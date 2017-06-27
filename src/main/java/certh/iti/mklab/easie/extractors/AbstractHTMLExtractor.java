@@ -26,11 +26,11 @@ import javafx.util.Pair;
  */
 public abstract class AbstractHTMLExtractor {
    
-   public abstract List extractFields(List<ScrapableField> fields) throws URISyntaxException, IOException, Exception;
+   public abstract List extractFields(List<ScrapableField> fields) throws URISyntaxException, IOException,InterruptedException;
    
-   public abstract List extractTable(String tableSelector, List<ScrapableField> fields) throws URISyntaxException, IOException, Exception;
+   public abstract List extractTable(String tableSelector, List<ScrapableField> fields) throws URISyntaxException, IOException, InterruptedException;
    
-   public abstract Pair extractFields(List<ScrapableField> cfields, List<ScrapableField> sfields) throws URISyntaxException, IOException, Exception;
+   public abstract Pair extractFields(List<ScrapableField> cfields, List<ScrapableField> sfields) throws URISyntaxException, IOException, InterruptedException;
    
-   public abstract Pair extractTable(String tableSelector, List<ScrapableField> cfields, List<ScrapableField> sfields) throws URISyntaxException, IOException, Exception;
+   public abstract Pair extractTable(String tableSelector, List<ScrapableField> cfields, List<ScrapableField> sfields) throws URISyntaxException, IOException, InterruptedException;
 }

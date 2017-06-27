@@ -16,17 +16,12 @@
 package certh.iti.mklab.easie.extractors;
 
 import certh.iti.mklab.easie.FIELD_TYPE;
-import certh.iti.mklab.easie.Key;
-import certh.iti.mklab.easie.Triplet;
 import certh.iti.mklab.easie.configuration.Configuration.ScrapableField;
+import certh.iti.mklab.easie.exception.HTMLElementNotFoundException;
 import certh.iti.mklab.easie.exception.PostProcessingException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.bson.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -45,15 +40,22 @@ public class TableFieldExtractor extends AbstractContentExtractor {
     }
 
     @Override
-    public List run(List<ScrapableField> fields, FIELD_TYPE type) {
+    public List run(List<ScrapableField> fields, FIELD_TYPE type) throws HTMLElementNotFoundException {
         ArrayList extractedContent = new ArrayList();
         if (document != null) {
             Elements table = document.select(table_selector);
+
+            if (table.size() == 0) {
+                throw new HTMLElementNotFoundException("WARNING: The defined table element was not found. Check the correctness of your table selector |" + table_selector + "| or for possible changes in the structure of your source.");
+            }
+
             for (int i = 0; i < table.size(); i++) {
                 try {
-                    extractedContent.add(extractTableFields(fields, table.get(i), type));
+                    ArrayList temp = new ArrayList();
+                    temp.addAll(extractTableFields(fields, table.get(i), type));
+                    extractedContent.add(temp);
                 } catch (PostProcessingException ex) {
-                    Logger.getLogger(TableFieldExtractor.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println(ex.getMessage());
                 }
             }
         }
@@ -68,29 +70,32 @@ public class TableFieldExtractor extends AbstractContentExtractor {
      * @return an ArrayList of HashMap (corresponds to the extracted table
      * fields)
      */
-    private Map<Object, Object> extractTableFields(List<ScrapableField> fields, Element element, FIELD_TYPE type) throws PostProcessingException {
-        HashMap<Object, Object> ExtractedFields = new HashMap<Object, Object>();
+    private List extractTableFields(List<ScrapableField> fields, Element element, FIELD_TYPE type) throws PostProcessingException {
+        ArrayList extractedFields = new ArrayList();
+
+        Document temp_company_info = new Document();
         for (int i = 0; i < fields.size(); i++) {
-            Triplet<String, Object, Integer> triplet = getSelectedElement(fields.get(i), element);
+            Document extracted_content = getSelectedElement(fields.get(i), element);
 
-            String tempName = triplet.first;
-            Object tempValue = triplet.second;
-            Integer tempCiteyear = triplet.third;
+            if (!extracted_content.getString("name").equals("") && extracted_content.get("value") != null && !extracted_content.get("value").toString().equals("") && extracted_content.get("value") != null) {
 
-            if (!tempName.equals("") && !tempValue.equals("")) {
                 if (type.equals(FIELD_TYPE.COMPANY_INFO)) {
-                    ExtractedFields.put(tempName, tempValue);
+                    temp_company_info.append(extracted_content.getString("name"), extracted_content.get("value"));
                 } else {
-                    ExtractedFields.put(new Key(tempName, tempCiteyear), tempValue);
+                    extracted_content.append("source", source);
+                    extractedFields.add(extracted_content);
                 }
             }
         }
-        ExtractedFields.values().removeAll(Collections.singleton(""));
-        ExtractedFields.values().removeAll(Collections.singleton(null));
-        if (!ExtractedFields.isEmpty()) {
-            ExtractedFields.put("source", source);
+
+        if (type.equals(FIELD_TYPE.COMPANY_INFO) && !temp_company_info.isEmpty()) {
+            extractedFields.add(temp_company_info);
+            return extractedFields;
+        } else if (type.equals(FIELD_TYPE.METRIC) && !extractedFields.isEmpty()) {
+            return extractedFields;
+        } else {
+            return new ArrayList();
         }
-        return ExtractedFields;
     }
 
 }

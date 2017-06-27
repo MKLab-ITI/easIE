@@ -16,13 +16,18 @@
 package certh.iti.mklab.easie.executor.generators;
 
 import certh.iti.mklab.easie.configuration.Configuration;
+import certh.iti.mklab.easie.exception.PaginationException;
+import certh.iti.mklab.easie.exception.RelativeURLException;
 import certh.iti.mklab.easie.executor.handlers.ExtractionHandler;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 /**
  *
  * @author vasgat
  */
 public abstract class WrapperGenerator {
+
     protected Configuration configuration;
     public ExtractionHandler extraction_handler;
 
@@ -31,5 +36,5 @@ public abstract class WrapperGenerator {
         this.configuration = configuration;
     }
 
-    abstract public void execute() throws InterruptedException, Exception;
+    abstract public void execute() throws InterruptedException, PaginationException, URISyntaxException, IOException, RelativeURLException;
 }

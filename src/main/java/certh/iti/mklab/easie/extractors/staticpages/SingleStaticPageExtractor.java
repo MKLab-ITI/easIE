@@ -16,6 +16,8 @@
 package certh.iti.mklab.easie.extractors.staticpages;
 
 import certh.iti.mklab.easie.configuration.Configuration.ScrapableField;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.concurrent.Callable;
 import org.jsoup.HttpStatusException;
@@ -42,7 +44,7 @@ public class SingleStaticPageExtractor implements Callable {
     }
 
     @Override
-    public Object call() throws Exception {
+    public Object call() throws URISyntaxException, IOException {
         try {
             StaticHTMLExtractor wrapper = new StaticHTMLExtractor(page);
             document = (Document) wrapper.fetcher.getHTMLDocument();

@@ -16,16 +16,11 @@
 package certh.iti.mklab.easie.extractors;
 
 import certh.iti.mklab.easie.FIELD_TYPE;
-import certh.iti.mklab.easie.Key;
-import certh.iti.mklab.easie.Triplet;
 import certh.iti.mklab.easie.configuration.Configuration.ScrapableField;
 import certh.iti.mklab.easie.exception.PostProcessingException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.bson.Document;
 import org.jsoup.nodes.Element;
 
 /**
@@ -41,39 +36,39 @@ public class FieldExtractor extends AbstractContentExtractor {
 
     @Override
     protected List run(List<ScrapableField> fields, FIELD_TYPE type) {
-        HashMap extractedFields = new HashMap();
+        ArrayList extractedFields = new ArrayList();
+
+        Document temp_company = new Document();
         if (document != null) {
             for (int i = 0; i < fields.size(); i++) {
                 try {
-                    Triplet<String, Object, Integer> triplet = getSelectedElement(fields.get(i), document);
-                    String tempName = triplet.first;
-                    Object tempValue = triplet.second;
-                    Integer tempCiteyear = triplet.third;
+                    Document extracted_content = getSelectedElement(fields.get(i), document);
 
-                    if (!tempName.equals("") && !tempValue.equals("")) {
+                    if (!extracted_content.getString("name").equals("") && !extracted_content.get("value").toString().equals("") && extracted_content.get("value") != null) {
 
                         if (type.equals(FIELD_TYPE.COMPANY_INFO)) {
-                            extractedFields.put(tempName, tempValue);
+                            temp_company.append(extracted_content.getString("name"), extracted_content.getString("value"));
                         } else {
-                            extractedFields.put(new Key(tempName, tempCiteyear), tempValue);
+                            extracted_content.append("source", source);
+                            extractedFields.add(extracted_content);
                         }
 
                     }
                 } catch (PostProcessingException ex) {
-                    Logger.getLogger(FieldExtractor.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println(ex.getMessage());
                 }
             }
-
-            extractedFields.values().removeAll(Collections.singleton(""));
-            extractedFields.values().removeAll(Collections.singleton(null));
-            if (!extractedFields.isEmpty()) {
-                extractedFields.put("source", source);
-            }
         }
-
-        List extractedContent = new ArrayList();
-        extractedContent.add(extractedFields);
-        return extractedContent;
+        if (type.equals(FIELD_TYPE.COMPANY_INFO)) {
+            extractedFields.add(temp_company);
+            return extractedFields;
+        } else if (type.equals(FIELD_TYPE.METRIC)) {
+            ArrayList temp = new ArrayList();
+            temp.add(extractedFields);
+            return temp;
+        } else {
+            return new ArrayList();
+        }
     }
 
     public List getExtractedFields(List<ScrapableField> fields, FIELD_TYPE type) {

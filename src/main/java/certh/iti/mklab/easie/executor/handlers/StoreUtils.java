@@ -15,21 +15,22 @@
  */
 package certh.iti.mklab.easie.executor.handlers;
 
-import certh.iti.mklab.easie.Key;
 import certh.iti.mklab.easie.companymatching.CompanyMatcher;
 import certh.iti.mklab.easie.companymatching.CompanySearcher;
 import certh.iti.mklab.easie.companymatching.CountryAbreviationsLoader;
-import certh.iti.mklab.easie.metrics.CompanyMetric;
-import certh.iti.mklab.easie.metrics.GenericMetric;
 import com.mongodb.client.MongoCollection;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.UnknownHostException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import org.bson.Document;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -39,11 +40,11 @@ import org.json.JSONObject;
  */
 public class StoreUtils {
 
-    private List<HashMap> extracted_company_info;
-    private List<HashMap> extracted_metrics;
+    private List<ArrayList<Document>> extracted_company_info;
+    private List<ArrayList<Document>> extracted_metrics;
     private int number_of_metrics;
 
-    public StoreUtils(List<HashMap> extracted_companies, List<HashMap> extracted_metrics) {
+    public StoreUtils(List<ArrayList<Document>> extracted_companies, List<ArrayList<Document>> extracted_metrics) {
         this.extracted_company_info = extracted_companies;
         this.extracted_metrics = extracted_metrics;
     }
@@ -54,9 +55,10 @@ public class StoreUtils {
         CountryAbreviationsLoader loader = new CountryAbreviationsLoader();
 
         for (int i = 0; i < extracted_company_info.size(); i++) {
-            HashMap company_info = new HashMap(extracted_company_info.get(i));
-
-            company_info.remove("source");
+            if (extracted_company_info.get(i).size() == 0) {
+                continue;
+            }
+            Document company_info = extracted_company_info.get(i).get(0);
 
             if (!company_info.containsKey("company_name")) {
                 continue;
@@ -70,46 +72,34 @@ public class StoreUtils {
                     loader
             );
 
-            company_info.remove("company_name");
-            company_info.remove("country");
-            company_info.remove("website");
-
             Iterator iter = company_info.entrySet().iterator();
 
             while (iter.hasNext()) {
                 Map.Entry<String, Object> entry
                         = (Map.Entry<String, Object>) iter.next();
+                if (!entry.getKey().equals("company_name")
+                        && !entry.getKey().equals("country")
+                        && !entry.getKey().equals("website")) {
 
-                matcher.insertInfo(
-                        entry.getKey(),
-                        entry.getValue().toString()
-                );
+                    matcher.insertInfo(
+                            entry.getKey(),
+                            entry.getValue().toString()
+                    );
+                }
             }
 
-            HashMap metrics = new HashMap(extracted_metrics.get(i));
+            ArrayList<Document> metrics = extracted_metrics.get(i);
 
-            String source = (String) metrics.get("source");
-            metrics.remove("source");
-
-            Iterator metrics_iterator = metrics.entrySet().iterator();
+            Iterator<Document> metrics_iterator = metrics.iterator();
             while (metrics_iterator.hasNext()) {
 
-                Map.Entry<Object, Object> metric
-                        = (Map.Entry<Object, Object>) metrics_iterator.next();
+                Document metric = metrics_iterator.next();
 
-                CompanyMetric company_metric = new CompanyMetric(
-                        (String) ((Key) metric.getKey()).getX(),
-                        metric.getValue(),
-                        source,
-                        matcher.getId(),
-                        source_name
-                );
+                metric.append("company_id", matcher.getId()).append("source_name", source_name);
 
-                company_metric.setCiteyear((int) ((Key) metric.getKey()).getY());
-
-                company_metric.store(
-                        metrics_collection
-                );
+                metrics_collection.insertOne(metric);
+                metric.remove("company_id");
+                metric.remove("_id");
             }
         }
     }
@@ -117,72 +107,50 @@ public class StoreUtils {
     public void toMongoDB(MongoCollection metrics_collection) {
 
         if (extracted_company_info != null) {
-            for (int i = 0; i < extracted_company_info.size(); i++) {
-                HashMap company_info = new HashMap(extracted_company_info.get(i));
+            number_of_metrics = 0;
 
-                company_info.remove("source");
+            for (int j = 0; j < extracted_company_info.size(); j++) {
 
-                HashMap metrics = new HashMap();
-                metrics.putAll(extracted_metrics.get(i));
+                Document company = extracted_company_info.get(j).get(0);
 
-                String source = (String) metrics.get("source");
-                metrics.remove("source");
+                ArrayList metrics = new ArrayList();
 
-                Iterator metrics_iterator = metrics.entrySet().iterator();
-                while (metrics_iterator.hasNext()) {
-
-                    Map.Entry<Object, Object> metric
-                            = (Map.Entry<Object, Object>) metrics_iterator.next();
-
-                    GenericMetric generic_metric = new GenericMetric(
-                            (String) ((Key) metric.getKey()).getX(),
-                            metric.getValue(),
-                            source,
-                            (Integer) ((Key) metric.getKey()).getY()
-                    );
-
-                    Iterator iter = company_info.entrySet().iterator();
-
-                    while (iter.hasNext()) {
-                        Map.Entry<String, Object> entry
-                                = (Map.Entry<String, Object>) iter.next();
-
-                        generic_metric.setAdditionalField(
-                                (String) entry.getKey(),
-                                entry.getValue().toString()
-                        );
+                ArrayList<Document> temp_metrics = extracted_metrics.get(j);
+                for (int i = 0; i < temp_metrics.size(); i++) {
+                    if (!temp_metrics.get(i).getString("name").equals("crawl_to")) {
+                        number_of_metrics++;
+                        metrics.add(temp_metrics.get(i));
                     }
-
-                    generic_metric.store(metrics_collection);
                 }
+
+                Document json = new Document().append("company", company).append("metrics", metrics);
+
+                metrics_collection.insertOne(json);
             }
+
         } else {
-            for (int i = 0; i < extracted_metrics.size(); i++) {
-                HashMap metrics = new HashMap();
-                metrics.putAll(extracted_metrics.get(i));
-                String source = (String) metrics.get("source");
-                metrics.remove("source");
+            for (int j = 0; j < extracted_metrics.size(); j++) {
+                ArrayList<Document> temp_metrics = extracted_metrics.get(j);
 
-                Iterator it = metrics.entrySet().iterator();
-
-                while (it.hasNext()) {
-                    Map.Entry<Key, Object> entry = (Map.Entry<Key, Object>) it.next();
-
-                    GenericMetric generic_metric = new GenericMetric(
-                            (String) entry.getKey().getX(),
-                            entry.getValue(),
-                            source,
-                            (Integer) entry.getKey().getY()
-                    );
-                    generic_metric.store(metrics_collection);
+                Document json = new Document();
+                for (int i = 0; i < temp_metrics.size(); i++) {
+                    if (!temp_metrics.get(i).getString("name").equals("crawl_to")) {
+                        number_of_metrics++;
+                        json.append(temp_metrics.get(i).getString("name"), temp_metrics.get(i).getString("value"));
+                    }
                 }
-
+                json.append("source", temp_metrics.get(0).getString("source"));
+                json.append("citeyear", temp_metrics.get(0).getString("citeyear"));
+                metrics_collection.insertOne(json);
             }
         }
     }
 
-    public void toFile(String filePath) throws FileNotFoundException {
-        PrintWriter writer = new PrintWriter(filePath);
+    public void toFile(String filePath) throws FileNotFoundException, UnsupportedEncodingException {
+        PrintWriter writer = new PrintWriter(
+                new OutputStreamWriter(
+                        new FileOutputStream(filePath), "UTF8"));
+
         writer.println(exportJson());
         writer.close();
     }
@@ -192,89 +160,55 @@ public class StoreUtils {
      */
     public String exportJson() {
         JSONArray results = new JSONArray();
-        number_of_metrics = 0;
 
-        for (int j = 0; j < extracted_company_info.size(); j++) {
+        if (extracted_company_info != null) {
 
-            HashMap company_info = new HashMap();
+            number_of_metrics = 0;
 
-            JSONObject current_object = new JSONObject();
+            for (int j = 0; j < extracted_company_info.size(); j++) {
+                if (extracted_company_info.get(j).size() == 0) {
+                    continue;
+                }
 
-            if (extracted_company_info.isEmpty()) {
-                continue;
+                JSONObject company = new JSONObject(extracted_company_info.get(j).get(0).toJson());
+
+                JSONArray metrics = new JSONArray();
+
+                ArrayList<Document> temp_metrics = extracted_metrics.get(j);
+                for (int i = 0; i < temp_metrics.size(); i++) {
+                    if (!temp_metrics.get(i).getString("name").equals("crawl_to")) {
+                        number_of_metrics++;
+                        metrics.put(new JSONObject(temp_metrics.get(i).toJson()));
+                    }
+                }
+
+                JSONObject json = new JSONObject().append("company", company).append("metrics", metrics);
+
+                results.put(json);
             }
-            company_info = new HashMap(extracted_company_info.get(j));
-
-            if (company_info.get("company_name") == null) {
-                continue;
-            }
-            company_info.remove("source");
-
-            Iterator iter = company_info.entrySet().iterator();
-
-            while (iter.hasNext()) {
-                Map.Entry<String, Object> entry
-                        = (Map.Entry<String, Object>) iter.next();
-
-                current_object.append(
-                        entry.getKey(),
-                        entry.getValue().toString()
-                );
-            }
-
-            HashMap metrics = new HashMap(extracted_metrics.get(j));
-
-            String source = (String) metrics.get("source");
-            metrics.remove("source");
-
-            JSONArray array_of_metrics = new JSONArray();
-            Iterator metrics_iterator = metrics.entrySet().iterator();
-            while (metrics_iterator.hasNext()) {
-                number_of_metrics++;
-                Map.Entry<Object, Object> metric
-                        = (Map.Entry<Object, Object>) metrics_iterator.next();
-
-                GenericMetric generic_metric = new GenericMetric(
-                        (String) ((Key) metric.getKey()).getX(),
-                        metric.getValue(),
-                        source,
-                        (Integer) ((Key) metric.getKey()).getY()
-                );
-                array_of_metrics.put(new JSONObject(generic_metric.json.toJson()));
-            }
-            current_object.append("metrics", array_of_metrics);
-            results.put(current_object);
-        }
-
-        if (extracted_company_info.size() == 0) {
-            JSONArray array_of_metrics = new JSONArray();
+        } else {
+            JSONArray metrics = new JSONArray();
 
             for (int j = 0; j < extracted_metrics.size(); j++) {
-                HashMap metrics = new HashMap(extracted_metrics.get(j));
+                ArrayList<Document> temp_metrics = extracted_metrics.get(j);
 
-                String source = (String) metrics.get("source");
-                metrics.remove("source");
-
-                Iterator metrics_iterator = metrics.entrySet().iterator();
-                while (metrics_iterator.hasNext()) {
-
-                    number_of_metrics++;
-                    Map.Entry<Object, Object> metric
-                            = (Map.Entry<Object, Object>) metrics_iterator.next();
-
-                    GenericMetric generic_metric = new GenericMetric(
-                            (String) ((Key) metric.getKey()).getX(),
-                            metric.getValue(),
-                            source,
-                            (Integer) ((Key) metric.getKey()).getY()
-                    );
-                    array_of_metrics.put(new JSONObject(generic_metric.json.toJson()));
+                JSONObject json = new JSONObject();
+                for (int i = 0; i < temp_metrics.size(); i++) {
+                    if (!temp_metrics.get(i).getString("name").equals("crawl_to")) {
+                        number_of_metrics++;
+                        json.append(temp_metrics.get(i).getString("name"), temp_metrics.get(i).getString("value"));
+                    }
                 }
+                json.append("source", temp_metrics.get(0).getString("source"));
+                json.append("citeyear", temp_metrics.get(0).getString("citeyear"));
+                metrics.put(json);
             }
-            results.put(array_of_metrics);
+
+            results.put(metrics);
         }
 
         return results.toString(4);
+
     }
 
     public int getNumberOfExtractedMetrics() {

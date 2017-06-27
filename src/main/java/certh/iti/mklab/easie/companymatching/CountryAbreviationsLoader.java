@@ -43,7 +43,7 @@ public class CountryAbreviationsLoader {
 
     private HashMap<String, String> getCountry2ABR() throws FileNotFoundException, IOException {
         HashMap<String, String> ABR2Letter = new HashMap();
-        BufferedReader in = new BufferedReader(new FileReader("D://NetBeans//easIE.v2//Countries_ABR.txt"));
+        BufferedReader in = new BufferedReader(new FileReader("Countries_ABR.txt"));
         String line;
         while ((line = in.readLine()) != null) {
             String[] array = line.split(";");
@@ -55,7 +55,7 @@ public class CountryAbreviationsLoader {
 
     private HashMap<String, String> getCountry3ABR() throws FileNotFoundException, IOException {
         HashMap<String, String> ABR3Letter = new HashMap();
-        BufferedReader in = new BufferedReader(new FileReader("D://NetBeans//easIE.v2//Countries_ABR.txt"));
+        BufferedReader in = new BufferedReader(new FileReader("Countries_ABR.txt"));
         String line;
         while ((line = in.readLine()) != null) {
             String[] array = line.split(";");

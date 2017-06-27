@@ -16,7 +16,10 @@
 package certh.iti.mklab.easie.executor.generators;
 
 import certh.iti.mklab.easie.configuration.Configuration;
+import certh.iti.mklab.easie.exception.RelativeURLException;
 import certh.iti.mklab.easie.extractors.dynamicpages.DynamicHTMLExtractor;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -35,7 +38,7 @@ public class DynamicWrapperGenerator extends WrapperGenerator {
     }
 
     @Override
-    public void execute() throws InterruptedException, Exception {
+    public void execute() throws InterruptedException, URISyntaxException, IOException, RelativeURLException {
 
         if (configuration.url.relative_url != null) {
             DynamicHTMLExtractor wrapper = new DynamicHTMLExtractor(
@@ -45,7 +48,7 @@ public class DynamicWrapperGenerator extends WrapperGenerator {
             );
             if (configuration.events != null) {
                 this.execute_events(wrapper);
-            }else{
+            } else {
                 extraction_handler.execute(wrapper, configuration);
             }
 
@@ -65,7 +68,7 @@ public class DynamicWrapperGenerator extends WrapperGenerator {
 
                 if (configuration.events != null) {
                     this.execute_events(wrapper);
-                }else{
+                } else {
                     extraction_handler.execute(wrapper, configuration);
                 }
 
@@ -73,11 +76,11 @@ public class DynamicWrapperGenerator extends WrapperGenerator {
             }
 
         } else {
-            throw new Exception("relative_url is not defined");
+            throw new RelativeURLException("relative_url is not defined");
         }
     }
 
-    private void execute_events(DynamicHTMLExtractor wrapper) throws InterruptedException, Exception {
+    private void execute_events(DynamicHTMLExtractor wrapper) throws InterruptedException, URISyntaxException, IOException {
         if (configuration.events instanceof ArrayList) {
             ArrayList<Configuration.Event> list_of_events = (ArrayList<Configuration.Event>) configuration.events;
             for (int i = 0; i < list_of_events.size(); i++) {

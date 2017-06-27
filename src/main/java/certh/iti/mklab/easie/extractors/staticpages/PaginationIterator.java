@@ -82,7 +82,7 @@ public class PaginationIterator extends AbstractHTMLExtractor {
      * @throws Exception
      */
     @Override
-    public List<HashMap> extractFields(List<ScrapableField> fields) throws URISyntaxException, IOException, Exception {
+    public List<HashMap> extractFields(List<ScrapableField> fields) throws URISyntaxException, IOException, InterruptedException {
         ArrayList<HashMap> extractedFields = new ArrayList();
         if (thereisPattern) {
             extractedFields.addAll((ArrayList) MultiThreadPagination(
@@ -111,7 +111,7 @@ public class PaginationIterator extends AbstractHTMLExtractor {
      * @throws Exception
      */
     @Override
-    public List<HashMap> extractTable(String tableSelector, List<ScrapableField> fields) throws URISyntaxException, IOException, Exception {
+    public List<HashMap> extractTable(String tableSelector, List<ScrapableField> fields) throws URISyntaxException, IOException, InterruptedException {
         ArrayList<HashMap> extractedFields = new ArrayList();
         
         if (thereisPattern) {
@@ -131,7 +131,7 @@ public class PaginationIterator extends AbstractHTMLExtractor {
     }
 
     @Override
-    public Pair extractFields(List<ScrapableField> cfields, List<ScrapableField> sfields) throws URISyntaxException, IOException, Exception {
+    public Pair extractFields(List<ScrapableField> cfields, List<ScrapableField> sfields) throws URISyntaxException, IOException, InterruptedException {
         ArrayList<HashMap> extractedCFields = new ArrayList();
         ArrayList<HashMap> extractedSFields = new ArrayList();
         ArrayList temp;
@@ -156,7 +156,7 @@ public class PaginationIterator extends AbstractHTMLExtractor {
     }
 
     @Override
-    public Pair extractTable(String tableSelector, List<ScrapableField> cfields, List<ScrapableField> sfields) throws URISyntaxException, IOException, Exception {
+    public Pair extractTable(String tableSelector, List<ScrapableField> cfields, List<ScrapableField> sfields) throws URISyntaxException, IOException, InterruptedException {
         ArrayList<HashMap> extractedCFields = new ArrayList();
         ArrayList<HashMap> extractedSFields = new ArrayList();
         ArrayList temp;
@@ -276,7 +276,7 @@ public class PaginationIterator extends AbstractHTMLExtractor {
         return extractedFields;
     }
 
-    private ArrayList SingleThreadPagination(SingleStaticPageExtractor singlePageExtractor) throws URISyntaxException, IOException, Exception {
+    private ArrayList SingleThreadPagination(SingleStaticPageExtractor singlePageExtractor) throws URISyntaxException, IOException {
         ArrayList extractedFields = new ArrayList();
         Object result = singlePageExtractor.call();
         if (result instanceof ArrayList) {

@@ -17,6 +17,8 @@ package certh.iti.mklab.easie.executor.handlers;
 
 import certh.iti.mklab.easie.configuration.Configuration;
 import certh.iti.mklab.easie.extractors.AbstractHTMLExtractor;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.util.Pair;
@@ -37,7 +39,7 @@ public class ExtractionHandler {
         this.extracted_metrics = new ArrayList<HashMap>();
     }
 
-    public void execute(AbstractHTMLExtractor wrapper, Configuration configuration) throws Exception {
+    public void execute(AbstractHTMLExtractor wrapper, Configuration configuration) throws URISyntaxException, IOException, InterruptedException {
         this.wrapper = wrapper;
         this.configuration = configuration;
         if (configuration.table_selector != null) {
@@ -55,7 +57,7 @@ public class ExtractionHandler {
         return extracted_companies;
     }
 
-    private void extractTable() throws Exception {
+    private void extractTable() throws URISyntaxException, IOException, InterruptedException {
         if (configuration.company_info != null && configuration.metrics != null) {
             Pair temp = (Pair) wrapper.extractTable(
                     configuration.table_selector,
@@ -77,7 +79,7 @@ public class ExtractionHandler {
         }
     }
 
-    private void extractFields() throws Exception {
+    private void extractFields() throws URISyntaxException, IOException, InterruptedException {
 
         if (configuration.company_info != null) {
             Pair temp = (Pair) wrapper.extractFields(

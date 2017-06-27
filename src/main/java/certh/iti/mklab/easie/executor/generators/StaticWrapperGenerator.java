@@ -16,9 +16,12 @@
 package certh.iti.mklab.easie.executor.generators;
 
 import certh.iti.mklab.easie.configuration.Configuration;
+import certh.iti.mklab.easie.exception.PaginationException;
 import certh.iti.mklab.easie.extractors.staticpages.GroupHTMLExtractor;
 import certh.iti.mklab.easie.extractors.staticpages.PaginationIterator;
 import certh.iti.mklab.easie.extractors.staticpages.StaticHTMLExtractor;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 /**
  *
@@ -31,7 +34,7 @@ public class StaticWrapperGenerator extends WrapperGenerator {
     }
 
     @Override
-    public void execute() throws InterruptedException, Exception {
+    public void execute() throws InterruptedException, PaginationException, URISyntaxException, IOException {
         if (configuration.url.relative_url != null) {
             StaticHTMLExtractor wrapper = new StaticHTMLExtractor(
                     configuration.url.base_url,
@@ -50,7 +53,7 @@ public class StaticWrapperGenerator extends WrapperGenerator {
             }
         } else if (configuration.group_of_urls != null && configuration.url.base_url != null && configuration.url.relative_url == null) {
             if (configuration.next_page_selector != null) {
-                throw new Exception("Pagination can not be conducted in Group Wrapper mode");
+                throw new PaginationException("Pagination can not be conducted in Group Wrapper mode");
             }
             GroupHTMLExtractor wrapper = new GroupHTMLExtractor(
                     configuration.group_of_urls,

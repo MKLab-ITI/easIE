@@ -47,7 +47,7 @@ public class Selenium {
     }
     
     public static WebDriver setUpChromeDriver(String ChromeDriverPath) {
-      File file = new File(ChromeDriverPath+"/chromedriver.exe");
+      File file = new File("chromedriver.exe");
       System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
        return new ChromeDriver();
     }    

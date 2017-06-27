@@ -15,16 +15,18 @@
  */
 package certh.iti.mklab.easie.extractors.staticpages;
 
+import certh.iti.mklab.easie.FIELD_TYPE;
 import certh.iti.mklab.easie.extractors.FieldExtractor;
 import certh.iti.mklab.easie.configuration.Configuration.ScrapableField;
 import certh.iti.mklab.easie.extractors.AbstractHTMLExtractor;
-import certh.iti.mklab.easie.FIELD_TYPE;
+import certh.iti.mklab.easie.exception.HTMLElementNotFoundException;
 import certh.iti.mklab.easie.extractors.TableFieldExtractor;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.util.Pair;
+import org.bson.Document;
 import org.jsoup.nodes.Element;
 
 /**
@@ -74,7 +76,7 @@ public class StaticHTMLExtractor extends AbstractHTMLExtractor {
      * @return a HashMap of the extracted fields
      */
     @Override
-    public List<HashMap> extractFields(List<ScrapableField> sfields) {
+    public List<Document> extractFields(List<ScrapableField> sfields) {
         FieldExtractor extractor = new FieldExtractor((Element) fetcher.getHTMLDocument(), source);
         return extractor.getExtractedFields(sfields, FIELD_TYPE.METRIC);
     }
@@ -88,9 +90,14 @@ public class StaticHTMLExtractor extends AbstractHTMLExtractor {
      * fields)
      */
     @Override
-    public List<HashMap<String, Object>> extractTable(String table_selector, List<ScrapableField> fields) {
+    public List<Document> extractTable(String table_selector, List<ScrapableField> fields) {
         TableFieldExtractor extractor = new TableFieldExtractor((Element) fetcher.getHTMLDocument(), table_selector, source);
-        return extractor.getExtractedFields(fields, FIELD_TYPE.METRIC);
+        try {
+            return extractor.getExtractedFields(fields, FIELD_TYPE.METRIC);
+        } catch (HTMLElementNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            return new ArrayList<Document>();
+        }
     }
 
     @Override
@@ -105,9 +112,18 @@ public class StaticHTMLExtractor extends AbstractHTMLExtractor {
     @Override
     public Pair extractTable(String table_selector, List<ScrapableField> cfields, List<ScrapableField> sfields) {
         TableFieldExtractor extractor = new TableFieldExtractor((Element) fetcher.getHTMLDocument(), table_selector, source);
+        List extracted_company_info = new ArrayList();
+        List extracted_metric_info = new ArrayList();
+        try {
+            extracted_company_info = extractor.getExtractedFields(cfields, FIELD_TYPE.COMPANY_INFO);
+            extracted_metric_info = extractor.getExtractedFields(sfields, FIELD_TYPE.METRIC);
+        } catch (HTMLElementNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+
         return new Pair(
-                extractor.getExtractedFields(cfields, FIELD_TYPE.COMPANY_INFO),
-                extractor.getExtractedFields(sfields, FIELD_TYPE.METRIC)
+                extracted_company_info,
+                extracted_metric_info
         );
     }
 }

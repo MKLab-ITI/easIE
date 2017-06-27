@@ -20,9 +20,11 @@ import certh.iti.mklab.easie.MongoUtils;
 import certh.iti.mklab.easie.configuration.Configuration.Store;
 import com.mongodb.client.MongoCollection;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.UnknownHostException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
+import org.bson.Document;
 
 /**
  * DataHandler transforms the extracted data into Snippet Objects and stores
@@ -32,8 +34,8 @@ import java.util.List;
  */
 public class DataHandler {
 
-    private List<HashMap> extracted_company_info;
-    private List<HashMap> extracted_metrics;
+    private List<ArrayList<Document>> extracted_company_info;
+    private List<ArrayList<Document>> extracted_metrics;
     private StoreUtils storeUtils;
 
     /**
@@ -43,7 +45,7 @@ public class DataHandler {
      * @param extracted_metrics: extracted snippet fields
      * @throws Exception
      */
-    public DataHandler(List<HashMap> extracted_company_info, List<HashMap> extracted_metrics) throws Exception {
+    public DataHandler(List<ArrayList<Document>> extracted_company_info, List<ArrayList<Document>> extracted_metrics) {
         this.extracted_company_info = extracted_company_info;
         this.extracted_metrics = extracted_metrics;
         storeUtils = new StoreUtils(extracted_company_info, extracted_metrics);
@@ -60,7 +62,7 @@ public class DataHandler {
      * @throws FileNotFoundException
      * @throws Exception
      */
-    public void store(Store store, String source_name) throws UnknownHostException, FileNotFoundException, Exception {
+    public void store(Store store, String source_name) throws UnknownHostException, FileNotFoundException, IOException {
 
         if (store.companies_collection != null && extracted_company_info != null) {
             MongoClient client;
@@ -113,5 +115,5 @@ public class DataHandler {
     public int getNumberOfExtractedMetrics() {
         return storeUtils.getNumberOfExtractedMetrics();
     }
-    
+
 }

@@ -17,10 +17,14 @@ package certh.iti.mklab.easie;
 
 import certh.iti.mklab.easie.configuration.Configuration;
 import certh.iti.mklab.easie.configuration.ConfigurationReader;
+import certh.iti.mklab.easie.exception.IllegalSchemaException;
+import certh.iti.mklab.easie.exception.PaginationException;
+import certh.iti.mklab.easie.exception.RelativeURLException;
 import com.github.fge.jsonschema.core.exceptions.ProcessingException;
 import certh.iti.mklab.easie.executor.WrapperExecutor;
 import certh.iti.mklab.easie.executor.handlers.DataHandler;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import org.json.JSONArray;
 
@@ -30,44 +34,71 @@ import org.json.JSONArray;
  */
 public class Main {
 
-    public static void main(String[] args) throws IOException, ProcessingException, Exception {
+    public static void main(String[] args) throws URISyntaxException {        
         if (args.length == 1) {
-            
-            ConfigurationReader reader = new ConfigurationReader(args[0], ".");
-            Configuration config = reader.getConfiguration();
+            try {
+                ConfigurationReader reader = new ConfigurationReader(args[0], ".");
+                Configuration config = reader.getConfiguration();
 
-            WrapperExecutor executor = new WrapperExecutor(config, ".");
+                WrapperExecutor executor = new WrapperExecutor(config, ".");
 
-            ArrayList companies = executor.getCompanyInfo();
-            ArrayList metrics = executor.getExtractedMetrics();
+                ArrayList companies = executor.getCompanyInfo();
+                ArrayList metrics = executor.getExtractedMetrics();
 
-            DataHandler dh = new DataHandler(companies, metrics);
+                DataHandler dh = new DataHandler(companies, metrics);
 
-            if (config.store != null) {
-                dh.store(config.store, config.source_name);
+                if (config.store != null) {
+                    dh.store(config.store, config.source_name);
+                }
+
+                JSONArray array = new JSONArray(dh.exportJson());
+
+                System.out.println(array.toString(4));
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            } catch (ProcessingException ex) {
+                System.out.println(ex.getMessage());
+            } catch (IllegalSchemaException ex) {
+                System.out.println(ex.getMessage());
+            } catch (InterruptedException ex) {
+                System.out.println(ex.getMessage());
+            } catch (PaginationException ex) {
+                System.out.println(ex.getMessage());
+            } catch (RelativeURLException ex) {
+                System.out.println(ex.getMessage());
             }
-
-            JSONArray array = new JSONArray(dh.exportJson());
-
-            System.out.println(array.toString(4));
         } else if (args.length == 2) {
-            ConfigurationReader reader = new ConfigurationReader(args[0], args[1]);
-            Configuration config = reader.getConfiguration();
+            try {
+                ConfigurationReader reader = new ConfigurationReader(args[0], args[1]);
+                Configuration config = reader.getConfiguration();
 
-            WrapperExecutor executor = new WrapperExecutor(config, args[1]);
+                WrapperExecutor executor = new WrapperExecutor(config, args[1]);
 
-            ArrayList companies = executor.getCompanyInfo();
-            ArrayList metrics = executor.getExtractedMetrics();
+                ArrayList companies = executor.getCompanyInfo();
+                ArrayList metrics = executor.getExtractedMetrics();
 
-            DataHandler dh = new DataHandler(companies, metrics);
+                DataHandler dh = new DataHandler(companies, metrics);
 
-            if (config.store != null) {
-                dh.store(config.store, config.source_name);
+                if (config.store != null) {
+                    dh.store(config.store, config.source_name);
+                }
+
+                JSONArray array = new JSONArray(dh.exportJson());
+
+                System.out.println(array.toString(4));
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            } catch (ProcessingException ex) {
+                System.out.println(ex.getMessage());
+            } catch (IllegalSchemaException ex) {
+                System.out.println(ex.getMessage());
+            } catch (InterruptedException ex) {
+                System.out.println(ex.getMessage());
+            } catch (PaginationException ex) {
+                System.out.println(ex.getMessage());
+            } catch (RelativeURLException ex) {
+                System.out.println(ex.getMessage());
             }
-
-            JSONArray array = new JSONArray(dh.exportJson());
-
-            System.out.println(array.toString(4));
         } else if (args.length == 0) {
             System.out.println("You need to provide the configuration file filepath!");
         } else {
