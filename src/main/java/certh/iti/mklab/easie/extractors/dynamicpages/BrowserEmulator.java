@@ -22,6 +22,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -34,6 +35,7 @@ public class BrowserEmulator extends Fetcher {
 
     public BrowserEmulator(String baseURL, String relativeURL, String ChromeDriverPath) throws InterruptedException {
         driver = Selenium.setUpChromeDriver(ChromeDriverPath);
+        driver.manage().window().setPosition(new Point(-2000, 0));
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         driver.get(
                 baseURL + relativeURL
@@ -41,8 +43,9 @@ public class BrowserEmulator extends Fetcher {
         Thread.sleep(10000);
     }
 
-    public BrowserEmulator(String fullURL, String ChromeDriverPath) throws InterruptedException {
+    public BrowserEmulator(String fullURL, String ChromeDriverPath) throws InterruptedException {        
         driver = Selenium.setUpChromeDriver(ChromeDriverPath);
+        driver.manage().window().setPosition(new Point(-2000, 0));
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         driver.get(
                 fullURL

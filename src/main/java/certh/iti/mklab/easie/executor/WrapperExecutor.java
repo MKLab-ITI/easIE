@@ -27,6 +27,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import org.bson.Document;
 
 /**
@@ -38,7 +39,7 @@ public class WrapperExecutor {
 
     private Configuration config;
     private ArrayList<ArrayList<Document>> metrics;
-    private ArrayList<ArrayList<Document>> company_info;
+    private List<Document> company_info;
     private String ChromeDriverPath;
 
     /**
@@ -52,7 +53,7 @@ public class WrapperExecutor {
      */
     public WrapperExecutor(Configuration config, String ChromeDriverPath) throws URISyntaxException, IOException, InterruptedException, PaginationException, RelativeURLException {
         this.config = config;
-        this.company_info = new ArrayList<ArrayList<Document>>();
+        this.company_info = new ArrayList<Document>();
         this.metrics = new ArrayList<ArrayList<Document>>();
         this.ChromeDriverPath = ChromeDriverPath;
         this.wrapperGeneration();
@@ -60,7 +61,7 @@ public class WrapperExecutor {
 
     public WrapperExecutor(Configuration config) throws URISyntaxException, IOException, InterruptedException, PaginationException, RelativeURLException {
         this.config = config;
-        this.company_info = new ArrayList<ArrayList<Document>>();
+        this.company_info = new ArrayList<Document>();
         this.metrics = new ArrayList<ArrayList<Document>>();
         this.ChromeDriverPath = "C:\\Users\\vasgat\\Desktop\\Scrapers";
         this.wrapperGeneration();
@@ -131,12 +132,12 @@ public class WrapperExecutor {
 
             wrapper_crawl.execute();
 
-            ArrayList<Document> temp_company_info = wrapper_crawl.extraction_handler.getCompanies();
+            ArrayList<ArrayList<Document>> temp_company_info = wrapper_crawl.extraction_handler.getCompanies();
             ArrayList<ArrayList<Document>> temp_metrics = wrapper_crawl.extraction_handler.getMetrics();
 
             if (company_info.isEmpty()) {
                 for (int i = 0; i < metrics.size(); i++) {
-                    company_info.add(new ArrayList());
+                    company_info.add(new Document());
                 }
             }
 
@@ -148,9 +149,15 @@ public class WrapperExecutor {
 
                     metrics.set(index, temp_metric);
 
-                    ArrayList<Document> temp_company = company_info.get(index);
+                    Document temp_company = company_info.get(index);
+                    
                     if (temp_company.size() > 0) {
-                        temp_company.get(0).putAll(temp_company_info.get(i));
+                        System.out.println(temp_company_info.get(i).get(0).keySet());
+                        System.out.println(temp_company_info.get(i));
+
+                        for (String name : temp_company_info.get(i).get(0).keySet()) {
+                            temp_company.append(name, temp_company_info.get(i).get(0).get(name));
+                        }
                     }
 
                     company_info.set(index, temp_company);
@@ -171,7 +178,7 @@ public class WrapperExecutor {
         return this.metrics;
     }
 
-    public ArrayList<ArrayList<Document>> getCompanyInfo() {
+    public List<Document> getCompanyInfo() {
         return this.company_info;
     }
 }

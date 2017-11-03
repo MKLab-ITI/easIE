@@ -52,8 +52,13 @@ public class TableFieldExtractor extends AbstractContentExtractor {
             for (int i = 0; i < table.size(); i++) {
                 try {
                     ArrayList temp = new ArrayList();
-                    temp.addAll(extractTableFields(fields, table.get(i), type));
-                    extractedContent.add(temp);
+                    if (type.equals(type.COMPANY_INFO)) {
+                        extractedContent.add(extractTableFields(fields, table.get(i), type));
+                    } else {
+                        temp.addAll((List) extractTableFields(fields, table.get(i), type));
+                        extractedContent.add(temp);
+                    }
+
                 } catch (PostProcessingException ex) {
                     System.out.println(ex.getMessage());
                 }
@@ -70,7 +75,7 @@ public class TableFieldExtractor extends AbstractContentExtractor {
      * @return an ArrayList of HashMap (corresponds to the extracted table
      * fields)
      */
-    private List extractTableFields(List<ScrapableField> fields, Element element, FIELD_TYPE type) throws PostProcessingException {
+    private Object extractTableFields(List<ScrapableField> fields, Element element, FIELD_TYPE type) throws PostProcessingException {
         ArrayList extractedFields = new ArrayList();
 
         Document temp_company_info = new Document();
@@ -89,8 +94,7 @@ public class TableFieldExtractor extends AbstractContentExtractor {
         }
 
         if (type.equals(FIELD_TYPE.COMPANY_INFO) && !temp_company_info.isEmpty()) {
-            extractedFields.add(temp_company_info);
-            return extractedFields;
+            return temp_company_info;
         } else if (type.equals(FIELD_TYPE.METRIC) && !extractedFields.isEmpty()) {
             return extractedFields;
         } else {

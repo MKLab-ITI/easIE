@@ -40,11 +40,11 @@ import org.json.JSONObject;
  */
 public class StoreUtils {
 
-    private List<ArrayList<Document>> extracted_company_info;
+    private List<Document> extracted_company_info;
     private List<ArrayList<Document>> extracted_metrics;
     private int number_of_metrics;
 
-    public StoreUtils(List<ArrayList<Document>> extracted_companies, List<ArrayList<Document>> extracted_metrics) {
+    public StoreUtils(List<Document> extracted_companies, List<ArrayList<Document>> extracted_metrics) {
         this.extracted_company_info = extracted_companies;
         this.extracted_metrics = extracted_metrics;
     }
@@ -58,7 +58,7 @@ public class StoreUtils {
             if (extracted_company_info.get(i).size() == 0) {
                 continue;
             }
-            Document company_info = extracted_company_info.get(i).get(0);
+            Document company_info = extracted_company_info.get(i);
 
             if (!company_info.containsKey("company_name")) {
                 continue;
@@ -111,7 +111,7 @@ public class StoreUtils {
 
             for (int j = 0; j < extracted_company_info.size(); j++) {
 
-                Document company = extracted_company_info.get(j).get(0);
+                Document company = extracted_company_info.get(j);
 
                 ArrayList metrics = new ArrayList();
 
@@ -163,14 +163,12 @@ public class StoreUtils {
 
         if (extracted_company_info != null) {
 
-            number_of_metrics = 0;
-
             for (int j = 0; j < extracted_company_info.size(); j++) {
-                if (extracted_company_info.get(j).size() == 0) {
+                if (extracted_company_info.isEmpty()) {
                     continue;
                 }
 
-                JSONObject company = new JSONObject(extracted_company_info.get(j).get(0).toJson());
+                JSONObject company = new JSONObject(extracted_company_info.get(j).toJson());
 
                 JSONArray metrics = new JSONArray();
 

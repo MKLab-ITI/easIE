@@ -52,13 +52,13 @@ public class FieldExtractor extends AbstractContentExtractor {
                             extracted_content.append("source", source);
                             extractedFields.add(extracted_content);
                         }
-
-                    }
+                    }                    
                 } catch (PostProcessingException ex) {
                     System.out.println(ex.getMessage());
                 }
             }
         }
+        
         if (type.equals(FIELD_TYPE.COMPANY_INFO)) {
             extractedFields.add(temp_company);
             return extractedFields;

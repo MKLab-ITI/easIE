@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import org.json.JSONArray;
+import org.jsoup.select.Selector.SelectorParseException;
 
 /**
  *
@@ -34,7 +35,8 @@ import org.json.JSONArray;
  */
 public class Main {
 
-    public static void main(String[] args) throws URISyntaxException {        
+    public static void main(String[] args) throws URISyntaxException {
+
         if (args.length == 1) {
             try {
                 ConfigurationReader reader = new ConfigurationReader(args[0], ".");
@@ -42,7 +44,7 @@ public class Main {
 
                 WrapperExecutor executor = new WrapperExecutor(config, ".");
 
-                ArrayList companies = executor.getCompanyInfo();
+                ArrayList companies = (ArrayList) executor.getCompanyInfo();
                 ArrayList metrics = executor.getExtractedMetrics();
 
                 DataHandler dh = new DataHandler(companies, metrics);
@@ -65,6 +67,8 @@ public class Main {
             } catch (PaginationException ex) {
                 System.out.println(ex.getMessage());
             } catch (RelativeURLException ex) {
+                System.out.println(ex.getMessage());
+            } catch (SelectorParseException ex) {
                 System.out.println(ex.getMessage());
             }
         } else if (args.length == 2) {
@@ -74,7 +78,7 @@ public class Main {
 
                 WrapperExecutor executor = new WrapperExecutor(config, args[1]);
 
-                ArrayList companies = executor.getCompanyInfo();
+                ArrayList companies = (ArrayList) executor.getCompanyInfo();
                 ArrayList metrics = executor.getExtractedMetrics();
 
                 DataHandler dh = new DataHandler(companies, metrics);
@@ -97,6 +101,8 @@ public class Main {
             } catch (PaginationException ex) {
                 System.out.println(ex.getMessage());
             } catch (RelativeURLException ex) {
+                System.out.println(ex.getMessage());
+            } catch (SelectorParseException ex) {
                 System.out.println(ex.getMessage());
             }
         } else if (args.length == 0) {
