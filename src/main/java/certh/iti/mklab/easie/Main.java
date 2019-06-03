@@ -53,6 +53,7 @@ public class Main {
 
                 if (config.store != null) {
                     dh.store(config.store, config.source_name);
+                    System.out.println("EXTRACTION TASK COMPLETED");
                 } else {
                     JSONArray array = new JSONArray(dh.exportJson());
                     System.out.println(array.toString(4));
@@ -86,6 +87,7 @@ public class Main {
 
                 if (config.store != null) {
                     dh.store(config.store, config.source_name);
+                    System.out.println("EXTRACTION TASK COMPLETED");
                 } else {
                     JSONArray array = new JSONArray(dh.exportJson());
                     System.out.println(array.toString(4));
