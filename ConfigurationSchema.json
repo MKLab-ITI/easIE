@@ -1,0 +1,988 @@
+{
+    "title": "Configuration File Schema",
+    "type": "object",
+    "properties": {
+        "metadata":{
+            "type":"object",
+            "properties":{
+                "title":{
+                    "type":"string"
+                },
+                "creator":{
+                    "type":"string"
+                },
+                "subject":{
+                    "type":"string"
+                },
+                "description":{
+                    "type":"string"
+                },
+                "publisher":{
+                    "type":"string"
+                },
+                "contributor":{
+                    "type":"string"
+                },
+                "date":{
+                    "type":"string",
+                    "format":"full-date"
+                },
+                "type":{
+                    "type":"string"
+                },
+                "format":{
+                    "type":"string"
+                },
+                "identifier":{
+                    "type":"string"
+                },
+                "source":{
+                    "type":"string"
+                },
+                "language":{
+                    "type":"string"
+                },
+                "relation":{
+                    "type":"string"
+                },
+                "coverage":{
+                    "type":"string"
+                },
+                "rights":{
+                    "type":"string"
+                }
+            },
+            "required":["date","creator"]
+            },
+        "url": {
+            "type": "object",
+            "properties": {
+                "base_url": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "relative_url": {
+                    "type": "string"
+                }
+
+            },
+            "required": [
+                "base_url"
+            ]
+        },
+        "group_of_urls": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "source_name": {
+            "type": "string"
+        },
+        "table_selector": {
+            "type": "string"
+        },
+        "company_info": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "label": {
+                        "type": [
+                            "string",
+                            "object"
+                        ],
+                        "properties": {
+                            "selector": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "type": "string"
+                            },
+                            "replace": {
+                                "type": "object",
+                                "properties": {
+                                    "regex": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "with": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "required": [
+                                    "regex",
+                                    "with"
+                                ]
+                            }
+                        },
+                        "required": [
+                            "selector",
+                            "type"
+                        ]
+                    },
+                    "value": {
+                        "type": [
+                            "string",
+                            "object"
+                        ],
+                        "properties": {
+                            "selector": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "type": "string"
+                            },
+                            "replace": {
+                                "type": "object",
+                                "properties": {
+                                    "regex": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "additionalProperties": false
+                                    },
+                                    "with": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "regex",
+                                    "with"
+                                ]
+                            }
+                        },
+                        "required": [
+                            "selector",
+                            "type"
+                        ]
+                    }
+                },
+                "required": [
+                    "label",
+                    "value"
+                ]
+            }
+        },
+        "metrics": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "label": {
+                        "type": [
+                            "string",
+                            "object"
+                        ],
+                        "properties": {
+                            "selector": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "type": "string"
+                            },
+                            "replace": {
+                                "type": "object",
+                                "properties": {
+                                    "regex": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "with": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "required": [
+                                    "regex",
+                                    "with"
+                                ]
+                            }
+                        },
+                        "required": [
+                            "selector",
+                            "type"
+                        ]
+                    },
+                    "value": {
+                        "type": [
+                            "string",
+                            "object"
+                        ],
+                        "properties": {
+                            "selector": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "type": "string"
+                            },
+                            "replace": {
+                                "type": "object",
+                                "properties": {
+                                    "regex": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "additionalProperties": false
+                                    },
+                                    "with": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "regex",
+                                    "with"
+                                ]
+                            }
+                        },
+                        "required": [
+                            "selector",
+                            "type"
+                        ]
+                    },
+                    "citeyear": {
+                        "type": [
+                            "string",
+                            "number",
+                            "object"
+                        ],
+                        "properties": {
+                            "selector": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "type": "string"
+                            },
+                            "replace": {
+                                "type": "object",
+                                "properties": {
+                                    "regex": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "with": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "required": [
+                                    "regex",
+                                    "with"
+                                ]
+                            }
+                        },
+                        "required": [
+                            "selector",
+                            "type"
+                        ]
+                    }
+                },
+                "required": [
+                    "label",
+                    "value"
+                ]
+            }
+        },
+        "dynamic_page": {
+            "type": "boolean"
+        },
+        "next_page_selector": {
+            "type": "string"
+        },
+        "events": {
+            "oneOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "pattern": "CLICK|SCROLL_DOWN"
+                        },
+                        "selector": {
+                            "type": "string"
+                        },
+                        "times_to_repeat": {
+                            "type": "number",
+                            "minimum": 0
+                        },
+                        "extraction_type": {
+                            "type": "string",
+                            "pattern": "AFTER_ALL_EVENTS|AFTER_EACH_EVENT"
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "selector",
+                        "times_to_repeat",
+                        "extraction_type"
+                    ],
+                    "additionalProperties": false
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "pattern": "SCROLL_DOWN"
+                        }
+                    },
+                    "required": [
+                        "type"
+                    ],
+                    "additionalProperties": false
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "pattern": "CLICK|SCROLL_DOWN"
+                            },
+                            "selector": {
+                                "type": "string"
+                            },
+                            "times_to_repeat": {
+                                "type": "integer",
+                                "minimum": 0
+                            }
+                        },
+                        "required": [
+                            "type",
+                            "selector",
+                            "times_to_repeat"
+                        ],
+                        "additionalProperties": false
+                    }
+                }
+            ]
+        },
+        "store": {
+            "oneOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "format": {
+                            "type": "string",
+                            "pattern": "bson"
+                        },
+                        "database": {
+                            "type": "string"
+                        },
+                        "companies_collection": {
+                            "type": "string"
+                        },
+                        "metrics_collection": {
+                            "type": "string"
+                        },
+                        "db_credentials":{
+                            "type":"object",
+                            "properties":{
+                                "server_address":{
+                                    "type":"string"
+                                },
+                                "username":{
+                                    "type":"string"
+                                },
+                                "password":{
+                                    "type":"string"
+                                },
+                                "db":{
+                                    "type":"string"
+                                }
+                            }
+                        }
+                    },
+                    "required": [
+                        "format",
+                        "database",
+                        "companies_collection",
+                        "metrics_collection"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "format": {
+                            "type": "string",
+                            "pattern": "bson"
+                        },
+                        "database": {
+                            "type": "string"
+                        },
+                        "metrics_collection": {
+                            "type": "string"
+                        },
+                        "db_credentials":{
+                            "type":"object",
+                            "properties":{
+                                "server_address":{
+                                    "type":"string"
+                                },
+                                "username":{
+                                    "type":"string"
+                                },
+                                "password":{
+                                    "type":"string"
+                                },
+                                "db":{
+                                    "type":"string"
+                                }
+                            }
+                        }                    
+                    },
+                    "required": [
+                        "format",
+                        "database",
+                        "metrics_collection"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "format": {
+                            "type": "string",
+                            "pattern": "json"
+                        },
+                        "hd_path": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "format",
+                        "hd_path"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "format": {
+                            "type": "string",
+                            "pattern": "csv"
+                        },
+                        "hd_path": {
+                            "type": "string"
+                        },
+                        "wikirate_metric_designer":{
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "format",
+                        "hd_path",
+                        "wikirate_metric_designer"
+                    ]
+                }
+            ]
+        },
+        "crawl": {
+            "type": "object",
+            "properties": {
+                "table_selector": {
+                    "type": "string"
+                },
+                "company_info": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "label": {
+                                "type": [
+                                    "string",
+                                    "object"
+                                ],
+                                "properties": {
+                                    "selector": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    },
+                                    "replace": {
+                                        "type": "object",
+                                        "properties": {
+                                            "regex": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "with": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "required": [
+                                            "regex",
+                                            "with"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "selector",
+                                    "type"
+                                ]
+                            },
+                            "value": {
+                                "type": [
+                                    "string",
+                                    "object"
+                                ],
+                                "properties": {
+                                    "selector": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    },
+                                    "replace": {
+                                        "type": "object",
+                                        "properties": {
+                                            "regex": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                },
+                                                "additionalProperties": false
+                                            },
+                                            "with": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "additionalProperties": false,
+                                        "required": [
+                                            "regex",
+                                            "with"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "selector",
+                                    "type"
+                                ]
+                            }
+                        },
+                        "required": [
+                            "label",
+                            "value"
+                        ]
+                    }
+                },
+                "metrics": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "label": {
+                                "type": [
+                                    "string",
+                                    "object"
+                                ],
+                                "properties": {
+                                    "selector": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    },
+                                    "replace": {
+                                        "type": "object",
+                                        "properties": {
+                                            "regex": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "with": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "required": [
+                                            "regex",
+                                            "with"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "selector",
+                                    "type"
+                                ]
+                            },
+                            "value": {
+                                "type": [
+                                    "string",
+                                    "object"
+                                ],
+                                "properties": {
+                                    "selector": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    },
+                                    "replace": {
+                                        "type": "object",
+                                        "properties": {
+                                            "regex": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                },
+                                                "additionalProperties": false
+                                            },
+                                            "with": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "additionalProperties": false,
+                                        "required": [
+                                            "regex",
+                                            "with"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "selector",
+                                    "type"
+                                ]
+                            },
+                            "citeyear": {
+                                "type": [
+                                    "string",
+                                    "number",
+                                    "object"
+                                ],
+                                "properties": {
+                                    "selector": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    },
+                                    "replace": {
+                                        "type": "object",
+                                        "properties": {
+                                            "regex": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "with": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "required": [
+                                            "regex",
+                                            "with"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "selector",
+                                    "type"
+                                ]
+                            }
+                        },
+                        "required": [
+                            "label",
+                            "value"
+                        ]
+                    }
+                },
+                "next_page_selector": {
+                    "type": "string"
+                },
+                "crawl": {
+                    "type": "object",
+                    "properties": {
+                        "table_selector": {
+                            "type": "string"
+                        },
+                        "company_info": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "label": {
+                                        "type": [
+                                            "string",
+                                            "object"
+                                        ],
+                                        "properties": {
+                                            "selector": {
+                                                "type": "string"
+                                            },
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "replace": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "regex": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "with": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "required": [
+                                                    "regex",
+                                                    "with"
+                                                ]
+                                            }
+                                        },
+                                        "required": [
+                                            "selector",
+                                            "type"
+                                        ]
+                                    },
+                                    "value": {
+                                        "type": [
+                                            "string",
+                                            "object"
+                                        ],
+                                        "properties": {
+                                            "selector": {
+                                                "type": "string"
+                                            },
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "replace": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "regex": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string"
+                                                        },
+                                                        "additionalProperties": false
+                                                    },
+                                                    "with": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "additionalProperties": false,
+                                                "required": [
+                                                    "regex",
+                                                    "with"
+                                                ]
+                                            }
+                                        },
+                                        "required": [
+                                            "selector",
+                                            "type"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "label",
+                                    "value"
+                                ]
+                            }
+                        },
+                        "metrics": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "label": {
+                                        "type": [
+                                            "string",
+                                            "object"
+                                        ],
+                                        "properties": {
+                                            "selector": {
+                                                "type": "string"
+                                            },
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "replace": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "regex": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "with": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "required": [
+                                                    "regex",
+                                                    "with"
+                                                ]
+                                            }
+                                        },
+                                        "required": [
+                                            "selector",
+                                            "type"
+                                        ]
+                                    },
+                                    "value": {
+                                        "type": [
+                                            "string",
+                                            "object"
+                                        ],
+                                        "properties": {
+                                            "selector": {
+                                                "type": "string"
+                                            },
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "replace": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "regex": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string"
+                                                        },
+                                                        "additionalProperties": false
+                                                    },
+                                                    "with": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "additionalProperties": false,
+                                                "required": [
+                                                    "regex",
+                                                    "with"
+                                                ]
+                                            }
+                                        },
+                                        "required": [
+                                            "selector",
+                                            "type"
+                                        ]
+                                    },
+                                    "citeyear": {
+                                        "type": [
+                                            "string",
+                                            "number",
+                                            "object"
+                                        ],
+                                        "properties": {
+                                            "selector": {
+                                                "type": "string"
+                                            },
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "replace": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "regex": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "with": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "required": [
+                                                    "regex",
+                                                    "with"
+                                                ]
+                                            }
+                                        },
+                                        "required": [
+                                            "selector",
+                                            "type"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "label",
+                                    "value"
+                                ]
+                            }
+                        },
+                        "next_page_selector": {
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "metrics"
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "metrics"
+            ]
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "source_name",
+        "url",
+        "metrics",
+        "dynamic_page"
+    ]
+}
