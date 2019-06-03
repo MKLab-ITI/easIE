@@ -15,10 +15,10 @@
  */
 package certh.iti.mklab.easie.extractors.staticpages;
 
-import certh.iti.mklab.easie.extractors.staticpages.SingleStaticPageExtractor;
 import certh.iti.mklab.easie.URLPatterns;
 import certh.iti.mklab.easie.configuration.Configuration.ScrapableField;
 import certh.iti.mklab.easie.extractors.AbstractHTMLExtractor;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -33,7 +33,8 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.util.Pair;
+
+import org.apache.commons.lang3.tuple.Pair;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -58,7 +59,6 @@ public class PaginationIterator extends AbstractHTMLExtractor {
     /**
      * Creates a new PaginationIterator
      *
-     * @param wrapper StaticHTMLExtractor object of an Instance page
      * @param next_page_selector next Page CSS selector in the page
      * @throws URISyntaxException
      * @throws IOException
@@ -104,7 +104,7 @@ public class PaginationIterator extends AbstractHTMLExtractor {
      * Extracts data from a table from each page until no next page exists
      *
      * @param tableSelector CSS table selector
-     * @param fields List of table fields we want to extract
+     * @param fields        List of table fields we want to extract
      * @return the extracted table fields as a List of HashMaps
      * @throws URISyntaxException
      * @throws IOException
@@ -113,7 +113,7 @@ public class PaginationIterator extends AbstractHTMLExtractor {
     @Override
     public List<HashMap> extractTable(String tableSelector, List<ScrapableField> fields) throws URISyntaxException, IOException, InterruptedException {
         ArrayList<HashMap> extractedFields = new ArrayList();
-        
+
         if (thereisPattern) {
             extractedFields.addAll((ArrayList) MultiThreadPagination(
                     frontPattern,
@@ -152,7 +152,7 @@ public class PaginationIterator extends AbstractHTMLExtractor {
             extractedCFields.addAll((ArrayList) (((Pair) temp.get(i)).getKey()));
             extractedSFields.addAll((ArrayList) (((Pair) temp.get(i)).getValue()));
         }
-        return new Pair(extractedCFields, extractedSFields);
+        return Pair.of(extractedCFields, extractedSFields);
     }
 
     @Override
@@ -160,7 +160,7 @@ public class PaginationIterator extends AbstractHTMLExtractor {
         ArrayList<HashMap> extractedCFields = new ArrayList();
         ArrayList<HashMap> extractedSFields = new ArrayList();
         ArrayList temp;
-        
+
         if (thereisPattern) {
             temp = (ArrayList) MultiThreadPagination(
                     frontPattern,
@@ -178,7 +178,7 @@ public class PaginationIterator extends AbstractHTMLExtractor {
             extractedCFields.addAll((ArrayList) (((Pair) temp.get(i)).getKey()));
             extractedSFields.addAll((ArrayList) (((Pair) temp.get(i)).getValue()));
         }
-        return new Pair(extractedCFields, extractedSFields);
+        return Pair.of(extractedCFields, extractedSFields);
     }
 
     private boolean thereisPattern() throws IOException, URISyntaxException {
@@ -218,7 +218,7 @@ public class PaginationIterator extends AbstractHTMLExtractor {
             startPage = temp2 - 2 * step;
             thereisPattern = true;
         }
-        
+
         return URLPatterns.isInteger(url2.replace(frontPattern, "").replace(rearPattern, ""));
     }
 

@@ -34,14 +34,14 @@ public class StaticHTMLFetcher extends Fetcher {
     private Connection connection;
 
     public StaticHTMLFetcher(String baseURL, String relativeURL) throws URISyntaxException, IOException {
-        connection = Jsoup.connect(new URI(baseURL + relativeURL).toASCIIString())
+        connection = Jsoup.connect(new URI(baseURL + relativeURL).toASCIIString()).followRedirects(true).ignoreHttpErrors(true)
                 .userAgent("Mozilla/37.0").timeout(60000);
         document = connection.get();
         responseCode = connection.response().statusCode();
     }
 
     public StaticHTMLFetcher(String fullURL) throws URISyntaxException, IOException {
-        connection = Jsoup.connect(new URI(fullURL).toASCIIString())
+        connection = Jsoup.connect(new URI(fullURL).toASCIIString()).followRedirects(true).ignoreHttpErrors(true)
                 .userAgent("Mozilla/37.0").timeout(60000);
         document = connection.get();
         responseCode = connection.response().statusCode();

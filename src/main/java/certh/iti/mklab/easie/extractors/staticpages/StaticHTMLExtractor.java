@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.util.Pair;
+import org.apache.commons.lang3.tuple.Pair;
 import org.bson.Document;
 import org.jsoup.nodes.Element;
 
@@ -72,7 +72,7 @@ public class StaticHTMLExtractor extends AbstractHTMLExtractor {
     /**
      * extracts data from a list of specified fields from a webpage
      *
-     * @param fields: list of fields
+     * @param sfields: list of fields
      * @return a HashMap of the extracted fields
      */
     @Override
@@ -84,7 +84,7 @@ public class StaticHTMLExtractor extends AbstractHTMLExtractor {
     /**
      * extracts data from the specified table fields
      *
-     * @param tableSelector: CSS table selector
+     * @param table_selector: CSS table selector
      * @param fields: list of table fields
      * @return an ArrayList of HashMap (corresponds to the extracted table
      * fields)
@@ -103,7 +103,7 @@ public class StaticHTMLExtractor extends AbstractHTMLExtractor {
     @Override
     public Pair extractFields(List<ScrapableField> cfields, List<ScrapableField> sfields) {
         FieldExtractor extractor = new FieldExtractor((Element) fetcher.getHTMLDocument(), source);
-        return new Pair(
+        return Pair.of(
                 extractor.getExtractedFields(cfields, FIELD_TYPE.COMPANY_INFO),
                 extractor.getExtractedFields(sfields, FIELD_TYPE.METRIC)
         );
@@ -121,7 +121,7 @@ public class StaticHTMLExtractor extends AbstractHTMLExtractor {
             System.out.println(ex.getMessage());
         }
 
-        return new Pair(
+        return Pair.of(
                 extracted_company_info,
                 extracted_metric_info
         );

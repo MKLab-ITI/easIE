@@ -146,12 +146,21 @@ public class StoreUtils {
         }
     }
 
-    public void toFile(String filePath) throws FileNotFoundException, UnsupportedEncodingException {
+    public void toJSONFile(String filePath) throws FileNotFoundException, UnsupportedEncodingException {
         PrintWriter writer = new PrintWriter(
                 new OutputStreamWriter(
                         new FileOutputStream(filePath), "UTF8"));
 
         writer.println(exportJson());
+        writer.close();
+    }
+
+    public void toCSVFile(String filePath, String metric_designer) throws FileNotFoundException, UnsupportedEncodingException, IOException {
+        PrintWriter writer = new PrintWriter(
+                new OutputStreamWriter(
+                        new FileOutputStream(filePath), "UTF8"));
+
+        writer.println(exportCSV(metric_designer));
         writer.close();
     }
 
@@ -207,6 +216,33 @@ public class StoreUtils {
 
         return results.toString(4);
 
+    }
+
+    public String exportCSV(String wikirate_metric_designer) {
+        String csv = "";
+
+        if (extracted_company_info != null) {
+
+            for (int j = 0; j < extracted_company_info.size(); j++) {
+                if (extracted_company_info.isEmpty()) {
+                    continue;
+                }
+
+                JSONObject company = new JSONObject(extracted_company_info.get(j).toJson());
+
+                ArrayList<Document> temp_metrics = extracted_metrics.get(j);
+                for (int i = 0; i < temp_metrics.size(); i++) {
+                    if (!temp_metrics.get(i).getString("name").equals("crawl_to")) {
+                        JSONObject current_metric = new JSONObject(temp_metrics.get(i).toJson());
+                        String metric_string = wikirate_metric_designer + "+" + current_metric.getString("name") + ",\"" + company.getString("company_name").replace("\"", "") + "\"," + current_metric.get("citeyear") + "," + current_metric.get("value") + ",\"" + current_metric.get("source") + "\"\n";
+
+                        csv += metric_string;
+                        number_of_metrics++;
+                    }
+                }
+            }
+        }
+        return csv;
     }
 
     public int getNumberOfExtractedMetrics() {

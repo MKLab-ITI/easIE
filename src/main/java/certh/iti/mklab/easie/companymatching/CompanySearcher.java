@@ -41,10 +41,6 @@ public class CompanySearcher {
 
     /**
      * Creates a CompanySearcher object
-     *
-     * @param mongo a MongoUtils object
-     * @param dbname database name
-     * @param collection's name
      */
     public CompanySearcher(MongoCollection companies_collection) {
         this.companies = companies_collection;
@@ -111,7 +107,7 @@ public class CompanySearcher {
 
     public ObjectId search(String company_name, String country) {
 
-        double threshold = 0.75;
+        double threshold = 0.8;
 
         CompanyDocument document = new CompanyDocument.Builder(company_name)
                 .id("candidate")
@@ -155,6 +151,44 @@ public class CompanySearcher {
         }
 
         Document query = new Document("aliases", company_name).append("country", country);
+        Document c = (Document) companies.find(query).iterator().tryNext();
+        if (c != null) {
+            return c.getObjectId("_id");
+        } else {
+            return null;
+        }
+    }
+
+        public ObjectId search(String company_name) {
+
+        double threshold = 0.9;
+
+        CompanyDocument document = new CompanyDocument.Builder(company_name)
+                .id("candidate")
+                .build();
+
+        tfidf.calculate(document);
+
+        HashMap<String, Double> candidates = new HashMap();
+
+        Iterator<CompanyDocument> it = corpus.iterator();
+
+        while (it.hasNext()) {
+            CompanyDocument company = it.next();
+
+            double similarity = tfidf.similarity("candidate", company.id);
+
+            if (similarity >= threshold && !company.equals(document)) {
+                candidates.put(company.id, similarity);
+            }
+        }
+
+        if (candidates.size() > 0) {
+            String id = (String) MapFunctionsUtils.getTopValues2(candidates, 1).keySet().iterator().next();
+            return new ObjectId(id.replaceAll("_.*", ""));
+        }
+
+        Document query = new Document("aliases", company_name);
         Document c = (Document) companies.find(query).iterator().tryNext();
         if (c != null) {
             return c.getObjectId("_id");

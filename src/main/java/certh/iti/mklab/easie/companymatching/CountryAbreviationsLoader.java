@@ -47,7 +47,7 @@ public class CountryAbreviationsLoader {
         String line;
         while ((line = in.readLine()) != null) {
             String[] array = line.split(";");
-            ABR2Letter.put(array[1], array[0].toLowerCase());
+            ABR2Letter.put(array[1].toLowerCase(), array[0].toLowerCase());
         }
         in.close();
         return ABR2Letter;
@@ -59,7 +59,7 @@ public class CountryAbreviationsLoader {
         String line;
         while ((line = in.readLine()) != null) {
             String[] array = line.split(";");
-            ABR3Letter.put(array[2], array[0].toLowerCase());
+            ABR3Letter.put(array[2].toLowerCase(), array[0].toLowerCase());
         }
         in.close();
         return ABR3Letter;

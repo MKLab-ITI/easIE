@@ -23,20 +23,22 @@ import certh.iti.mklab.easie.exception.RelativeURLException;
 import com.github.fge.jsonschema.core.exceptions.ProcessingException;
 import certh.iti.mklab.easie.executor.WrapperExecutor;
 import certh.iti.mklab.easie.executor.handlers.DataHandler;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.jsoup.select.Selector.SelectorParseException;
 
 /**
- *
  * @author vasgat
  */
 public class Main {
 
     public static void main(String[] args) throws URISyntaxException {
-
+        //args = new String[1];
+        //args[0] = "C:\\Users\\vasgat\\Desktop\\religiousgreece_example.json";
         if (args.length == 1) {
             try {
                 ConfigurationReader reader = new ConfigurationReader(args[0], ".");
@@ -51,11 +53,10 @@ public class Main {
 
                 if (config.store != null) {
                     dh.store(config.store, config.source_name);
+                } else {
+                    JSONArray array = new JSONArray(dh.exportJson());
+                    System.out.println(array.toString(4));
                 }
-
-                JSONArray array = new JSONArray(dh.exportJson());
-
-                System.out.println(array.toString(4));
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             } catch (ProcessingException ex) {
@@ -85,11 +86,10 @@ public class Main {
 
                 if (config.store != null) {
                     dh.store(config.store, config.source_name);
+                } else {
+                    JSONArray array = new JSONArray(dh.exportJson());
+                    System.out.println(array.toString(4));
                 }
-
-                JSONArray array = new JSONArray(dh.exportJson());
-
-                System.out.println(array.toString(4));
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             } catch (ProcessingException ex) {

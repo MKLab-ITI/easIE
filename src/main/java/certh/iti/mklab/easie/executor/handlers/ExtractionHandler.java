@@ -17,11 +17,12 @@ package certh.iti.mklab.easie.executor.handlers;
 
 import certh.iti.mklab.easie.configuration.Configuration;
 import certh.iti.mklab.easie.extractors.AbstractHTMLExtractor;
+import org.apache.commons.lang3.tuple.Pair;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javafx.util.Pair;
 
 /**
  *

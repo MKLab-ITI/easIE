@@ -126,6 +126,8 @@ public final class Configuration {
         public String metrics_collection;
 
         public DBCreadentials db_credentials;
+
+        public String wikirate_metric_designer;
     }
 
     public class DBCreadentials {

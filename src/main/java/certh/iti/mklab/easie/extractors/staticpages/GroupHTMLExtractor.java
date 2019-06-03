@@ -15,9 +15,9 @@
  */
 package certh.iti.mklab.easie.extractors.staticpages;
 
-import certh.iti.mklab.easie.extractors.staticpages.SingleStaticPageExtractor;
 import certh.iti.mklab.easie.configuration.Configuration.ScrapableField;
 import certh.iti.mklab.easie.extractors.AbstractHTMLExtractor;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -32,7 +32,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.util.Pair;
+
+import org.apache.commons.lang3.tuple.Pair;
 import org.bson.Document;
 
 /**
@@ -79,7 +80,7 @@ public class GroupHTMLExtractor extends AbstractHTMLExtractor {
 
         Iterator links = group_of_urls.iterator();
         ExecutorService executorService = Executors.newFixedThreadPool(numThreads);
-        
+
         List<Future<ArrayList>> handles = new ArrayList<Future<ArrayList>>();
         while (links.hasNext()) {
             handles.add(executorService.submit(new SingleStaticPageExtractor(
@@ -179,7 +180,7 @@ public class GroupHTMLExtractor extends AbstractHTMLExtractor {
             }
         }
         executorService.shutdownNow();
-        return new Pair(extractedCFields, extractedSFields);
+        return Pair.of(extractedCFields, extractedSFields);
     }
 
     @Override
@@ -212,6 +213,6 @@ public class GroupHTMLExtractor extends AbstractHTMLExtractor {
             }
         }
         executorService.shutdownNow();
-        return new Pair(extractedCFields, extractedSFields);
+        return Pair.of(extractedCFields, extractedSFields);
     }
 }

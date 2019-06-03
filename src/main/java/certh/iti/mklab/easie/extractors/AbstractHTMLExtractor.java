@@ -19,7 +19,8 @@ import certh.iti.mklab.easie.configuration.Configuration.ScrapableField;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
-import javafx.util.Pair;
+import org.apache.commons.lang3.tuple.Pair;
+
 /**
  * AbstractHTMLExtractor Object
  * @author vasgat

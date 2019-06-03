@@ -19,11 +19,13 @@ import com.mongodb.MongoClient;
 import certh.iti.mklab.easie.MongoUtils;
 import certh.iti.mklab.easie.configuration.Configuration.Store;
 import com.mongodb.client.MongoCollection;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.bson.Document;
 
 /**
@@ -42,7 +44,7 @@ public class DataHandler {
      * Creates SnippetHandler Object
      *
      * @param extracted_company_info: extracted company fields
-     * @param extracted_metrics: extracted snippet fields
+     * @param extracted_metrics:      extracted snippet fields
      * @throws Exception
      */
     public DataHandler(List<Document> extracted_company_info, List<ArrayList<Document>> extracted_metrics) {
@@ -55,9 +57,9 @@ public class DataHandler {
      * Stores the extracted data (companies_fields and extracted_metrics) into
      * mongodb or drive
      *
-     * @param store contains information about where the data are going to be
-     * stored
-     * @param sourceName the data were collected
+     * @param store       contains information about where the data are going to be
+     *                    stored
+     * @param source_name
      * @throws UnknownHostException
      * @throws FileNotFoundException
      * @throws Exception
@@ -103,8 +105,10 @@ public class DataHandler {
             storeUtils.toMongoDB(metrics_collection);
 
             client.close();
+        } else if (store.format.equals("json")) {
+            storeUtils.toJSONFile(store.hd_path);
         } else {
-            storeUtils.toFile(store.hd_path);
+            storeUtils.toCSVFile(store.hd_path, store.wikirate_metric_designer);
         }
     }
 

@@ -21,11 +21,13 @@ import certh.iti.mklab.easie.FIELD_TYPE;
 import certh.iti.mklab.easie.exception.HTMLElementNotFoundException;
 import certh.iti.mklab.easie.extractors.FieldExtractor;
 import certh.iti.mklab.easie.extractors.TableFieldExtractor;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.util.Pair;
+
+import org.apache.commons.lang3.tuple.Pair;
 import org.jsoup.nodes.Element;
 
 /**
@@ -44,7 +46,7 @@ public class DynamicHTMLExtractor extends AbstractHTMLExtractor {
     /**
      * Creates a new DynamicHTMLWrapper for a webpage
      *
-     * @param base_url: webpage base url
+     * @param base_url:     webpage base url
      * @param relative_url: path to the specific spot in the page
      * @throws URISyntaxException
      * @throws IOException
@@ -88,7 +90,7 @@ public class DynamicHTMLExtractor extends AbstractHTMLExtractor {
      * extracts data from the specified table fields
      *
      * @param tableSelector: CSS table selector
-     * @param fields: list of table fields
+     * @param fields:        list of table fields
      * @return an ArrayList of HashMap (corresponds to the extracted table
      * fields)
      */
@@ -96,9 +98,9 @@ public class DynamicHTMLExtractor extends AbstractHTMLExtractor {
     public List extractTable(String tableSelector, List<ScrapableField> fields) {
         TableFieldExtractor extractor
                 = new TableFieldExtractor(
-                        (Element) browser_emulator.getHTMLDocument(),
-                        tableSelector, source
-                );
+                (Element) browser_emulator.getHTMLDocument(),
+                tableSelector, source
+        );
         try {
             return extractor.getExtractedFields(fields, FIELD_TYPE.METRIC);
         } catch (HTMLElementNotFoundException ex) {
@@ -110,7 +112,7 @@ public class DynamicHTMLExtractor extends AbstractHTMLExtractor {
     @Override
     public Pair extractFields(List<ScrapableField> cfields, List<ScrapableField> sfields) throws URISyntaxException, IOException {
         FieldExtractor extractor = new FieldExtractor((Element) browser_emulator.getHTMLDocument(), source);
-        return new Pair(
+        return Pair.of(
                 extractor.getExtractedFields(cfields, FIELD_TYPE.COMPANY_INFO),
                 extractor.getExtractedFields(sfields, FIELD_TYPE.METRIC)
         );
@@ -129,7 +131,7 @@ public class DynamicHTMLExtractor extends AbstractHTMLExtractor {
             System.out.println(ex.getMessage());
         }
 
-        return new Pair(
+        return Pair.of(
                 extracted_company_info,
                 extracted_metric_info
         );
