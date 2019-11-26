@@ -23,13 +23,13 @@ import com.github.fge.jsonschema.core.report.ProcessingMessage;
 import com.github.fge.jsonschema.core.report.ProcessingReport;
 import com.github.fge.jsonschema.main.JsonSchemaFactory;
 import com.github.fge.jsonschema.main.JsonValidator;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
-import org.json.JSONObject;
 
 /**
- *
  * @author vasgat
  */
 public class ConfigurationValidator {

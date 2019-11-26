@@ -47,7 +47,6 @@ public abstract class AbstractContentExtractor {
      * Returns the content of a specific field in the document
      *
      * @param field
-     * @param element
      * @return a Pair of String, Object that corresponds to field name and field
      * value accordingly
      */
@@ -106,7 +105,7 @@ public abstract class AbstractContentExtractor {
                 extracted_content.append("value", field_value).append("type", "textual");
             }
         } else {
-            field_value = extractContent((ExtractionProperties) field.value, element).toString();
+            field_value = extractContent((ExtractionProperties) field.value, element);
 
             ExtractionProperties properties = (ExtractionProperties) field.value;
 

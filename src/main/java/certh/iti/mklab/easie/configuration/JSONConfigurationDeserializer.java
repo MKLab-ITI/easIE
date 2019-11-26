@@ -30,12 +30,12 @@ public class JSONConfigurationDeserializer implements JsonDeserializer<Configura
 
         configuration.metrics = transform_metrics(configuration.metrics);
 
-        configuration.company_info = transform_CompanyInfo(configuration.company_info);
+        configuration.entity_info = transform_CompanyInfo(configuration.entity_info);
 
         Configuration crawl = configuration.crawl;
         while (crawl != null) {
             crawl.metrics = transform_metrics(crawl.metrics);
-            crawl.company_info = transform_CompanyInfo(crawl.company_info);
+            crawl.entity_info = transform_CompanyInfo(crawl.entity_info);
             crawl = crawl.crawl;
         }
 

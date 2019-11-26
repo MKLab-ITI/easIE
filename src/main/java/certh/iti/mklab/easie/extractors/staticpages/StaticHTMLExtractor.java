@@ -21,10 +21,15 @@ import certh.iti.mklab.easie.configuration.Configuration.ScrapableField;
 import certh.iti.mklab.easie.extractors.AbstractHTMLExtractor;
 import certh.iti.mklab.easie.exception.HTMLElementNotFoundException;
 import certh.iti.mklab.easie.extractors.TableFieldExtractor;
+
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URISyntaxException;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.commons.lang3.tuple.Pair;
 import org.bson.Document;
 import org.jsoup.nodes.Element;
@@ -46,12 +51,12 @@ public class StaticHTMLExtractor extends AbstractHTMLExtractor {
     /**
      * Creates a new StaticHTMLWrapper for a webpage
      *
-     * @param base_url: webpage base url
+     * @param base_url:     webpage base url
      * @param relative_url: path to the specific spot in the page
      * @throws URISyntaxException
      * @throws IOException
      */
-    public StaticHTMLExtractor(String base_url, String relative_url) throws URISyntaxException, IOException {
+    public StaticHTMLExtractor(String base_url, String relative_url) throws URISyntaxException, IOException, NoSuchAlgorithmException, KeyManagementException {
         this.base_url = base_url;
         this.source = base_url + relative_url;
         this.fetcher = new StaticHTMLFetcher(base_url, relative_url);
@@ -64,7 +69,7 @@ public class StaticHTMLExtractor extends AbstractHTMLExtractor {
      * @throws URISyntaxException
      * @throws IOException
      */
-    public StaticHTMLExtractor(String FullLink) throws URISyntaxException, IOException {
+    public StaticHTMLExtractor(String FullLink) throws URISyntaxException, IOException, NoSuchAlgorithmException, KeyManagementException {
         this.source = FullLink;
         this.fetcher = new StaticHTMLFetcher(FullLink);
     }
@@ -85,7 +90,7 @@ public class StaticHTMLExtractor extends AbstractHTMLExtractor {
      * extracts data from the specified table fields
      *
      * @param table_selector: CSS table selector
-     * @param fields: list of table fields
+     * @param fields:         list of table fields
      * @return an ArrayList of HashMap (corresponds to the extracted table
      * fields)
      */

@@ -20,6 +20,7 @@ import certh.iti.mklab.easie.exception.RelativeURLException;
 import certh.iti.mklab.easie.extractors.dynamicpages.DynamicHTMLExtractor;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.security.KeyManagementException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -38,7 +39,7 @@ public class DynamicWrapperGenerator extends WrapperGenerator {
     }
 
     @Override
-    public void execute() throws InterruptedException, URISyntaxException, IOException, RelativeURLException {
+    public void execute() throws InterruptedException, URISyntaxException, IOException, RelativeURLException, KeyManagementException {
 
         if (configuration.url.relative_url != null) {
             DynamicHTMLExtractor wrapper = new DynamicHTMLExtractor(
@@ -80,7 +81,7 @@ public class DynamicWrapperGenerator extends WrapperGenerator {
         }
     }
 
-    private void execute_events(DynamicHTMLExtractor wrapper) throws InterruptedException, URISyntaxException, IOException {
+    private void execute_events(DynamicHTMLExtractor wrapper) throws InterruptedException, URISyntaxException, IOException, KeyManagementException {
         if (configuration.events instanceof ArrayList) {
             ArrayList<Configuration.Event> list_of_events = (ArrayList<Configuration.Event>) configuration.events;
             for (int i = 0; i < list_of_events.size(); i++) {

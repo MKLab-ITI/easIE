@@ -22,6 +22,8 @@ import certh.iti.mklab.easie.extractors.staticpages.PaginationIterator;
 import certh.iti.mklab.easie.extractors.staticpages.StaticHTMLExtractor;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  *
@@ -34,7 +36,7 @@ public class StaticWrapperGenerator extends WrapperGenerator {
     }
 
     @Override
-    public void execute() throws InterruptedException, PaginationException, URISyntaxException, IOException {
+    public void execute() throws InterruptedException, PaginationException, URISyntaxException, IOException, KeyManagementException, NoSuchAlgorithmException {
         if (configuration.url.relative_url != null) {
             StaticHTMLExtractor wrapper = new StaticHTMLExtractor(
                     configuration.url.base_url,

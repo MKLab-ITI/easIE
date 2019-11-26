@@ -19,23 +19,21 @@ import certh.iti.mklab.easie.companymatching.CompanyMatcher;
 import certh.iti.mklab.easie.companymatching.CompanySearcher;
 import certh.iti.mklab.easie.companymatching.CountryAbreviationsLoader;
 import com.mongodb.client.MongoCollection;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
+
+import java.io.*;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.bson.Document;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.bson.json.JsonWriterSettings;
 
 /**
- *
  * @author vasgat
  */
 public class StoreUtils {
@@ -43,10 +41,12 @@ public class StoreUtils {
     private List<Document> extracted_company_info;
     private List<ArrayList<Document>> extracted_metrics;
     private int number_of_metrics;
+    private String entity_name;
 
-    public StoreUtils(List<Document> extracted_companies, List<ArrayList<Document>> extracted_metrics) {
+    public StoreUtils(List<Document> extracted_companies, List<ArrayList<Document>> extracted_metrics, String entity_name) {
         this.extracted_company_info = extracted_companies;
         this.extracted_metrics = extracted_metrics;
+        this.entity_name = entity_name;
     }
 
     public void toMongoDB(MongoCollection companies_collection, MongoCollection metrics_collection, String source_name) throws UnknownHostException, IOException {
@@ -139,26 +139,33 @@ public class StoreUtils {
                         json.append(temp_metrics.get(i).getString("name"), temp_metrics.get(i).getString("value"));
                     }
                 }
-                json.append("source", temp_metrics.get(0).getString("source"));
+                json.append("sourccoe", temp_metrics.get(0).getString("source"));
                 json.append("citeyear", temp_metrics.get(0).getString("citeyear"));
                 metrics_collection.insertOne(json);
             }
         }
     }
 
-    public void toJSONFile(String filePath) throws FileNotFoundException, UnsupportedEncodingException {
+    public void toJSONFile(String filePath) throws IOException {
         PrintWriter writer = new PrintWriter(
                 new OutputStreamWriter(
-                        new FileOutputStream(filePath), "UTF8"));
+                        new FileOutputStream(filePath), "UTF-8"));
+        writer.write(exportJson());
 
-        writer.println(exportJson());
         writer.close();
+        /*PrintWriter writer = new PrintWriter(
+                new OutputStreamWriter(
+                        new FileOutputStream(filePath), "UTF-8"));*/
+
+        //writer.println(exportJson());
+        //writer.close();
     }
 
-    public void toCSVFile(String filePath, String metric_designer) throws FileNotFoundException, UnsupportedEncodingException, IOException {
+    public void toCSVFile(String filePath, String metric_designer) throws
+            FileNotFoundException, UnsupportedEncodingException, IOException {
         PrintWriter writer = new PrintWriter(
                 new OutputStreamWriter(
-                        new FileOutputStream(filePath), "UTF8"));
+                        new FileOutputStream(filePath), "UTF-8"));
 
         writer.println(exportCSV(metric_designer));
         writer.close();
@@ -168,7 +175,7 @@ public class StoreUtils {
      * @returns the extracted data into JSON format
      */
     public String exportJson() {
-        JSONArray results = new JSONArray();
+        ArrayList<Document> results = new ArrayList<>();
 
         if (extracted_company_info != null) {
 
@@ -177,29 +184,29 @@ public class StoreUtils {
                     continue;
                 }
 
-                JSONObject company = new JSONObject(extracted_company_info.get(j).toJson());
+                Document company = extracted_company_info.get(j);
 
-                JSONArray metrics = new JSONArray();
+                ArrayList<Document> metrics = new ArrayList();
 
                 ArrayList<Document> temp_metrics = extracted_metrics.get(j);
                 for (int i = 0; i < temp_metrics.size(); i++) {
                     if (!temp_metrics.get(i).getString("name").equals("crawl_to")) {
                         number_of_metrics++;
-                        metrics.put(new JSONObject(temp_metrics.get(i).toJson()));
+                        metrics.add(Document.parse(temp_metrics.get(i).toJson()));
                     }
                 }
 
-                JSONObject json = new JSONObject().append("company", company).append("metrics", metrics);
+                Document json = new Document().append(entity_name, company).append("metrics", metrics);
 
-                results.put(json);
+                results.add(json);
             }
         } else {
-            JSONArray metrics = new JSONArray();
+            ArrayList<Document> metrics = new ArrayList();
 
             for (int j = 0; j < extracted_metrics.size(); j++) {
                 ArrayList<Document> temp_metrics = extracted_metrics.get(j);
 
-                JSONObject json = new JSONObject();
+                Document json = new Document();
                 for (int i = 0; i < temp_metrics.size(); i++) {
                     if (!temp_metrics.get(i).getString("name").equals("crawl_to")) {
                         number_of_metrics++;
@@ -208,13 +215,15 @@ public class StoreUtils {
                 }
                 json.append("source", temp_metrics.get(0).getString("source"));
                 json.append("citeyear", temp_metrics.get(0).getString("citeyear"));
-                metrics.put(json);
+                metrics.add(json);
             }
 
-            results.put(metrics);
+            results.addAll(metrics);
         }
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+        Date date = new Date(System.currentTimeMillis());
 
-        return results.toString(4);
+        return new Document("results", results).append("timestamp", formatter.format(date)).toJson(JsonWriterSettings.builder().indent(true).build());
 
     }
 
@@ -228,12 +237,12 @@ public class StoreUtils {
                     continue;
                 }
 
-                JSONObject company = new JSONObject(extracted_company_info.get(j).toJson());
+                Document company = Document.parse(extracted_company_info.get(j).toJson());
 
                 ArrayList<Document> temp_metrics = extracted_metrics.get(j);
                 for (int i = 0; i < temp_metrics.size(); i++) {
                     if (!temp_metrics.get(i).getString("name").equals("crawl_to")) {
-                        JSONObject current_metric = new JSONObject(temp_metrics.get(i).toJson());
+                        Document current_metric = Document.parse(temp_metrics.get(i).toJson());
                         String metric_string = wikirate_metric_designer + "+" + current_metric.getString("name") + ",\"" + company.getString("company_name").replace("\"", "") + "\"," + current_metric.get("citeyear") + "," + current_metric.get("value") + ",\"" + current_metric.get("source") + "\"\n";
 
                         csv += metric_string;

@@ -16,17 +16,17 @@
 package certh.iti.mklab.easie.extractors.dynamicpages;
 
 import certh.iti.mklab.easie.extractors.Fetcher;
+
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 
 /**
- *
  * @author vasgat
  */
 public class BrowserEmulator extends Fetcher {
@@ -50,7 +50,7 @@ public class BrowserEmulator extends Fetcher {
         driver.get(
                 fullURL
         );
-        Thread.sleep(5000);
+        Thread.sleep(10000);
     }
 
     /**
@@ -60,8 +60,11 @@ public class BrowserEmulator extends Fetcher {
      * @throws InterruptedException
      */
     public void clickEvent(String CSSSelector) throws InterruptedException {
-        driver.findElement(By.cssSelector(CSSSelector)).click();
-        Thread.sleep(3000);
+        WebElement element = driver.findElement(By.cssSelector(CSSSelector));
+        Actions actions = new Actions(driver);
+        Action action = actions.moveToElement(element).click().release().build();
+        action.perform();
+        Thread.sleep(3000L);
     }
 
     /**

@@ -31,11 +31,13 @@ public final class Configuration {
 
     public String source_name;
 
+    public String entity_name;
+
     public String table_selector;
 
     public ArrayList<ScrapableField> metrics;
 
-    public ArrayList<ScrapableField> company_info;
+    public ArrayList<ScrapableField> entity_info;
 
     public String next_page_selector;
 

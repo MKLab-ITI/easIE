@@ -22,12 +22,16 @@ import certh.iti.mklab.easie.exception.RelativeURLException;
 import certh.iti.mklab.easie.executor.generators.DynamicWrapperGenerator;
 import certh.iti.mklab.easie.executor.generators.StaticWrapperGenerator;
 import certh.iti.mklab.easie.executor.generators.WrapperGenerator;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+
 import org.bson.Document;
 
 /**
@@ -51,7 +55,7 @@ public class WrapperExecutor {
      * @throws IOException
      * @throws Exception
      */
-    public WrapperExecutor(Configuration config, String ChromeDriverPath) throws URISyntaxException, IOException, InterruptedException, PaginationException, RelativeURLException {
+    public WrapperExecutor(Configuration config, String ChromeDriverPath) throws URISyntaxException, IOException, InterruptedException, PaginationException, RelativeURLException, KeyManagementException, NoSuchAlgorithmException {
         this.config = config;
         this.company_info = new ArrayList<Document>();
         this.metrics = new ArrayList<ArrayList<Document>>();
@@ -59,7 +63,7 @@ public class WrapperExecutor {
         this.wrapperGeneration();
     }
 
-    public WrapperExecutor(Configuration config) throws URISyntaxException, IOException, InterruptedException, PaginationException, RelativeURLException {
+    public WrapperExecutor(Configuration config) throws URISyntaxException, IOException, InterruptedException, PaginationException, RelativeURLException, KeyManagementException, NoSuchAlgorithmException {
         this.config = config;
         this.company_info = new ArrayList<Document>();
         this.metrics = new ArrayList<ArrayList<Document>>();
@@ -74,7 +78,7 @@ public class WrapperExecutor {
      * @throws Exception
      */
     public void store() throws Exception {
-        DataHandler handler = new DataHandler(company_info, metrics);
+        DataHandler handler = new DataHandler(company_info, metrics, config.entity_name);
         handler.store(config.store, config.source_name);
     }
 
@@ -85,7 +89,7 @@ public class WrapperExecutor {
      * @throws IOException
      * @throws Exception
      */
-    private void wrapperGeneration() throws URISyntaxException, IOException, InterruptedException, PaginationException, RelativeURLException {
+    private void wrapperGeneration() throws URISyntaxException, IOException, InterruptedException, PaginationException, RelativeURLException, NoSuchAlgorithmException, KeyManagementException {
         WrapperGenerator wrapper;
         if (config.dynamic_page) {
             wrapper = new DynamicWrapperGenerator(config, ChromeDriverPath);
@@ -150,7 +154,7 @@ public class WrapperExecutor {
                     metrics.set(index, temp_metric);
 
                     Document temp_company = company_info.get(index);
-                    
+
                     if (temp_company.size() > 0) {
                         System.out.println(temp_company_info.get(i).get(0).keySet());
                         System.out.println(temp_company_info.get(i));

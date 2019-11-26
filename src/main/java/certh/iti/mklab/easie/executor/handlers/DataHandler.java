@@ -39,6 +39,7 @@ public class DataHandler {
     private List<Document> extracted_company_info;
     private List<ArrayList<Document>> extracted_metrics;
     private StoreUtils storeUtils;
+    private String entity_name;
 
     /**
      * Creates SnippetHandler Object
@@ -47,10 +48,11 @@ public class DataHandler {
      * @param extracted_metrics:      extracted snippet fields
      * @throws Exception
      */
-    public DataHandler(List<Document> extracted_company_info, List<ArrayList<Document>> extracted_metrics) {
+    public DataHandler(List<Document> extracted_company_info, List<ArrayList<Document>> extracted_metrics, String entity_name) {
         this.extracted_company_info = extracted_company_info;
         this.extracted_metrics = extracted_metrics;
-        storeUtils = new StoreUtils(extracted_company_info, extracted_metrics);
+        this.entity_name = entity_name;
+        storeUtils = new StoreUtils(extracted_company_info, extracted_metrics, entity_name);
     }
 
     /**

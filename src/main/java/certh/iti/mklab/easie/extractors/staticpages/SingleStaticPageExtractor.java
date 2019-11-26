@@ -16,15 +16,18 @@
 package certh.iti.mklab.easie.extractors.staticpages;
 
 import certh.iti.mklab.easie.configuration.Configuration.ScrapableField;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.concurrent.Callable;
+
 import org.jsoup.HttpStatusException;
 import org.jsoup.nodes.Document;
 
 /**
- *
  * @author vasgat
  */
 public class SingleStaticPageExtractor implements Callable {
@@ -44,7 +47,7 @@ public class SingleStaticPageExtractor implements Callable {
     }
 
     @Override
-    public Object call() throws URISyntaxException, IOException {
+    public Object call() throws URISyntaxException, IOException, KeyManagementException {
         try {
             StaticHTMLExtractor wrapper = new StaticHTMLExtractor(page);
             document = (Document) wrapper.fetcher.getHTMLDocument();
@@ -60,6 +63,8 @@ public class SingleStaticPageExtractor implements Callable {
         } catch (HttpStatusException ex) {
             System.out.println(ex.fillInStackTrace());
             return null;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
         }
         return null;
     }

@@ -21,6 +21,8 @@ import certh.iti.mklab.easie.exception.RelativeURLException;
 import certh.iti.mklab.easie.executor.handlers.ExtractionHandler;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  *
@@ -36,5 +38,5 @@ public abstract class WrapperGenerator {
         this.configuration = configuration;
     }
 
-    abstract public void execute() throws InterruptedException, PaginationException, URISyntaxException, IOException, RelativeURLException;
+    abstract public void execute() throws InterruptedException, PaginationException, URISyntaxException, IOException, RelativeURLException, KeyManagementException, NoSuchAlgorithmException;
 }

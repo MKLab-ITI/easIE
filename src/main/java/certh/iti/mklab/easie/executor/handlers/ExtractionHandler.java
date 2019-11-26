@@ -21,6 +21,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.security.KeyManagementException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -40,7 +41,7 @@ public class ExtractionHandler {
         this.extracted_metrics = new ArrayList<HashMap>();
     }
 
-    public void execute(AbstractHTMLExtractor wrapper, Configuration configuration) throws URISyntaxException, IOException, InterruptedException {
+    public void execute(AbstractHTMLExtractor wrapper, Configuration configuration) throws URISyntaxException, IOException, InterruptedException, KeyManagementException {
         this.wrapper = wrapper;
         this.configuration = configuration;
         if (configuration.table_selector != null) {
@@ -58,11 +59,11 @@ public class ExtractionHandler {
         return extracted_companies;
     }
 
-    private void extractTable() throws URISyntaxException, IOException, InterruptedException {
-        if (configuration.company_info != null && configuration.metrics != null) {
+    private void extractTable() throws URISyntaxException, IOException, InterruptedException, KeyManagementException {
+        if (configuration.entity_info != null && configuration.metrics != null) {
             Pair temp = (Pair) wrapper.extractTable(
                     configuration.table_selector,
-                    configuration.company_info,
+                    configuration.entity_info,
                     configuration.metrics
             );
             extracted_companies.addAll(
@@ -80,11 +81,11 @@ public class ExtractionHandler {
         }
     }
 
-    private void extractFields() throws URISyntaxException, IOException, InterruptedException {
+    private void extractFields() throws URISyntaxException, IOException, InterruptedException, KeyManagementException {
 
-        if (configuration.company_info != null) {
+        if (configuration.entity_info != null) {
             Pair temp = (Pair) wrapper.extractFields(
-                    configuration.company_info,
+                    configuration.entity_info,
                     configuration.metrics
             );
             extracted_companies.addAll(
