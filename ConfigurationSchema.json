@@ -79,10 +79,13 @@
         "source_name": {
             "type": "string"
         },
+        "entity_name": {
+            "type": "string"
+        },
         "table_selector": {
             "type": "string"
         },
-        "company_info": {
+        "entity_info": {
             "type": "array",
             "items": {
                 "type": "object",
@@ -983,6 +986,7 @@
         "source_name",
         "url",
         "metrics",
+        "entity_name",
         "dynamic_page"
     ]
 }
