@@ -56,17 +56,6 @@ public class StaticHTMLFetcher extends Fetcher {
         connection = Jsoup.connect(new URI(baseURL + relativeURL).toASCIIString()).followRedirects(true).ignoreHttpErrors(true)
                 .timeout(60000);
         document = connection.get();
-        if ((baseURL + relativeURL).equals("https://elfar.cat/art/27043/el-amb-plantea-un-centenar-de-medidas-para-mejorar-la-movilidad-hasta-2024")) {
-            Writer writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream("C:\\Users\\vasgat\\Desktop\\site2.json"), StandardCharsets.UTF_8));
-
-            org.bson.Document obj = new org.bson.Document();
-            obj.append("results", document.text());
-            writer.write(obj.toString());
-            writer.close();
-            Gson gson = new Gson();
-            System.out.println(org.apache.commons.lang3.StringEscapeUtils.unescapeJava(gson.toJson(obj)));
-        }
         responseCode = connection.response().statusCode();
     }
 
@@ -75,16 +64,6 @@ public class StaticHTMLFetcher extends Fetcher {
         connection = Jsoup.connect(new URI(fullURL).toASCIIString()).followRedirects(true).ignoreHttpErrors(true)
                 .timeout(60000);
         document = connection.get();
-        if ((fullURL).equals("https://elfar.cat/art/27043/el-amb-plantea-un-centenar-de-medidas-para-mejorar-la-movilidad-hasta-2024")) {
-            Writer writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream("C:\\Users\\vasgat\\Desktop\\site2.json"), StandardCharsets.UTF_8));
-            org.bson.Document obj = new org.bson.Document();
-            obj.append("results", document.text());
-            writer.write(obj.toJson());
-            writer.close();
-            Gson gson = new Gson();
-            System.out.println(org.apache.commons.lang3.StringEscapeUtils.unescapeJava(gson.toJson(obj)));
-        }
         responseCode = connection.response().statusCode();
     }
 

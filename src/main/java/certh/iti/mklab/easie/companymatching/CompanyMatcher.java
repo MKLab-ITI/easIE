@@ -18,13 +18,14 @@ package certh.iti.mklab.easie.companymatching;
 import certh.iti.mklab.easie.MongoUtils;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
+
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
 /**
- *
  * @author vasgat
  */
 public class CompanyMatcher {
@@ -38,14 +39,15 @@ public class CompanyMatcher {
 
     /**
      * Creates a Company object that connects the Company Name and Website with
-     * an entry from the dataset or creates a new one
+     * * an entry from the dataset or creates a new one
      *
-     * @param CompanyName the name of the Company
-     * @param mongo a MongoUtils object
-     * @param CompanyLink the Website of the company
-     * @param dbname database's name
-     * @param collection's name
-     * @param searcher A CompanySearcher2 object
+     * @param company_name
+     * @param country
+     * @param website
+     * @param companies_collection
+     * @param searcher
+     * @param loader
+     * @throws UnknownHostException
      */
     public CompanyMatcher(String company_name, String country, String website, MongoCollection companies_collection, CompanySearcher searcher, CountryAbreviationsLoader loader) throws UnknownHostException {
         this.company_name = company_name.trim();
@@ -99,8 +101,8 @@ public class CompanyMatcher {
             companies.updateOne(new Document("_id", company_id),
                     new Document("$set",
                             new Document()
-                            .append(fieldName.trim(),
-                                    fieldValue.trim())));
+                                    .append(fieldName.trim(),
+                                            fieldValue.trim())));
         }
     }
 
@@ -169,13 +171,13 @@ public class CompanyMatcher {
                     companies.updateOne(new Document("_id", tempId),
                             new Document("$set",
                                     new Document()
-                                    .append("aliases",
-                                            aliases)));
+                                            .append("aliases",
+                                                    aliases)));
                     companies.updateOne(new Document("_id", tempId),
                             new Document("$set",
                                     new Document()
-                                    .append("website",
-                                            CLink.toLowerCase())));
+                                            .append("website",
+                                                    CLink.toLowerCase())));
                 }
             } else {
                 tempId = null;
@@ -191,8 +193,8 @@ public class CompanyMatcher {
                 companies.updateOne(new Document("_id", tempId),
                         new Document("$set",
                                 new Document()
-                                .append("aliases",
-                                        aliases)));
+                                        .append("aliases",
+                                                aliases)));
             }
         }
         return tempId;
@@ -202,8 +204,8 @@ public class CompanyMatcher {
      * Searches if the company exists to the database by having available only
      * Company's name
      *
-     * @returns company's id, if it is exists in db.
      * @throws UnknownHostException
+     * @returns company's id, if it is exists in db.
      */
     private ObjectId findCompanyId(String CompanyName, String Country) throws UnknownHostException {
 
@@ -211,10 +213,10 @@ public class CompanyMatcher {
         if (tempId != null) {
             MongoCursor<Document> tempCursor = companies.find(
                     new Document()
-                    .append(
-                            "_id",
-                            tempId
-                    )
+                            .append(
+                                    "_id",
+                                    tempId
+                            )
             ).iterator();
 
             ArrayList aliases = (ArrayList) tempCursor.next()
@@ -225,8 +227,8 @@ public class CompanyMatcher {
                 companies.updateOne(new Document("_id", tempId),
                         new Document("$set",
                                 new Document()
-                                .append("aliases",
-                                        aliases)));
+                                        .append("aliases",
+                                                aliases)));
             }
         }
         return tempId;
