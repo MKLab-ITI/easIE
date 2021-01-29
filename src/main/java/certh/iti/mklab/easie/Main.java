@@ -48,22 +48,7 @@ import org.jsoup.select.Selector.SelectorParseException;
 public class Main {
 
 
-    public static void main(String[] args) throws URISyntaxException, NoSuchAlgorithmException {//*args = new String[1];
-        /*args[0] = "C:\\Users\\vasgat\\Desktop\\results.json";
-        String s = readLineByLineJava8(args[0]);
-        //Gson gson = new Gson();
-        Document doc = Document.parse(s);
-        System.out.println(doc.get("results").getClass().getName());
-        List<Document> results = doc.getList("results", Document.class);
-        for (Document instance : results) {
-            List<Document> metrics = instance.getList("metrics", Document.class);
-            for (Document metric : metrics) {
-                System.out.println(metric.get("value"));
-            }
-        }*/
-        args = new String[1];
-        args[0] = "C:\\Users\\vasgat\\Desktop\\religiousgreece_example.json";
-
+    public static void main(String[] args) throws URISyntaxException, NoSuchAlgorithmException {
         if (args.length == 1) {
             try {
                 ConfigurationReader reader = new ConfigurationReader(args[0], ".");
@@ -145,13 +130,4 @@ public class Main {
         }
     }
 
-    private static String readLineByLineJava8(String filePath) {
-        StringBuilder contentBuilder = new StringBuilder();
-        try (Stream<String> stream = Files.lines(Paths.get(filePath), StandardCharsets.UTF_8)) {
-            stream.forEach(s -> contentBuilder.append(s).append("\n"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return contentBuilder.toString();
-    }
 }
