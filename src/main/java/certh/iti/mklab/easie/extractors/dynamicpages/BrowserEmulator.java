@@ -23,8 +23,10 @@ import java.util.concurrent.TimeUnit;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * @author vasgat
@@ -33,24 +35,26 @@ public class BrowserEmulator extends Fetcher {
 
     public WebDriver driver;
 
-    public BrowserEmulator(String baseURL, String relativeURL, String ChromeDriverPath) throws InterruptedException {
-
-//        driver.manage().window().setPosition(new Point(-2000, 0));
-        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+    public BrowserEmulator(String baseURL, String relativeURL, String pathToChromeDriver) throws InterruptedException {
+        System.setProperty("webdriver.chrome.driver", pathToChromeDriver);
+        driver = new ChromeDriver();
         driver.get(
                 baseURL + relativeURL
         );
-        Thread.sleep(10000);
     }
 
-    public BrowserEmulator(String fullURL, String ChromeDriverPath) throws InterruptedException {
-        driver = Selenium.setUpChromeDriver(ChromeDriverPath);
-//        driver.manage().window().setPosition(new Point(-2000, 0));
-        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+    public BrowserEmulator(String fullURL, String pathToChromeDriver) throws InterruptedException {
+        System.setProperty("webdriver.chrome.driver", pathToChromeDriver);
+        driver = new ChromeDriver();
         driver.get(
                 fullURL
         );
-        Thread.sleep(10000);
+    }
+
+    public void waitPageLoad() {
+        new WebDriverWait(driver, 60).until(
+                webDriver -> ((JavascriptExecutor) webDriver)
+                        .executeScript("return document.readyState").equals("complete"));
     }
 
     /**
@@ -61,10 +65,7 @@ public class BrowserEmulator extends Fetcher {
      */
     public void clickEvent(String CSSSelector) throws InterruptedException {
         WebElement element = driver.findElement(By.cssSelector(CSSSelector));
-        Actions actions = new Actions(driver);
-        Action action = actions.moveToElement(element).click().release().build();
-        action.perform();
-        Thread.sleep(3000L);
+        element.click();
     }
 
     /**
