@@ -1,7 +1,6 @@
 # easIE
 easy Information Extraction: is an easy-to-use information extraction framework that extracts data about companies from heterogeneous Web sources in a semi-automatic manner. It allows admin users to extract data about companies from heterogeneous Web sources in a semi-automatic manner by only defining a configuration file. The framework is quickly and simply generating Web Information Extractors and Wrappers. easIE offers a set of wrappers for obtaining content from Static and Dynamic HTML pages by pointing to the html elements using css Selectors.
 
-**Note: [Here](http://easie.iti.gr) you can find the web support of easIE**
 <h2><u>Getting started</u></h2>
 
 Each extractor extends AbstractHTMLExtractor and implements the `extractFields(List<ScrapableField> fields)` and `extractTable(String table_selector, List<ScrapableField> fields)` methods. There are four objects that extend AbstractHTMLExtractor:
